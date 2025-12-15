@@ -1,0 +1,470 @@
+var validations = require('./validationsCategory');
+var dbQuaries = require('./categorydbQuaries');
+
+var catId = require('../Core/cartID');
+var fs = require('fs');
+var path = require('path')
+
+var subcategory = {
+    subcategoryinsert: (params, req, callback) => {
+        var { error } = validations.subcategoryinsertparamvalidations(params);
+        if (error) {
+            return callback({
+                status: 400,
+                data: {
+                    response: 0,
+                    message: error.details[0].message
+                }
+            })
+        }
+        if (req.files != null) {
+            var categorydata = dbQuaries.datacategoryIDfetchparams(params);
+            categorydata.then((found) => {
+                if (found) {
+                    for (var a = 0; a < found.subCategorys.length; a++) {
+                        if (found.subCategorys[a].subCategoryName === params.subCategoryName) {
+                            return callback({
+                                status: 200,
+                                data: {
+                                    response: 0,
+                                    message: "Already used subCategoryName"
+                                }
+                            })
+                        }
+                    }
+                    var date = new Date().getTime();
+                    var subctID = catId.cartID(7);
+                    var imageID = catId.cartID(10);
+                    var subcategoryIDGenerate = "subCID" + subctID + "@" + date;
+                    var file = req.files.subimage;
+                    if (file != null) {
+                        var imagename = req.files.subimage.name;
+                        var filemvpath = './public/images/subCategoryimages/' + imageID + imagename;
+                        var filedbpath = '/images/subCategoryimages/' + imageID + imagename;
+                        file.mv(filemvpath, (err) => {
+                            if (err) {
+                                return callback({
+                                    status: 200,
+                                    data: {
+                                        response: 0,
+                                        message: "file not move path something error"
+                                    }
+                                })
+                            } else {
+                                var updatedata = dbQuaries.categoryinpushsubCategorydataparams(params, subcategoryIDGenerate, filedbpath);
+                                //console.log(updatedata)
+                                updatedata.then((updated) => {
+                                    //console.log("updated",updated)
+                                    if (updated.modifiedCount > 0) {
+                                        return callback({
+                                            status: 200,
+                                            data: {
+                                                response: 3,
+                                                message: "subCategory inserted Successfully"
+                                            }
+                                        })
+                                    } else {
+                                        return callback({
+                                            status: 200,
+                                            data: {
+                                                response: 0,
+                                                message: "subCategory inserted Failure"
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        })
+
+                    } else {
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 0,
+                                message: "subCategory image key not match/Wrong"
+                            }
+                        })
+                    }
+
+                } else {
+                    return callback({
+                        status: 200,
+                        data: {
+                            response: 0,
+                            message: "CategoryID Data Not found Data Base"
+                        }
+                    })
+                }
+            })
+        } else {
+            return callback({
+                status: 200,
+                data: {
+                    response: 0,
+                    message: "please pass subcategory image"
+                }
+            })
+        }
+    },
+    subcategoryupdate: (params, req, callback) => {
+        var { error } = validations.subcategoryparamsvalidations(params);
+        if (error) {
+            return callback({
+                status: 400,
+                data: {
+                    response: 0,
+                    message: error.details[0].message
+                }
+            })
+        }
+        var categorydata = dbQuaries.categoryandsubcategorydatafetchparams(params);
+        categorydata.then((founded) => {
+            //console.log("founded",founded)
+            if (founded) {
+                if (req.files != null) {
+                    var keyname;
+                    for (const [key, value] of Object.entries(req.files)) {
+                        keyname = key
+                    }
+                    if (keyname === "subimage") {
+                        if (req.files.subimage != null) {
+                            console.log(founded.subCategorys[0].SubCategoryProfilePic)
+                            var databaseimagepath = founded.subCategorys[0].SubCategoryProfilePic;
+                            var basenamefind = path.basename(databaseimagepath);
+                            var file = req.files.subimage;
+                            var filename = file.name;
+                            var namerepalces = filename.replace(filename, basenamefind);
+                            var subimagemvfilepath = './public/images/subCategoryimages/' + namerepalces;
+                            var subimagedbpath = '/images/subCategoryimages/' + namerepalces;
+                            file.mv(subimagemvfilepath, (err) => {
+                                if (err) {
+                                    return callback({
+                                        status: 200,
+                                        data: {
+                                            response: 0,
+                                            message: "filePass image key name not match"
+                                        }
+                                    })
+                                } else {
+                                    var updatesubimageandname = dbQuaries.updatesubimageandnameparams(params, subimagedbpath);
+                                    updatesubimageandname.then((updated) => {
+                                        if (updated) {
+                                            return callback({
+                                                status: 200,
+                                                data: {
+                                                    response: 3,
+                                                    message: "subCategory updated successfully"
+                                                }
+                                            })
+                                        } else {
+                                            return callback({
+                                                status: 200,
+                                                data: {
+                                                    response: 0,
+                                                    message: "subCategory updated Failure"
+                                                }
+                                            })
+                                        }
+                                    })
+                                }
+                            })
+                        } else {
+                            return callback({
+                                status: 200,
+                                data: {
+                                    response: 0,
+                                    message: "please pass image"
+                                }
+                            })
+                        }
+
+                    } else {
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 0,
+                                message: "filePass image key name not match"
+                            }
+                        })
+                    }
+
+                } else {
+                    var updatedatainsubcategory = dbQuaries.updateinsubcategorydataparams(params);
+                    updatedatainsubcategory.then((updated) => {
+                        if (updated.modifiedCount > 0) {
+                            return callback({
+                                status: 200,
+                                data: {
+                                    response: 3,
+                                    message: "subCategoryName updated Successfully"
+                                }
+                            })
+                        } else {
+                            return callback({
+                                status: 200,
+                                data: {
+                                    response: 0,
+                                    message: "subCategoryName updated Failure"
+                                }
+                            })
+                        }
+                    })
+                }
+            } else {
+                return callback({
+                    status: 200,
+                    data: {
+                        response: 0,
+                        message: "subCategoryID Data base not found"
+                    }
+                })
+            }
+        })
+    },
+    subcategoryfetch: (params, callback) => {
+        var { error } = validations.subcategoryfetchparamsvalidations(params);
+        if (error) {
+            return callback({
+                status: 400,
+                data: {
+                    response: 0,
+                    message: error.details[0].message
+                }
+            })
+        }
+        if (params.type === "All") {
+            var dailyproducts = dbQuaries.dailyproductsfetchdataparams(params);
+            dailyproducts.then((fetched) => {
+                var bestsellsproducts = dbQuaries.bestsellesProductsdataparams(params);
+                bestsellsproducts.then((getdata) => {
+                    console.log(getdata)
+                    var mk = [];
+                    for (var a = 0; a < getdata.length; a++) {
+                        if (getdata[a]._id) {
+                            mk.push(getdata[a]._id)
+                        }
+                    }
+                    var datacheckingsmim = dbQuaries.minidatafechingparams(mk);
+                    datacheckingsmim.then((founds) => {
+                        var datacard = dbQuaries.findcartdata(params);
+                        datacard.then((getdatas) => {
+                            if (getdatas.length > 0) {
+                                for (var a = 0; a < getdatas.length; a++) {
+                                    for (var b = 0; b < founds.length; b++) {
+                                        if (getdatas[a].ProductID === founds[b].ProductID) {
+                                            founds[b].customerQuantity = getdatas[a].quantity;
+                                            founds[b].VMART_Price = getdatas[a].vmartPrice;
+                                            founds[b].MRP_Price = getdatas[a].mrpPrice;
+                                        }
+                                    }
+                                }
+                            }
+                            var dashboardfetchData = dbQuaries.datafetchalldashBoardparams(params);
+                            dashboardfetchData.then((founded) => {
+                                var categorydatafetch = dbQuaries.fetchallcategoriesdataparams(params);
+                                categorydatafetch.then((found) => {
+                                    if (found.length > 0) {
+                                        return callback({
+                                            status: 200,
+                                            data: {
+                                                response: 3,
+                                                message: "Data found Successfully",
+                                                CategoryInfo: found,
+                                                DashBoardData: founded,
+                                                DailyDeals: fetched,
+                                                bestSellings: founds
+                                            }
+                                        })
+                                    } else {
+                                        return callback({
+                                            status: 200,
+                                            data: {
+                                                response: 0,
+                                                message: "Data not found",
+                                                CategoryInfo: found,
+                                                DashBoardData: founded,
+                                                DailyDeals: fetched,
+                                                bestSellings: founds
+                                            }
+                                        })
+                                    }
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        } else {
+            var categorydatafetch = dbQuaries.fetchallcategoriesdataparams(params);
+            categorydatafetch.then((found) => {
+                if (found.length > 0) {
+                    return callback({
+                        status: 200,
+                        data: {
+                            response: 3,
+                            message: "Data found Successfully",
+                            CategoryInfo: found
+                        }
+                    })
+                } else {
+                    return callback({
+                        status: 200,
+                        data: {
+                            response: 0,
+                            message: "Data not found",
+                            CategoryInfo: found
+
+                        }
+                    })
+                }
+            })
+        }
+
+    },
+    subcategorypulldata: (params, callback) => {
+        var { error } = validations.subcategorypulldataparamsvalidations(params);
+        if (error) {
+            return callback({
+                status: 400,
+                data: {
+                    response: 0,
+                    message: error.details[0].message
+                }
+            })
+        }
+
+        var fetchdatasubcategoryID = dbQuaries.fetchdatasubcategoryIDparams(params);
+        fetchdatasubcategoryID.then((found) => {
+            if (found) {
+                var pulldatasubcategory = dbQuaries.pulldatasubcategoryparams(params);
+                pulldatasubcategory.then((updated) => {
+                    if (updated.modifiedCount > 0) {
+                        var dbpathimage = found.subCategorys[0].SubCategoryProfilePic;
+                        var removeimageinpath = "./public" + dbpathimage;
+                        fs.unlink(removeimageinpath, (err) => {
+                            if (err) {
+                                return callback({
+                                    status: 200,
+                                    data: {
+                                        response: 0,
+                                        message: "file not unlink"
+
+                                    }
+                                })
+                            } else {
+                                return callback({
+                                    status: 200,
+                                    data: {
+                                        response: 3,
+                                        message: "subCategory deleted Successfully"
+
+                                    }
+                                })
+                            }
+                        })
+                    } else {
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 0,
+                                message: "subCategory deleted Failure"
+
+                            }
+                        })
+                    }
+                })
+            } else {
+                return callback({
+                    status: 200,
+                    data: {
+                        response: 0,
+                        message: "No Data found"
+
+                    }
+                })
+            }
+        })
+
+    },
+    categoriesDelete: (params, callback) => {
+        var { error } = validations.deletecategoryparamsValidations(params);
+        if (error) {
+            return callback({
+                status: 400,
+                data: {
+                    response: 0,
+                    message: error.details[0].message
+                }
+            })
+        }
+        var datafoundcategory = dbQuaries.fetchallcategoriesdataparams2(params);
+        datafoundcategory.then((found) => {
+            if (found.length > 0) {
+                var deletealldata = dbQuaries.deleteallcategoriesdataparams(params)
+                deletealldata.then((deleted) => {
+                    if (deleted) {
+                        var Categoryimages = [];
+                        var subCategoryimages = [];
+                        for (var a = 0; a < found.length; a++) {
+                            if (found[a].CategoryImage) {
+                                var locationpath = './public' + found[a].CategoryImage
+                                Categoryimages.push(locationpath);
+                                for (var b = 0; b < found[a].subCategorys.length; b++) {
+                                    if (found[a].subCategorys[b].SubCategoryProfilePic) {
+                                        var sublocationpath = './public' + found[a].subCategorys[b].SubCategoryProfilePic;
+                                        subCategoryimages.push(sublocationpath)
+                                    }
+                                }
+                            }
+
+                        }
+                        Categoryimages.map(f => {
+                            fs.unlink(f, (err) => {
+                                if (err) {
+                                    console.log(err)
+                                }
+                            })
+                        })
+                        subCategoryimages.map(f => {
+                            fs.unlink(f, (err) => {
+                                if (err) {
+                                    console.log(err)
+                                }
+                            })
+                        })
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 3,
+                                message: "Categorydata Delete Successfully"
+
+                            }
+                        })
+                    } else {
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 0,
+                                message: "Data deleted failure"
+
+                            }
+                        })
+                    }
+                })
+            } else {
+                return callback({
+                    status: 200,
+                    data: {
+                        response: 0,
+                        message: "No data found"
+
+                    }
+                })
+            }
+        })
+
+
+    }
+
+}
+module.exports = subcategory;
