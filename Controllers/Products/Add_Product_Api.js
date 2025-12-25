@@ -8,6 +8,7 @@ module.exports.Add_Project = async function Add_Project(req, res) {
             // productID: Joi.string().strict().required(),
             productName: Joi.string().strict().required(),
             productDescription: Joi.string().strict().default(""),
+            productHighlight:Joi.string().strict().default(""),
             categoryID: Joi.string().strict().required().default(""),
             categoryName: Joi.string().strict().required().default(""),
             subCategoryID: Joi.string().strict().required().default(""),
@@ -22,6 +23,9 @@ module.exports.Add_Project = async function Add_Project(req, res) {
             isStockUnlimited: Joi.boolean().strict().required().default(false),
             stockStatus: Joi.string().strict().required(),
             isHighlightedProduct: Joi.boolean().strict().required(),
+            weightList: Joi.array().strict().required(),
+            discountPrice: Joi.string().strict().required()
+
 
         })
         var result = await Product_Validation.validate(params);
@@ -42,14 +46,15 @@ module.exports.Add_Project = async function Add_Project(req, res) {
                 return res.json({ response: 0, message: `${params.productName} name is existing product` })
             }
             if (req.files !== null) {
+                //    console.log(req.files)
                 var dbarrayfiles = []
-                if (Array.isArray(req.files.journalimages)) {
+                if (Array.isArray(req.files.productimages)) {
 
                     var filesList = req.files.productimages;
 
                     for (var count = 0; count < filesList.length; count++) {
                         if (filesList[count]) {
-
+                            console.log(filesList[count])
                             var date = new Date().getTime()
                             var file = filesList[count];
                             var filepathServer = "./public/images/productsimages/" + "PID@" + date + file.name;
@@ -69,11 +74,11 @@ module.exports.Add_Project = async function Add_Project(req, res) {
 
                 } else {
                     var filesList = req.files.productimages;
-
+                    console.log("fefefefuiefhuuuuuuuuu", filesList)
                     var date = new Date().getTime()
                     var file = filesList;
-                    var filepathServer = "./public/images/JournalsImagesYearWise/" + "JF@" + date + file.name;
-                    var dbpathfile = "/images/JournalsImagesYearWise/" + "JF@" + date + file.name;
+                    var filepathServer = "./public/images/productsimages/" + "JF@" + date + file.name;
+                    var dbpathfile = "/images/productsimages/" + "JF@" + date + file.name;
                     file.mv(filepathServer, err => {
                         if (err) {
                             console.log(err)
@@ -85,6 +90,7 @@ module.exports.Add_Project = async function Add_Project(req, res) {
                     productID: "PID" + "@" + new Date().getTime().toString(),
                     productName: params.productName,
                     productDescription: params.productDescription,
+                    productHighlight:params.productHighlight,
                     categoryID: params.categoryID,
                     categoryName: params.categoryName,
                     subCategoryID: params.subCategoryID,
@@ -99,6 +105,9 @@ module.exports.Add_Project = async function Add_Project(req, res) {
                     isStockUnlimited: params.isStockUnlimited,
                     stockStatus: params.stockStatus,
                     isHighlightedProduct: params.isHighlightedProduct,
+                    weightList: params.weightList,
+                    discountPrice: params.discountPrice,
+                    timestamp: new Date().getTime().toString()
                 }])
                 if (insertProductData.length > 0) {
                     return res.json({ respose: 3, message: "Product inserted success" })

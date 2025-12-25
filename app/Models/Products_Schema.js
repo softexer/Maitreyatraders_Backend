@@ -16,6 +16,11 @@ var products = schema({
         required: false,
         default: ""
     },
+    productHighlight: {
+        type: String,
+        required: false,
+        default: ""
+    },
     categoryID: {
         type: String,
         required: false,
@@ -26,7 +31,7 @@ var products = schema({
         required: false,
         default: ""
     },
-    subCategoryID:{
+    subCategoryID: {
         type: String,
         required: false,
         default: ""
@@ -66,26 +71,46 @@ var products = schema({
         required: false,
         default: []
     },
-    stockQuantity:{
-         type: Number,
+    stockQuantity: {
+        type: Number,
         required: false,
         default: 0
     },
-    isStockUnlimited:{
+    isStockUnlimited: {
         type: Boolean,
         required: false,
         default: false
     },
-    stockStatus:{
-         type: String,
+    stockStatus: {
+        type: String,
         required: false,
         default: ""
     },
-    isHighlightedProduct:{
+    isHighlightedProduct: {
         type: Boolean,
         required: false,
         default: false
     },
+    weightList: {
+        type: Array,
+        required: false,
+        default: []
+    },
+    discountPrice:{
+          type: String,
+        required: false,
+        default: ""
+    },
+    discountPrice: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    timestamp: {
+        type: String,
+        required: false,
+        default: ""
+    }
 
 
 })

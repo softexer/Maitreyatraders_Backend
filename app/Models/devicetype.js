@@ -3,35 +3,35 @@ var Schema = mongoose.Schema;
 
 module.exports = mongoose.model('device', new Schema({
 
-    PhoneNumber: {
-        type:String,
-        unique:true,
-		index:true,
-        required:true
+    useruniqueID: {
+        type: String,
+        unique: true,
+        index: true,
+        required: true
     },
 
-    devices:{
+    devices: {
 
-        web:[{
+        web: [{
             deviceID: {
-                type:String
+                type: String
             },
             deviceToken: {
-                type:String
+                type: String
             },
             login: Boolean
         }],
 
-        mobile:[{
+        mobile: [{
             deviceID: {
-                type:String,
-                required:true
+                type: String,
+                required: true
             },
             deviceToken: {
-                type:String,
-                required:true
+                type: String,
+                required: true
             },
-            login:Boolean
+            login: Boolean
         }]
 
     }

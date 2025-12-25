@@ -66,9 +66,6 @@ var Register = {
                 }
             })
         }
-
-
     }
-
 }
 module.exports = Register;

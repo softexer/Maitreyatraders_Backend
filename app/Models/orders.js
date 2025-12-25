@@ -8,59 +8,186 @@ var orderdata = new schema({
         unique: true,
         index: true
     },
-    PhoneNumber: {
+    contactData: {
         type: String,
         required: false,
+        default: ""
+    },
+    emailID: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    phoneNumber: {
+        type: String,
+        required: false,
+        default: ""
     },
     Products: {
         type: Array,
         required: false,
         default: []
     },
-    carttotal: {
-        type: Number,
-        required: false
+    addressDetails: {
+        country: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        firstName: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        lastName: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        address: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        apartment: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        city: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        state: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        pincode: {
+            type: String,
+            required: false,
+            default: ""
+        },
+
+
     },
-    deliverycharges: {
-        type: Number,
-        required: false
-    },
-    deliverytype: {
-        type: String,
-        required: false
-    },
-    timestamp: {
-        type: String,
-        required: false
-    },
-    address: {
-        type: String,
-        required: false
-    },
-    pin: {
-        type: String,
-        required: false
-    },
-    deliverydate: {
-        type: String,
-        required: false
-    },
-    deliverystatus: {
-        type: String,
-        required: false
-    },
-    orderstatus: {
-        type: String,
-        required: false
-    },
-    paymentstatus: {
-        type: String,
-        required: false
-    },
-    reason_for_cancel: {
+    shippingMethod: {
         type: String,
         required: false,
-        default: "InProcess"
+        default: ""
     },
+    billingAddressDetails: {
+        country: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        firstName: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        lastName: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        address: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        apartment: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        city: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        state: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        pincode: {
+            type: String,
+            required: false,
+            default: ""
+        },
+
+
+    },
+    coupanCode: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    coupanAmount: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    subTotal: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    deliveryFee: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    totalToPay: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    paymentType: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    paymentData: {
+        type: Object,
+        required: false,
+        default: { Object }
+    },
+    orderStatus: {
+        type: String,
+        required: false,
+        default: "New"
+    },
+    paymentStatus: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    orderTrackingDetails: {
+        courierServiceName: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        shippingDate: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        trackingID: {
+            type: String,
+            required: false,
+            default: ""
+        }
+    },
+    orderTimeStamp: {
+        type: String,
+        required: false,
+        default: new Date().getTime().toString()
+    }
+
 })
 module.exports = mongoose.model('ordersdata', orderdata)

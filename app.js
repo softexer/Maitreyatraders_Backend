@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-
+require("dotenv").config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var Customer = require('./routes/Customer');
@@ -19,6 +19,9 @@ var dashboard = require('./routes/dashboard');
 var dailydeals = require('./routes/DailyDeals');
 var orders = require('./routes/orders');
 var whishlist = require('./routes/whishlist');
+var product_List = require('./routes/Products');
+var Admin = require('./routes/Admin');
+var Payment = require('./routes/payment')
 
 
 var app = express();
@@ -48,6 +51,9 @@ app.use('/api/dashboard',dashboard);
 app.use('/api/todaydeals',dailydeals);
 app.use('/api/orders',orders);
 app.use('/api/whishlist',whishlist);
+app.use('/api/product',product_List);
+app.use('/api/admin',Admin);
+app.use('/api/payment',Payment)
 
 
 
