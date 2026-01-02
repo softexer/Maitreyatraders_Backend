@@ -336,8 +336,16 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     },
                     { $sort: { date: 1 } }
                 ]);
+                if(GettingOrderGraphData.length==0){
 
+                    var dateStr = moment(parseInt(params.startDate)).format("YYYY-MM-DD");
+                    GettingOrderGraphData.push({
+                        date: dateStr,
+                        count:0
+                    })
+                }
 
+                
                 return res.json({
                     response: 3,
                     message: "Admin home page fetch data successfully",
