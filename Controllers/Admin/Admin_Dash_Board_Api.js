@@ -3,6 +3,7 @@ var Admin_Model = require('../../app/Models/Admin');
 var Orders_Model = require('../../app/Models/orders');
 var Products_Model = require('../../app/Models/Products_Schema')
 var moment = require("moment");
+const { response } = require('express');
 module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, res) {
     try {
         var params = req.body;
@@ -336,23 +337,20 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     { $sort: { date: 1 } }
                 ]);
 
-                if (GettingOrderGraphData.length > 0) {
-                    return res.json({
-                        response: 3,
-                        message: "Admin home page fetch data successfully",
-                        TotalOrders: total_order_count,
-                        ActiveOrders: active_order_count,
-                        CompvaredOrders: completed_order_count,
-                        TotalOrdersPercentage: TotalOrdersComparePreviousMonth,
-                        TotalOrdersActivePercentage: ActiveTotalOrdersComparePreviousMonth,
-                        TotalOrdersCompletedPercentage: ComparedTotalOrdersComparePreviousMonth,
-                        ProductsTopSales: ProductsTopSelles,
-                        GraphData: GettingOrderGraphData,
-                        NewOrders: Recent_Orders_Fetch
-                    })
-                } else {
 
-                }
+                return res.json({
+                    response: 3,
+                    message: "Admin home page fetch data successfully",
+                    TotalOrders: total_order_count,
+                    ActiveOrders: active_order_count,
+                    CompvaredOrders: completed_order_count,
+                    TotalOrdersPercentage: TotalOrdersComparePreviousMonth,
+                    TotalOrdersActivePercentage: ActiveTotalOrdersComparePreviousMonth,
+                    TotalOrdersCompletedPercentage: ComparedTotalOrdersComparePreviousMonth,
+                    ProductsTopSales: ProductsTopSelles,
+                    GraphData: GettingOrderGraphData,
+                    NewOrders: Recent_Orders_Fetch
+                })
 
             } else if (params.selectTypeGraph == "Week") {
                 var GettingOrderGraphData = await Orders_Model.aggregate([
@@ -586,7 +584,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             return res.json({ response: 0, message: "Admin uniqueID data not found" })
         }
     } catch (error) {
-         console.log(error)
+        console.log(error)
         return res.json({ response: 0, message: "Internal Server Error" })
     }
 }
