@@ -120,7 +120,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 trend = "increase";
             } else if (TotalOrderspreviousCount > 0) {
                 TotalOrderspercentageChange = ((TotalOrderscurrentCount - TotalOrderspreviousCount) / TotalOrderspreviousCount) * 100;
-                trend = percentageChange > 0 ? "increase" : "decrease";
+                trend = TotalOrderspercentageChange > 0 ? "increase" : "decrease";
             }
 
             TotalOrderspercentageChange = Number(TotalOrderspercentageChange.toFixed(2));
@@ -179,7 +179,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 Active_trend = "increase";
             } else if (Active_TotalOrderspreviousCount > 0) {
                 Active_TotalOrderspercentageChange = ((Active_TotalOrderscurrentCount - Active_TotalOrderspreviousCount) / Active_TotalOrderspreviousCount) * 100;
-                Active_trend = percentageChange > 0 ? "increase" : "decrease";
+                Active_trend = Active_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
             }
 
             Active_TotalOrderspercentageChange = Number(TotalOrderspercentageChange.toFixed(2));
@@ -239,7 +239,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 Completed_trend = "increase";
             } else if (Completed_TotalOrderspreviousCount > 0) {
                 Completed_TotalOrderspercentageChange = ((Completed_TotalOrderscurrentCount - Completed_TotalOrderspreviousCount) / Completed_TotalOrderspreviousCount) * 100;
-                Completed_trend = percentageChange > 0 ? "increase" : "decrease";
+                Completed_trend = Completed_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
             }
 
             Completed_TotalOrderspercentageChange = Number(Completed_TotalOrderspercentageChange.toFixed(2));
@@ -586,7 +586,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             return res.json({ response: 0, message: "Admin uniqueID data not found" })
         }
     } catch (error) {
-        // console.log(error)
+         console.log(error)
         return res.json({ response: 0, message: "Internal Server Error" })
     }
 }
