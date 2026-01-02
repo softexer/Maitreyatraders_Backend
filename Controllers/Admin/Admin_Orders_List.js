@@ -11,7 +11,7 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
         // console.log(params)
         var Validate_Admin_Dashboard = Joi.object({
             adminuniqueID: Joi.string().strict().required(),
-            orderlistType: Joi.string().strict().valid("All", "Pending", "Delivered").required(),
+            orderlistType: Joi.string().strict().valid("All", "New", "Shipped", "Delivered").required(),
             sortingType: Joi.string().strict().valid("Ascending", "Descending").required(),
             pageNo: Joi.number().integer().strict().required(),
             size: Joi.number().integer().strict().required(),
@@ -96,10 +96,10 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                 } else {
                     return res.json({ response: 0, message: "Data not found" })
                 }
-            } else if (params.orderlistType == "Pending") {
+            } else if (params.orderlistType == "New") {
                 var totalordersCount = await Orders_Model.countDocuments({}).exec();
                 var totalordersData = await Orders_Model.aggregate([
-                    { $match: { orderStatus: { $in: ["New", "InProgress"] } } },
+                    { $match: { orderStatus: { $in: ["New"] } } },
                     { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
                     { $skip: (params.pageNo - 1) * params.size },
                     { $limit: params.size }
@@ -121,7 +121,28 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
             } else if (params.orderlistType == "Delivered") {
                 var totalordersCount = await Orders_Model.countDocuments({}).exec();
                 var totalordersData = await Orders_Model.aggregate([
-                    { $match: { orderStatus: { $in: ["New", "InProgress"] } } },
+                    { $match: { orderStatus: { $in: ["Delivered"] } } },
+                    { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    { $skip: (params.pageNo - 1) * params.size },
+                    { $limit: params.size }
+                ])
+                if (totalordersData.length > 0) {
+                    var totalpages = Math.ceil(totalordersCount / params.size)
+                    return res.json({
+                        response: 3,
+                        message: "Orders list fetch data successfully",
+                        currentPage: params.pageNo,
+                        totalpages: totalpages,
+                        OrdersCount: OrdersCountAggregateQuery,
+                        ordersData: totalordersData
+                    })
+                } else {
+                    return res.json({ response: 0, message: "Data not found" })
+                }
+            } else if (params.orderlistType == "Shipped") {
+                var totalordersCount = await Orders_Model.countDocuments({}).exec();
+                var totalordersData = await Orders_Model.aggregate([
+                    { $match: { orderStatus: { $in: ["Shipped"] } } },
                     { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
                     { $skip: (params.pageNo - 1) * params.size },
                     { $limit: params.size }

@@ -29,7 +29,7 @@ module.exports.Admin_Add_Tracking_Details_Api = async function Admin_Add_Trackin
                 var UpdateOrderData = await Orders_Model.updateOne({ orderId: params.orderId }, {
                     $set: {
                         orderTrackingDetails: params.orderTrackingDetails,
-                        orderStatus: "InProgress"
+                        orderStatus: "Shipped"
                     }
                 })
                 if (UpdateOrderData.modifiedCount > 0) {
@@ -70,7 +70,7 @@ module.exports.Admin_Mark_As_Delivered_Api = async function Admin_Mark_As_Delive
             if (checking_orderID) {
                 var UpdateOrderData = await Orders_Model.updateOne({ orderId: params.orderId }, {
                     $set: {
-                        orderStatus: "Completed"
+                        orderStatus: "Delivered"
                     }
                 })
                 if (UpdateOrderData.modifiedCount > 0) {

@@ -34,9 +34,9 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             //Total Orders 
             var total_orders = await Orders_Model.countDocuments({}).exec();
             total_order_count = total_orders;
-            var active_orders = await Orders_Model.countDocuments({ orderStatus: "InProgress" }).exec();
+            var active_orders = await Orders_Model.countDocuments({ orderStatus: "New" }).exec();
             active_order_count = active_orders;
-            var compvare_orders = await Orders_Model.countDocuments({ orderStatus: "Compvared" })
+            var compvare_orders = await Orders_Model.countDocuments({ orderStatus: "Delivered" })
             completed_order_count = compvare_orders;
             //Compare Previous month and Current Month
             var TotalOrdersComparePreviousMonth = {
@@ -76,7 +76,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             var monthCompareDataTotalOrders = await Orders_Model.aggregate([
                 {
                     $match: {
-                        orderStatus: { $in: ["New", "InProgress", "Compvared"] },
+                        orderStatus: { $in: ["New", "Shipped", "Delivered"] },
                         orderTimeStamp: {
                             $gte: previousMonthStart.toString(),
                             $lte: currentMonthEnd.toString()
@@ -135,7 +135,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             var Active_monthCompareDataTotalOrders = await Orders_Model.aggregate([
                 {
                     $match: {
-                        orderStatus: { $in: ["New", "InProgress", "Compvared"] },
+                        orderStatus: { $in: ["New", "Shipped", "Delivered"] },
                         orderTimeStamp: {
                             $gte: previousMonthStart.toString(),
                             $lte: currentMonthEnd.toString()
@@ -195,7 +195,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             var Completed_monthCompareDataTotalOrders = await Orders_Model.aggregate([
                 {
                     $match: {
-                        orderStatus: { $in: ["New", "InProgress", "Compvared"] },
+                        orderStatus: { $in: ["New", "Shipped", "Delivered"] },
                         orderTimeStamp: {
                             $gte: previousMonthStart.toString(),
                             $lte: currentMonthEnd.toString()
@@ -255,7 +255,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             //Best Seller Product
             var Get_best_sellers_Products = await Orders_Model.aggregate([{
                 $match: {
-                    orderStatus: { $in: ["New", "InProgress", "Compvared"] }
+                    orderStatus: { $in: ["New", "Shipped", "Delivered"] }
                 }
             },
             { $unwind: "$Products" },
@@ -299,8 +299,8 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                             orderStatus: {
                                 $in: [
                                     "New",
-                                    "InProgress",
-                                    "Compvared"
+                                    "Shipped",
+                                    "Delivered"
                                 ]
                             },
                             orderTimeStamp: {
@@ -336,16 +336,16 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     },
                     { $sort: { date: 1 } }
                 ]);
-                if(GettingOrderGraphData.length==0){
+                if (GettingOrderGraphData.length == 0) {
 
                     var dateStr = moment(parseInt(params.startDate)).format("YYYY-MM-DD");
                     GettingOrderGraphData.push({
                         date: dateStr,
-                        count:0
+                        count: 0
                     })
                 }
 
-                
+
                 return res.json({
                     response: 3,
                     message: "Admin home page fetch data successfully",
@@ -364,7 +364,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 var GettingOrderGraphData = await Orders_Model.aggregate([
                     {
                         $match: {
-                            orderStatus: { $in: ["New", "InProgress", "Compvared"] },
+                            orderStatus: { $in: ["New", "Shipped", "Delivered"] },
                             orderTimeStamp: {
                                 $gte: params.startDate,
                                 $lte: params.endDate
@@ -439,7 +439,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 var GettingOrderGraphData = await Orders_Model.aggregate([
                     {
                         $match: {
-                            orderStatus: { $in: ["New", "InProgress", "Compvared"] },
+                            orderStatus: { $in: ["New", "Shipped", "Delivered"] },
                             orderTimeStamp: {
                                 $gte: params.startDate,
                                 $lte: params.endDate
@@ -513,7 +513,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 var GettingOrderGraphData = await Orders_Model.aggregate([
                     {
                         $match: {
-                            orderStatus: { $in: ["New", "InProgress", "Compvared"] },
+                            orderStatus: { $in: ["New", "Shipped", "Delivered"] },
                             orderTimeStamp: {
                                 $gte: params.startDate,
                                 $lte: params.endDate
@@ -565,7 +565,6 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                         month: monthStr,
                         count: monthMap[monthStr] || 0   // 👈 default zero
                     });
-
                     start.add(1, "month");
                 }
                 return res.json({
