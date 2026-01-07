@@ -17,7 +17,7 @@ var categorydb = {
         })
         return insertct;
     },
-    subCategoryproductinsertparams: (params, dbpath, subdbpath, checkingsub) => {
+    subCategoryproductinsertparams: (params, checkingsub) => {
 
         var date = new Date().getTime();
         var ctID = catId.cartID(6);
@@ -47,17 +47,20 @@ var categorydb = {
     categoryimageupdateparams: (params, dbpathupdate) => {
         return Category.updateOne({ categoryID: params.categoryID }, { $set: { CategoryImage: dbpathupdate } })
     },
-    updatedimagesandsubimagesdata: (params, dbpath, subdbpath) => {
+    updatedimagesandsubimagesdata: (params, ) => {
         return Category.updateOne({ categoryID: params.categoryID, "subCategorys.$.subCategoryID": params.subCategoryID },
             { $set: { CategoryImage: dbpath, "subCategorys.$.SubCategoryProfilePic": subdbpath } })
     },
-    categoryinpushsubCategorydataparams: (params, subcategoryIDGenerate, filedbpath) => {
+    categoryinpushsubCategorydataparams: (params, subcategoryIDGenerate, ) => {
         return Category.updateOne({ categoryID: params.categoryID },
-            { $push: { subCategorys: { subCategoryID: subcategoryIDGenerate, subCategoryName: params.subCategoryName, SubCategoryProfilePic: filedbpath } } })
+            { $push: { subCategorys: { subCategoryID: subcategoryIDGenerate, subCategoryName: params.subCategoryName } } })
     },
     categoryandsubcategorydatafetchparams: (params) => {
         return Category.findOne(
-            { categoryID: params.categoryID, "subCategorys.subCategoryID": params.subCategoryID },
+            { categoryID: params.categoryID, "subCategorys.subCategoryID": params.subCategoryID,
+                
+                
+             },
             { _id: 0, subCategorys: { $elemMatch: { subCategoryID: params.subCategoryID } } });
     },
     updateinsubcategorydataparams: (params) => {
@@ -70,9 +73,9 @@ var categorydb = {
     },
     fetchallcategoriesdataparams: (params) => {
         if (params.type === "All") {
-            return Category.find({},{ _id: 0, __v: 0}).exec();
+            return Category.find({}, { _id: 0, __v: 0 }).exec();
         } else {
-            return Category.find({ categoryID: params.type },{ _id: 0, __v: 0}).exec();
+            return Category.find({ categoryID: params.type }, { _id: 0, __v: 0 }).exec();
         }
     },
     pulldatasubcategoryparams: (params) => {
@@ -98,7 +101,7 @@ var categorydb = {
         }
     },
     datafetchalldashBoardparams: (params) => {
-        return Dashboard.find({},{_id: 0, __v: 0}).exec();
+        return Dashboard.find({}, { _id: 0, __v: 0 }).exec();
     },
     dailyproductsfetchdataparams: (params) => {
         var moment = require('moment')
@@ -110,18 +113,18 @@ var categorydb = {
         console.log(endDate)
         return Dailydeals.find({ postDate: { $gte: startDate, $lte: endDate } }).exec()
     },
-    bestsellesProductsdataparams:(params)=>{
+    bestsellesProductsdataparams: (params) => {
         //return orders.find({},{"Products.ProductName":1,"Products.quantity":1,"Products.ProductID":1}).exec();
-        return orders.aggregate([{$unwind:"$Products"},
-        {$project:{ProductID:"$Products.ProductID",convertedQty: { $toInt: "$Products.quantity" }}},
-        {$group:{_id:"$ProductID",totalquantity:{$sum:"$convertedQty"}}},{$sort:{totalquantity:-1}},{$limit:10}
+        return orders.aggregate([{ $unwind: "$Products" },
+        { $project: { ProductID: "$Products.ProductID", convertedQty: { $toInt: "$Products.quantity" } } },
+        { $group: { _id: "$ProductID", totalquantity: { $sum: "$convertedQty" } } }, { $sort: { totalquantity: -1 } }, { $limit: 10 }
         ])
     },
-    minidatafechingparams:(mk)=>{
-        return SellerProducts.find({ProductID:{$in:mk}},{_id: 0, __v: 0}).exec();
+    minidatafechingparams: (mk) => {
+        return SellerProducts.find({ ProductID: { $in: mk } }, { _id: 0, __v: 0 }).exec();
     },
-    findcartdata:(params)=>{
-        return CartData.find({PhoneNumber:"+91"+params.PhoneNumber}).exec();
+    findcartdata: (params) => {
+        return CartData.find({ PhoneNumber: "+91" + params.PhoneNumber }).exec();
     }
 }
 module.exports = categorydb;

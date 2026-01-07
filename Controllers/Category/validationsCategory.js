@@ -12,7 +12,8 @@ var categorysvalidations = {
     updatecategoryparamsvalidations: (params) => {
         var categoryupdate = Joi.object({
             categoryID: Joi.string().required(),
-            subCategoryID: Joi.string().optional()
+            categoryName: Joi.string().required(),
+            // subCategoryID: Joi.string().optional()
 
         });
         return categoryupdate.validate(params)
@@ -32,22 +33,22 @@ var categorysvalidations = {
         })
         return subcategoryupdate.validate(params)
     },
-    subcategoryfetchparamsvalidations:(params)=>{
+    subcategoryfetchparamsvalidations: (params) => {
         var subcategoryfetch = Joi.object({
-            type:Joi.string().required(),
-            PhoneNumber:Joi.string().optional(),
+            type: Joi.string().required(),
+            PhoneNumber: Joi.string().optional(),
         })
         return subcategoryfetch.validate(params)
     },
-    subcategorypulldataparamsvalidations:(params)=>{
+    subcategorypulldataparamsvalidations: (params) => {
         var pulldata = Joi.object({
-            subCategoryID:Joi.string().required()
+            subCategoryID: Joi.string().required()
         })
         return pulldata.validate(params)
     },
-    deletecategoryparamsValidations:(params)=>{
+    deletecategoryparamsValidations: (params) => {
         var deletecategories = Joi.object({
-            type:Joi.string().required()
+            type: Joi.string().required()
         })
         return deletecategories.validate(params)
     }

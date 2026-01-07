@@ -1,6 +1,6 @@
 var validations = require('./validationsCategory');
 var dbQuaries = require('./categorydbQuaries');
-
+var Category_Model = require('../../app/Models/Categories')
 var catId = require('../Core/cartID');
 var fs = require('fs');
 var path = require('path')
@@ -17,94 +17,71 @@ var subcategory = {
                 }
             })
         }
-        if (req.files != null) {
-            var categorydata = dbQuaries.datacategoryIDfetchparams(params);
-            categorydata.then((found) => {
-                if (found) {
-                    for (var a = 0; a < found.subCategorys.length; a++) {
-                        if (found.subCategorys[a].subCategoryName === params.subCategoryName) {
-                            return callback({
-                                status: 200,
-                                data: {
-                                    response: 0,
-                                    message: "Already used subCategoryName"
-                                }
-                            })
-                        }
-                    }
-                    var date = new Date().getTime();
-                    var subctID = catId.cartID(7);
-                    var imageID = catId.cartID(10);
-                    var subcategoryIDGenerate = "subCID" + subctID + "@" + date;
-                    var file = req.files.subimage;
-                    if (file != null) {
-                        var imagename = req.files.subimage.name;
-                        var filemvpath = './public/images/subCategoryimages/' + imageID + imagename;
-                        var filedbpath = '/images/subCategoryimages/' + imageID + imagename;
-                        file.mv(filemvpath, (err) => {
-                            if (err) {
-                                return callback({
-                                    status: 200,
-                                    data: {
-                                        response: 0,
-                                        message: "file not move path something error"
-                                    }
-                                })
-                            } else {
-                                var updatedata = dbQuaries.categoryinpushsubCategorydataparams(params, subcategoryIDGenerate, filedbpath);
-                                //console.log(updatedata)
-                                updatedata.then((updated) => {
-                                    //console.log("updated",updated)
-                                    if (updated.modifiedCount > 0) {
-                                        return callback({
-                                            status: 200,
-                                            data: {
-                                                response: 3,
-                                                message: "subCategory inserted Successfully"
-                                            }
-                                        })
-                                    } else {
-                                        return callback({
-                                            status: 200,
-                                            data: {
-                                                response: 0,
-                                                message: "subCategory inserted Failure"
-                                            }
-                                        })
-                                    }
-                                })
+
+        var categorydata = dbQuaries.datacategoryIDfetchparams(params);
+        categorydata.then(async (found) => {
+            if (found) {
+                for (var a = 0; a < found.subCategorys.length; a++) {
+                    if (found.subCategorys[a].subCategoryName === params.subCategoryName) {
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 0,
+                                message: "Already used subCategoryName"
                             }
                         })
+                    }
+                }
+                var checkingSubCategoryName = await Category_Model.findOne({
+                    categoryID: params.categoryID,
+                    "subCategorys.subCategoryID": { $ne: params.subCategoryID },
+                    "subCategorys.subCategoryName": params.subCategoryName
+                })
+                if (checkingSubCategoryName) {
+                    return callback({
+                        status: 200,
+                        data: {
+                            response: 0,
+                            message: "Already used subCategoryName"
+                        }
+                    })
+                }
+                var date = new Date().getTime();
+                var subcategoryIDGenerate = "subCID" + catId.cartID(7) + "@" + date;
+                var updatedata = dbQuaries.categoryinpushsubCategorydataparams(params, subcategoryIDGenerate);
 
+                updatedata.then((updated) => {
+
+                    if (updated.modifiedCount > 0) {
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 3,
+                                message: "subCategory inserted Successfully"
+                            }
+                        })
                     } else {
                         return callback({
                             status: 200,
                             data: {
                                 response: 0,
-                                message: "subCategory image key not match/Wrong"
+                                message: "subCategory inserted Failure"
                             }
                         })
                     }
+                })
 
-                } else {
-                    return callback({
-                        status: 200,
-                        data: {
-                            response: 0,
-                            message: "CategoryID Data Not found Data Base"
-                        }
-                    })
-                }
-            })
-        } else {
-            return callback({
-                status: 200,
-                data: {
-                    response: 0,
-                    message: "please pass subcategory image"
-                }
-            })
-        }
+            } else {
+                return callback({
+                    status: 200,
+                    data: {
+                        response: 0,
+                        message: "CategoryID Data Not found Data Base"
+                    }
+                })
+            }
+        })
+
     },
     subcategoryupdate: (params, req, callback) => {
         var { error } = validations.subcategoryparamsvalidations(params);
@@ -119,97 +96,39 @@ var subcategory = {
         }
         var categorydata = dbQuaries.categoryandsubcategorydatafetchparams(params);
         categorydata.then((founded) => {
-            //console.log("founded",founded)
-            if (founded) {
-                if (req.files != null) {
-                    var keyname;
-                    for (const [key, value] of Object.entries(req.files)) {
-                        keyname = key
-                    }
-                    if (keyname === "subimage") {
-                        if (req.files.subimage != null) {
-                            console.log(founded.subCategorys[0].SubCategoryProfilePic)
-                            var databaseimagepath = founded.subCategorys[0].SubCategoryProfilePic;
-                            var basenamefind = path.basename(databaseimagepath);
-                            var file = req.files.subimage;
-                            var filename = file.name;
-                            var namerepalces = filename.replace(filename, basenamefind);
-                            var subimagemvfilepath = './public/images/subCategoryimages/' + namerepalces;
-                            var subimagedbpath = '/images/subCategoryimages/' + namerepalces;
-                            file.mv(subimagemvfilepath, (err) => {
-                                if (err) {
-                                    return callback({
-                                        status: 200,
-                                        data: {
-                                            response: 0,
-                                            message: "filePass image key name not match"
-                                        }
-                                    })
-                                } else {
-                                    var updatesubimageandname = dbQuaries.updatesubimageandnameparams(params, subimagedbpath);
-                                    updatesubimageandname.then((updated) => {
-                                        if (updated) {
-                                            return callback({
-                                                status: 200,
-                                                data: {
-                                                    response: 3,
-                                                    message: "subCategory updated successfully"
-                                                }
-                                            })
-                                        } else {
-                                            return callback({
-                                                status: 200,
-                                                data: {
-                                                    response: 0,
-                                                    message: "subCategory updated Failure"
-                                                }
-                                            })
-                                        }
-                                    })
-                                }
-                            })
-                        } else {
-                            return callback({
-                                status: 200,
-                                data: {
-                                    response: 0,
-                                    message: "please pass image"
-                                }
-                            })
-                        }
 
+            if (founded) {
+                var checkingSubCategoryName = founded.subCategorys[0].subCategoryName;
+                if (checkingSubCategoryName === params.subCategoryName) {
+                    return callback({
+                        status: 200,
+                        data: {
+                            response: 0,
+                            message: "Already used this subCategoryName"
+                        }
+                    })
+                }
+                var updatedatainsubcategory = dbQuaries.updateinsubcategorydataparams(params);
+                updatedatainsubcategory.then((updated) => {
+                    if (updated.modifiedCount > 0) {
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 3,
+                                message: "subCategoryName updated Successfully"
+                            }
+                        })
                     } else {
                         return callback({
                             status: 200,
                             data: {
                                 response: 0,
-                                message: "filePass image key name not match"
+                                message: "subCategoryName updated Failure"
                             }
                         })
                     }
+                })
 
-                } else {
-                    var updatedatainsubcategory = dbQuaries.updateinsubcategorydataparams(params);
-                    updatedatainsubcategory.then((updated) => {
-                        if (updated.modifiedCount > 0) {
-                            return callback({
-                                status: 200,
-                                data: {
-                                    response: 3,
-                                    message: "subCategoryName updated Successfully"
-                                }
-                            })
-                        } else {
-                            return callback({
-                                status: 200,
-                                data: {
-                                    response: 0,
-                                    message: "subCategoryName updated Failure"
-                                }
-                            })
-                        }
-                    })
-                }
             } else {
                 return callback({
                     status: 200,

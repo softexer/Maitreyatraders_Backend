@@ -29,124 +29,52 @@ var insertcategory = {
                 var checkingsub = params.subcategory[0].subCategoryName;
                 var check = checkingsub.trim();
                 if (check) {
-                    //console.log(req)
-                    var catimage = req.files.images;
-                    var subcat = req.files.subimage;
-                    if ((catimage && subcat) != null) {
-                        var IDS = ID.cartID(10)
-                        var file = req.files.images;
-                        var image = req.files.images.name;
-                        var dbpath = '/images/Categoryimages/' + IDS + image;
-                        var filemovefolder = './public/images/Categoryimages/' + IDS + image;
-                        file.mv(filemovefolder, (err, data) => {
-                            if (err) {
-                                return callback({
-                                    status: 200,
-                                    data: {
-                                        response: 0,
-                                        message: "image not move file path"
-                                    }
-                                })
-                            } else {
-                                var sIDS = ID.cartID(10)
-                                var file1 = req.files.subimage;
-                                var subimage = req.files.subimage.name;
-                                var subdbpath = '/images/subCategoryimages/' + sIDS + subimage;
-                                var filemovefolders = './public/images/subCategoryimages/' + sIDS + subimage;
-                                file1.mv(filemovefolders, (err, data) => {
-                                    if (err) {
-                                        return callback({
-                                            status: 200,
-                                            data: {
-                                                response: 0,
-                                                message: "subimage not move file path"
-                                            }
-                                        })
-                                    } else {
-                                        var insertcategoryData = dbQuaries.subCategoryproductinsertparams(params, dbpath, subdbpath, checkingsub);
-                                        insertcategoryData.save((inserted) => {
-                                            if (!inserted) {
-                                                return callback({
-                                                    status: 200,
-                                                    data: {
-                                                        response: 3,
-                                                        message: "Category inserted Successfully"
-                                                    }
-                                                })
-                                            } else {
-                                                return callback({
-                                                    status: 200,
-                                                    data: {
-                                                        response: 0,
-                                                        message: "Category inserted Failure"
-                                                    }
-                                                })
-                                            }
-                                        })
-                                    }
-                                })
-                            }
-                        })
-                    } else {
-                        return callback({
-                            status: 200,
-                            data: {
-                                response: 0,
-                                message: "please insert categoryimage/subcategory image"
-                            }
-                        })
-                    }
-                } else {
-                    if (req.files != null) {
-                        var IDS = ID.cartID(10)
-                        var file = req.files.images;
-                        var image = req.files.images.name;
-                        var dbpath = '/images/Categoryimages/' + IDS + image;
-                        var filemovefolder = './public/images/Categoryimages/' + IDS + image;
-                        file.mv(filemovefolder, (err, data) => {
-                            if (err) {
-                                return callback({
-                                    status: 200,
-                                    data: {
-                                        response: 0,
-                                        message: "image not move file path"
-                                    }
-                                })
-                            } else {
-                                console.log(image)
-                                var insertcategoryData = dbQuaries.Categoryproductinsertparams(params, dbpath);
-                                insertcategoryData.save((inserted) => {
-                                    if (!inserted) {
-                                        return callback({
-                                            status: 200,
-                                            data: {
-                                                response: 3,
-                                                message: "Category inserted Successfully"
-                                            }
-                                        })
-                                    } else {
-                                        return callback({
-                                            status: 200,
-                                            data: {
-                                                response: 0,
-                                                message: "Category inserted Failure"
-                                            }
-                                        })
-                                    }
-                                })
-                            }
-                        })
 
-                    } else {
-                        return callback({
-                            status: 200,
-                            data: {
-                                response: 0,
-                                message: "image not inserted"
-                            }
-                        })
-                    }
+                    var insertcategoryData = dbQuaries.subCategoryproductinsertparams(params, checkingsub);
+                    insertcategoryData.save((inserted) => {
+                        if (!inserted) {
+                            return callback({
+                                status: 200,
+                                data: {
+                                    response: 3,
+                                    message: "Category inserted Successfully"
+                                }
+                            })
+                        } else {
+                            return callback({
+                                status: 200,
+                                data: {
+                                    response: 0,
+                                    message: "Category inserted Failure"
+                                }
+                            })
+                        }
+                    })
+
+                } else {
+
+                    var insertcategoryData = dbQuaries.Categoryproductinsertparams(params);
+                    insertcategoryData.save((inserted) => {
+                        if (!inserted) {
+                            return callback({
+                                status: 200,
+                                data: {
+                                    response: 3,
+                                    message: "Category inserted Successfully"
+                                }
+                            })
+                        } else {
+                            return callback({
+                                status: 200,
+                                data: {
+                                    response: 0,
+                                    message: "Category inserted Failure"
+                                }
+                            })
+                        }
+                    })
                 }
+
             }
 
         })
