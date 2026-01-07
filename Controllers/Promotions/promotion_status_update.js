@@ -2,7 +2,7 @@ var Joi = require('@hapi/joi');
 var Promotion_Model = require('../../app/Models/Promotions');
 var Admin_Model = require('../../app/Models/Admin');
 
-module.exports.promotion_status_update = async (req,res)=>{
+module.exports.promotion_Status_Update_Api = async function promotion_Status_Update_Api(req,res){
     try{
         var params = req.body;
         var ValidateParams = Joi.object({

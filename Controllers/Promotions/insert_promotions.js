@@ -1,13 +1,14 @@
 var Joi = require('@hapi/joi');
 var Promotion_Model = require('../../app/Models/Promotions');
 var Admin_Model = require('../../app/Models/Admin');
-var Products_Model = require('../../app/Models/Products_Schema');
-var Category_Model = require('..')
+// var Products_Model = require('../../app/Models/Products_Schema');
+// var Category_Model = require('../../app/Models/Categories');
 
-module.exports.promotion_Insert_Api = async function 
-promotion_Insert_Api(req, res) {
+module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, res) {
     try {
+      
         var params = JSON.parse(req.body.PromotionData);
+        console.log("Params:", params);
         var ValidateParams = Joi.object({
             adminuniqueID: Joi.string().strict().required(),
             offerType: Joi.string().strict().valid("buygetoffer", "discountoffer").required(),
@@ -36,9 +37,10 @@ promotion_Insert_Api(req, res) {
         if (params.offerType == "buygetoffer") {
             if (req.files != null) {
                 var promotionImage = req.files.promotionImage;
-                var date = new Date();
+                var date = new Date().getTime();
                 var filepath = "./public/images/Promotions/" + "Pid@" + date + "_" + promotionImage.name;
                 var dbpath = "/images/Promotions/" + "Pid@" + date + "_" + promotionImage.name;
+                console.log("promotionImage",promotionImage, "and", filepath);
                 promotionImage.mv(filepath, async (err) => {
                     if (err) {
                         return res.json({ response: 0, message: "Promotion image upload failed" })
@@ -93,6 +95,7 @@ promotion_Insert_Api(req, res) {
 
 
     } catch (error) {
+        console.log("Promotion Insert API Error:", error);
         return res.json({ response: 0, message: "Internal Server Error" })
     }
 }
