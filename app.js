@@ -21,7 +21,8 @@ var orders = require('./routes/orders');
 var whishlist = require('./routes/whishlist');
 var product_List = require('./routes/Products');
 var Admin = require('./routes/Admin');
-var Payment = require('./routes/payment')
+var Payment = require('./routes/payment');
+var Promotions = require('./routes/Promotion')
 
 
 var app = express();
@@ -53,7 +54,8 @@ app.use('/api/orders',orders);
 app.use('/api/whishlist',whishlist);
 app.use('/api/product',product_List);
 app.use('/api/admin',Admin);
-app.use('/api/payment',Payment)
+app.use('/api/payment',Payment);
+app.use('/api/promotion',Promotions)
 
 
 
