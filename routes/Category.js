@@ -5,7 +5,7 @@ const verifyToken = require('./VerificationToken');
 var category = require('../Controllers/Category/category');
 router.use(fileupload({ limits: { fileSize: 50 * 1024 * 1024 } }));
 
-router.post('/categoryinsert', verifyToken, function (req, res, next) {
+router.post('/categoryinsert', function (req, res, next) {
     if (typeof req.body === 'undefined') {
         res.json({ result: '0', message: 'No request content' })
     } else {
@@ -22,7 +22,7 @@ router.post('/categoryinsert', verifyToken, function (req, res, next) {
         })
     }
 })
-router.put('/categoryupdate', verifyToken, function (req, res, next) {
+router.put('/categoryupdate', function (req, res, next) {
     if (typeof req.body === 'undefined') {
         res.json({ result: '0', message: 'No request content' })
     } else {
@@ -55,7 +55,7 @@ router.post('/fetchcategorys', function (req, res, next) {
         })
     }
 })
-router.put('/subcategoryinsert', verifyToken, function (req, res, next) {
+router.put('/subcategoryinsert', function (req, res, next) {
     if (typeof req.body === 'undefined') {
         res.json({ result: '0', message: 'No request content' })
     } else {
@@ -72,7 +72,7 @@ router.put('/subcategoryinsert', verifyToken, function (req, res, next) {
         })
     }
 })
-router.put('/subcategoryupdate', verifyToken, function (req, res, next) {
+router.put('/subcategoryupdate', function (req, res, next) {
     if (typeof req.body === 'undefined') {
         res.json({ result: '0', message: 'No request content' })
     } else {
