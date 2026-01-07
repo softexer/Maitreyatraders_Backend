@@ -8,13 +8,11 @@ module.exports.Add_Project = async function Add_Project(req, res) {
             // productID: Joi.string().strict().required(),
             productName: Joi.string().strict().required(),
             productDescription: Joi.string().strict().default(""),
-            productHighlight:Joi.string().strict().default(""),
+            productHighlight: Joi.string().strict().default(""),
             categoryID: Joi.string().strict().required().default(""),
             categoryName: Joi.string().strict().required().default(""),
             subCategoryID: Joi.string().strict().required().default(""),
             subCategoryName: Joi.string().strict().required().default(""),
-            productPrice: Joi.number().integer().strict().required().default(0),
-            disCountProductprice: Joi.number().integer().strict().default(0),
             taxIncludedPrice: Joi.boolean().strict().required().default(false),
             expirationStartDate: Joi.string().strict().required(),
             expirationEndDate: Joi.string().strict().required(),
@@ -23,8 +21,13 @@ module.exports.Add_Project = async function Add_Project(req, res) {
             isStockUnlimited: Joi.boolean().strict().required().default(false),
             stockStatus: Joi.string().strict().required(),
             isHighlightedProduct: Joi.boolean().strict().required(),
-            weightList: Joi.array().strict().required(),
-            discountPrice: Joi.string().strict().required()
+            weightList: Joi.array(Joi.object().keys({
+                productPrice: Joi.number().integer().strict().required().default(0),
+                disCountProductprice: Joi.number().integer().strict().default(0),
+                weightNumber: Joi.number().integer().strict().required().default(0),
+                weightUnit: Joi.string().strict().required().default("")
+            })).strict().required(),
+            //discountPrice: Joi.string().strict().required()
 
 
         })
@@ -90,7 +93,7 @@ module.exports.Add_Project = async function Add_Project(req, res) {
                     productID: "PID" + "@" + new Date().getTime().toString(),
                     productName: params.productName,
                     productDescription: params.productDescription,
-                    productHighlight:params.productHighlight,
+                    productHighlight: params.productHighlight,
                     categoryID: params.categoryID,
                     categoryName: params.categoryName,
                     subCategoryID: params.subCategoryID,
@@ -106,7 +109,7 @@ module.exports.Add_Project = async function Add_Project(req, res) {
                     stockStatus: params.stockStatus,
                     isHighlightedProduct: params.isHighlightedProduct,
                     weightList: params.weightList,
-                    discountPrice: params.discountPrice,
+                    //discountPrice: params.discountPrice,
                     timestamp: new Date().getTime().toString()
                 }])
                 if (insertProductData.length > 0) {

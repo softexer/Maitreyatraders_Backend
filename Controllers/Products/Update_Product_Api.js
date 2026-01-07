@@ -15,8 +15,14 @@ module.exports.Update_Product_Api = async function Update_Product_Api(req, res) 
             categoryName: Joi.string().strict().required().default(""),
             subCategoryID: Joi.string().strict().required().default(""),
             subCategoryName: Joi.string().strict().required().default(""),
-            productPrice: Joi.number().integer().strict().required().default(0),
-            disCountProductprice: Joi.number().integer().strict().default(0),
+            // productPrice: Joi.number().integer().strict().required().default(0),
+            // disCountProductprice: Joi.number().integer().strict().default(0),
+            weightList: Joi.array(Joi.object().keys({
+                productPrice: Joi.number().integer().strict().required().default(0),
+                disCountProductprice: Joi.number().integer().strict().default(0),
+                weightNumber: Joi.number().integer().strict().required().default(0),
+                weightUnit: Joi.string().strict().required().default("")
+            })).strict().required(),
             taxIncludedPrice: Joi.boolean().strict().required().default(false),
             expirationStartDate: Joi.string().strict().required(),
             expirationEndDate: Joi.string().strict().required(),
@@ -84,7 +90,7 @@ module.exports.Update_Product_Api = async function Update_Product_Api(req, res) 
                         dbarrayfiles.push(dbpathfile)
                     }
                     var insertProductData = await Products_Model.updateOne({
-                        
+
                         productID: params.productID
                     }, {
                         $set: {
@@ -94,17 +100,18 @@ module.exports.Update_Product_Api = async function Update_Product_Api(req, res) 
                             categoryName: params.categoryName,
                             subCategoryID: params.subCategoryID,
                             subCategoryName: params.subCategoryName,
-                            productPrice: params.productPrice,
-                            disCountProductprice: params.disCountProductprice,
+                            // productPrice: params.productPrice,
+                            // disCountProductprice: params.disCountProductprice,
                             taxIncludedPrice: params.taxIncludedPrice,
                             expirationStartDate: params.expirationStartDate,
                             expirationEndDate: params.expirationEndDate,
+                            weightList: params.weightList,
                             productImagesList: dbarrayfiles,
                             stockQuantity: params.stockQuantity,
                             isStockUnlimited: params.isStockUnlimited,
                             stockStatus: params.stockStatus,
                             isHighlightedProduct: params.isHighlightedProduct,
-                            productHighlight:params.productHighlight
+                            productHighlight: params.productHighlight
                         }
                     })
                     console.log(insertProductData)
