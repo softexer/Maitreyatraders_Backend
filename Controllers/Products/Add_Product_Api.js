@@ -21,7 +21,7 @@ module.exports.Add_Project = async function Add_Project(req, res) {
             isStockUnlimited: Joi.boolean().strict().required().default(false),
             stockStatus: Joi.string().strict().required(),
             isHighlightedProduct: Joi.boolean().strict().required(),
-            weightList: Joi.array(Joi.object().keys({
+            weightList: Joi.array().items(Joi.object().keys({
                 productPrice: Joi.number().integer().strict().required().default(0),
                 disCountProductprice: Joi.number().integer().strict().default(0),
                 weightNumber: Joi.number().integer().strict().required().default(0),
@@ -129,6 +129,7 @@ module.exports.Add_Project = async function Add_Project(req, res) {
 
 
     } catch (error) {
+        console.log("error",error)
         return res.status(500).json({ result: 0, message: "Internal Server Error", errorDetails: error.message })
     }
 }
