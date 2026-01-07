@@ -16,4 +16,8 @@ router.delete('deletepromotion', (req, res) => {
     var promotion_Delete_Api = require('../Controllers/Promotions/delete_promotions');
     promotion_Delete_Api.promotion_Delete_Api(req, res)
 })
+router.put('/promtionstatusupdate', (req, res) => {
+    var promotion_Status_Update_Api = require('../Controllers/Promotions/promotion_status_update');
+    promotion_Status_Update_Api.promotion_Status_Update_Api(req, res)
+})
 module.exports = router

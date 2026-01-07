@@ -77,6 +77,11 @@ var Promotion_Schema = new schema({
         required: false,
         default: true
     },
+    status: {
+        type: String,
+        required: false,
+        default: "Active"
+    },
     timeStamp: {
         type: String,
         required: false,
