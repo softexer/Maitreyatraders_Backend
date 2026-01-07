@@ -33,28 +33,13 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-//app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(compression())
 // app.use(pinohttp())
-const pinoHttp = require("pino-http")
-
-app.use(
-  pinoHttp({
-    autoLogging: {
-      ignore: (req) =>
-        req.url.startsWith("/images") ||
-        req.url.endsWith(".png") ||
-        req.url.endsWith(".jpg") ||
-        req.url.endsWith(".jpeg") ||
-        req.url.endsWith(".webp")
-    }
-  })
-)
-
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({ origin: true }));
 
 app.use('/', indexRouter);
