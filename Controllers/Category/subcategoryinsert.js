@@ -3,7 +3,8 @@ var dbQuaries = require('./categorydbQuaries');
 var Category_Model = require('../../app/Models/Categories')
 var catId = require('../Core/cartID');
 var fs = require('fs');
-var path = require('path')
+var path = require('path');
+var Products  = require('../../app/Models/Products_Schema')
 
 var subcategory = {
     subcategoryinsert: (params, req, callback) => {

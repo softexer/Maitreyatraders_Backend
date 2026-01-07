@@ -104,7 +104,7 @@ router.post('/subcategoryfetch', function (req, res, next) {
         })
     }
 })
-router.put('/subcategorypulldata', verifyToken, function (req, res, next) {
+router.put('/subcategorypulldata', function (req, res, next) {
     if (typeof req.body === 'undefined') {
         res.json({ result: '0', message: 'No request content' })
     } else {
@@ -119,7 +119,7 @@ router.put('/subcategorypulldata', verifyToken, function (req, res, next) {
         })
     }
 })
-router.delete('/categoriesDelete', verifyToken, function (req, res, next) {
+router.delete('/categoriesDelete', function (req, res, next) {
     if (typeof req.body === 'undefined') {
         res.json({ result: '0', message: 'No request content' })
     } else {
