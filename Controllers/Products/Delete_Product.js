@@ -1,6 +1,7 @@
 var Joi = require('@hapi/joi');
 var Category_Model = require('../../app/Models/Categories');
 var Products_Model = require('../../app/Models/Products_Schema')
+var fs = require('fs')
 module.exports.Delete_Product_Api = async function Delete_Product_Api(req, res) {
     try {
         var params = req.body;
