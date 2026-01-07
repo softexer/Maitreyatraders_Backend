@@ -4,6 +4,7 @@ var Products_Model = require('../../app/Models/Products_Schema')
 module.exports.Add_Project = async function Add_Project(req, res) {
     try {
         var params = JSON.parse(req.body.productsData);
+        console.log("Params:", params);
         var Product_Validation = Joi.object({
             // productID: Joi.string().strict().required(),
             productName: Joi.string().strict().required(),
