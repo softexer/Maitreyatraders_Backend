@@ -1,5 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
+var compression = require('compression')
+var pinohttp = require('pino-http')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -33,29 +35,31 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(compression())
+app.use(pinohttp())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({origin:true}));
+app.use(cors({ origin: true }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/customer',Customer);
-app.use('/api/CartData',cart);
-app.use('/api/contactus',contactus);
-app.use('/api/CustomerAddress',customeraddress);
-app.use('/api/VmartAddress',Vmartaddress);
-app.use('/api/categories',Categories);
-app.use('/api/seller',seller);
-app.use('/api/sellerProducts',sellerProducts);
-app.use('/api/dashboard',dashboard);
-app.use('/api/todaydeals',dailydeals);
-app.use('/api/orders',orders);
-app.use('/api/whishlist',whishlist);
-app.use('/api/product',product_List);
-app.use('/api/admin',Admin);
-app.use('/api/payment',Payment);
-app.use('/api/promotion',Promotions)
+app.use('/api/customer', Customer);
+app.use('/api/CartData', cart);
+app.use('/api/contactus', contactus);
+app.use('/api/CustomerAddress', customeraddress);
+app.use('/api/VmartAddress', Vmartaddress);
+app.use('/api/categories', Categories);
+app.use('/api/seller', seller);
+app.use('/api/sellerProducts', sellerProducts);
+app.use('/api/dashboard', dashboard);
+app.use('/api/todaydeals', dailydeals);
+app.use('/api/orders', orders);
+app.use('/api/whishlist', whishlist);
+app.use('/api/product', product_List);
+app.use('/api/admin', Admin);
+app.use('/api/payment', Payment);
+app.use('/api/promotion', Promotions)
 
 
 
@@ -63,12 +67,12 @@ app.use('/api/promotion',Promotions)
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
