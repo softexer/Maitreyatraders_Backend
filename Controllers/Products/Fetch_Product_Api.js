@@ -31,6 +31,9 @@ module.exports.Fetch_Product_Api = async function Fetch_Product_Api(req, res) {
                         subCategoryID: params.subCategoryID,
                     }, { _id: 0, __v: 0 }).skip((params.page - 1) * params.size).limit(params.size)
                 } else {
+                                GettingProductsCount = await Products_Model.countDocuments({ categoryID: params.categoryID,
+                                     subCategoryID: params.subCategoryID,
+                                 });
                     GettingProducts = await Products_Model.find({
                         categoryID: params.categoryID,
                         subCategoryID: params.subCategoryID,
