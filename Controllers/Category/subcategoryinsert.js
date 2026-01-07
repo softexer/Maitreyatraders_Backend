@@ -4,7 +4,7 @@ var Category_Model = require('../../app/Models/Categories')
 var catId = require('../Core/cartID');
 var fs = require('fs');
 var path = require('path');
-var Products  = require('../../app/Models/Products_Schema')
+var Products = require('../../app/Models/Products_Schema')
 
 var subcategory = {
     subcategoryinsert: (params, req, callback) => {
@@ -263,23 +263,17 @@ var subcategory = {
                         var removeimageinpath = "./public" + dbpathimage;
                         fs.unlink(removeimageinpath, (err) => {
                             if (err) {
-                                return callback({
-                                    status: 200,
-                                    data: {
-                                        response: 0,
-                                        message: "file not unlink"
-
-                                    }
-                                })
+                                console.log("err", err)
                             } else {
-                                return callback({
-                                    status: 200,
-                                    data: {
-                                        response: 3,
-                                        message: "subCategory deleted Successfully"
+                                console.log("File deleted successfully")
+                            }
+                        })
+                        return callback({
+                            status: 200,
+                            data: {
+                                response: 3,
+                                message: "subCategory deleted Successfully"
 
-                                    }
-                                })
                             }
                         })
                     } else {

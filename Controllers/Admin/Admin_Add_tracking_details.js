@@ -96,7 +96,7 @@ module.exports.Admin_Product_Search_Api = async function Admin_Product_Search_Ap
         var params = req.query;
         console.log(params)
         var Validateparams = Joi.object({
-            adminuniqueID: Joi.string().strict().required(),
+           // adminuniqueID: Joi.string().strict().required(),
             searchText: Joi.string().strict().required(),
         })
         var result = await Validateparams.validate(params);
@@ -106,8 +106,8 @@ module.exports.Admin_Product_Search_Api = async function Admin_Product_Search_Ap
                 response: 0, message: result.error.details[0].message
             })
         }
-        var checking_AdminuserID = await Admin_Model.findOne({ adminuniqueID: params.adminuniqueID });
-        if (checking_AdminuserID) {
+        // var checking_AdminuserID = await Admin_Model.findOne({ adminuniqueID: params.adminuniqueID });
+        // if (checking_AdminuserID) {
             var ProductsSearch = await Products_Model.find({ productName: { $regex: params.searchText, $options: "i" } }, { _id: 0, __v: 0 });
             if (ProductsSearch.length > 0) {
                 return res.json({
@@ -118,9 +118,9 @@ module.exports.Admin_Product_Search_Api = async function Admin_Product_Search_Ap
             } else {
                 return res.json({ response: 0, message: "Data not found" })
             }
-        } else {
-            return res.json({ response: 0, message: "Admin uniqueID data not found" })
-        }
+        // } else {
+        //     return res.json({ response: 0, message: "Admin uniqueID data not found" })
+        // }
 
     } catch (error) {
         return res.json({ response: 0, message: "Internal Service Error" })
