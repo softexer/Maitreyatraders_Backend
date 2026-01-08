@@ -257,8 +257,25 @@ var subcategory = {
         fetchdatasubcategoryID.then((found) => {
             if (found) {
                 var pulldatasubcategory = dbQuaries.pulldatasubcategoryparams(params);
-                pulldatasubcategory.then((updated) => {
+                pulldatasubcategory.then(async (updated) => {
                     if (updated.modifiedCount > 0) {
+                        var ProductGetData = await Products.find({ subCategoryID: params.subCategoryID }, { _id: 0, __v: 0 });
+                        var deleteProducts = await Products.deleteMany({ subCategoryID: params.subCategoryID }).exec();
+                        if (ProductGetData.length > 0) {
+                            for (var a = 0; a < ProductGetData.length; a++) {
+                                var deleteImagePaths = [];
+                                for (var b = 0; b < ProductGetData[a].productImagesList.length; b++) {
+                                    var imagepath = './public' + ProductGetData[a].productImagesList[b];
+                                    fs.unlink(imagepath, (err) => {
+                                        if (err) {
+                                            console.log("err", err)
+                                        } else {
+                                            console.log("file unlinked successfully")
+                                        }
+                                    })
+                                }
+                            }
+                        }
                         var dbpathimage = found.subCategorys[0].SubCategoryProfilePic;
                         var removeimageinpath = "./public" + dbpathimage;
                         fs.unlink(removeimageinpath, (err) => {
