@@ -22,4 +22,8 @@ router.put('/promtionstatusupdate', (req, res) => {
     var promotion_Status_Update_Api = require('../Controllers/Promotions/promotion_status_update');
     promotion_Status_Update_Api.promotion_Status_Update_Api(req, res)
 })
+router.get('/fetchpromotion', (req, res) => {
+    var customer_Fetch_Promotions_Api = require('../Controllers/Promotions/Customers_Need_TO_Promotions');
+    customer_Fetch_Promotions_Api.Customer_Fetch_Promotions_Api(req, res)
+})
 module.exports = router

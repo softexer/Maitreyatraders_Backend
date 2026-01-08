@@ -27,7 +27,6 @@ module.exports.Customer_Home_page_Api = async function Customer_Home_page_Api(re
                     productIDs.push(bestsales[count]._id)
                 }
             }
-
             BestSalersProductsData = await Products_Model.find({ productID: { $in: productIDs } },
                 { _id: 0, __v: 0 });
 
@@ -36,7 +35,7 @@ module.exports.Customer_Home_page_Api = async function Customer_Home_page_Api(re
             BestSalersProductsData = await Products_Model.find({}).limit(10);
 
         }
-        var Promotions_Data = await Promotions_Model.find({ isActive: true }, { _id: 0, __v: 0 }).sort({ timeStamp: -1 })
+        var Promotions_Data = await Promotions_Model.find({ isActive: true,offerType:"buygetoffer" }, { _id: 0, __v: 0 }).sort({ timeStamp: -1 })
         return res.json({
             response: 3,
             message: "Home page data fetch successfully",

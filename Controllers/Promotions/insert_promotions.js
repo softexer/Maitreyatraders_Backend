@@ -6,7 +6,7 @@ var Admin_Model = require('../../app/Models/Admin');
 
 module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, res) {
     try {
-      
+
         var params = JSON.parse(req.body.PromotionData);
         console.log("Params:", params);
         var ValidateParams = Joi.object({
@@ -14,15 +14,17 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
             offerType: Joi.string().strict().valid("buygetoffer", "discountoffer").required(),
             buyQunatity: Joi.number().integer().strict().optional().allow(0),
             getQuantity: Joi.number().integer().strict().optional().allow(0),
-            categoryID: Joi.string().strict().optional().allow(""),
-            categoryName: Joi.string().strict().optional().allow(""),
-            productID: Joi.string().strict().optional().allow(""),
-            productName: Joi.string().strict().optional().allow(""),
+            // categoryID: Joi.string().strict().optional().allow(""),
+            // categoryName: Joi.string().strict().optional().allow(""),
+            // productID: Joi.string().strict().optional().allow(""),
+            // productName: Joi.string().strict().optional().allow(""),
             discountAmountPercentage: Joi.string().strict().optional().allow(""),
             enterCoupanCode: Joi.string().strict().optional().allow(""),
-            selectCategoryApplicableOffer: Joi.string().strict().optional().allow(""),
-            subCategoryID: Joi.string().strict().optional().allow(""),
-            selectSubCategory: Joi.string().strict().optional().allow(""),
+            // selectCategoryApplicableOffer: Joi.string().strict().optional().allow(""),
+            // subCategoryID: Joi.string().strict().optional().allow(""),
+            // selectSubCategory: Joi.string().strict().optional().allow(""),
+            applicableOn: Joi.string().strict().valid("CATEGORY", "SUBCATEGORY", "PRODUCT").required(), // CATEGORY | SUBCATEGORY | PRODUCT
+            applicableIds: Joi.array().items(Joi.string()).required(),
 
         })
         var result = await ValidateParams.validate(params);
@@ -40,7 +42,7 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
                 var date = new Date().getTime();
                 var filepath = "./public/images/Promotions/" + "Pid@" + date + "_" + promotionImage.name;
                 var dbpath = "/images/Promotions/" + "Pid@" + date + "_" + promotionImage.name;
-                console.log("promotionImage",promotionImage, "and", filepath);
+                console.log("promotionImage", promotionImage, "and", filepath);
                 promotionImage.mv(filepath, async (err) => {
                     if (err) {
                         return res.json({ response: 0, message: "Promotion image upload failed" })
@@ -49,12 +51,14 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
                             promotionID: "PROMO@" + Date.now(),
                             buyQunatity: params.buyQunatity,
                             getQuantity: params.getQuantity,
-                            categoryID: params.categoryID,
-                            categoryName: params.categoryName,
-                            productID: params.productID,
-                            productName: params.productName,
+                            // categoryID: params.categoryID,
+                            // categoryName: params.categoryName,
+                            // productID: params.productID,
+                            // productName: params.productName,
                             offerType: params.offerType,
                             advertisementImage: dbpath,
+                            applicableOn: params.applicableOn, // CATEGORY | SUBCATEGORY | PRODUCT
+                            applicableIds: params.applicableIds,
                             timeStamp: Date.now()
 
                         }])
@@ -73,14 +77,16 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
         } else if (params.offerType == "discountoffer") {
             var addPromtionData = await Promotion_Model.insertMany([{
                 promotionID: "PROMO@" + Date.now(),
-               discountAmountPercentage:params.discountAmountPercentage,
-               enterCoupanCode:params.enterCoupanCode,
-               selectCategoryApplicableOffer:params.selectCategoryApplicableOffer,
-               categoryID:params.categoryID,
-               categoryName:params.categoryName,
-               selectSubCategory:params.selectSubCategory,
-               subCategoryID:params.subCategoryID,
+                discountAmountPercentage: params.discountAmountPercentage,
+                enterCoupanCode: params.enterCoupanCode,
+                //selectCategoryApplicableOffer: params.selectCategoryApplicableOffer,
+                // categoryID: params.categoryID,
+                // categoryName: params.categoryName,
+                // selectSubCategory: params.selectSubCategory,
+                // subCategoryID: params.subCategoryID,
                 offerType: params.offerType,
+                applicableOn: params.applicableOn, // CATEGORY | SUBCATEGORY | PRODUCT
+                applicableIds: params.applicableIds,
                 timeStamp: Date.now()
 
             }])

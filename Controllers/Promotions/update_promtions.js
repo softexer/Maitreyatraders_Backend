@@ -15,15 +15,15 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
             offerType: Joi.string().strict().valid("buygetoffer", "discountoffer").required(),
             buyQunatity: Joi.number().integer().strict().optional().allow(0),
             getQuantity: Joi.number().integer().strict().optional().allow(0),
-            categoryID: Joi.string().strict().optional().allow(""),
-            categoryName: Joi.string().strict().optional().allow(""),
-            productID: Joi.string().strict().optional().allow(""),
-            productName: Joi.string().strict().optional().allow(""),
+            // categoryID: Joi.string().strict().optional().allow(""),
+            // categoryName: Joi.string().strict().optional().allow(""),
+            // productID: Joi.string().strict().optional().allow(""),
+            // productName: Joi.string().strict().optional().allow(""),
             discountAmountPercentage: Joi.string().strict().optional().allow(""),
             enterCoupanCode: Joi.string().strict().optional().allow(""),
-            selectCategoryApplicableOffer: Joi.string().strict().optional().allow(""),
-            subCategoryID: Joi.string().strict().optional().allow(""),
-            selectSubCategory: Joi.string().strict().optional().allow(""),
+            // selectCategoryApplicableOffer: Joi.string().strict().optional().allow(""),
+            // subCategoryID: Joi.string().strict().optional().allow(""),
+            // selectSubCategory: Joi.string().strict().optional().allow(""),
 
         })
         var result = await ValidateParams.validate(params);
@@ -54,10 +54,10 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
                             $set: {
                                 buyQunatity: params.buyQunatity,
                                 getQuantity: params.getQuantity,
-                                categoryID: params.categoryID,
-                                categoryName: params.categoryName,
-                                productID: params.productID,
-                                productName: params.productName,
+                                // categoryID: params.categoryID,
+                                // categoryName: params.categoryName,
+                                // productID: params.productID,
+                                // productName: params.productName,
                                 offerType: params.offerType,
                                 advertisementImage: dbpath,
                                 timeStamp: Date.now()
@@ -85,10 +85,10 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
                     $set: {
                         buyQunatity: params.buyQunatity,
                         getQuantity: params.getQuantity,
-                        categoryID: params.categoryID,
-                        categoryName: params.categoryName,
-                        productID: params.productID,
-                        productName: params.productName,
+                        // categoryID: params.categoryID,
+                        // categoryName: params.categoryName,
+                        // productID: params.productID,
+                        // productName: params.productName,
                         offerType: params.offerType,
                         timeStamp: Date.now()
                     }
@@ -105,11 +105,11 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
                 $set: {
                 discountAmountPercentage: params.discountAmountPercentage,
                 enterCoupanCode: params.enterCoupanCode,
-                selectCategoryApplicableOffer: params.selectCategoryApplicableOffer,
-                categoryID: params.categoryID,
-                categoryName: params.categoryName,
-                selectSubCategory: params.selectSubCategory,
-                subCategoryID: params.subCategoryID,
+                // selectCategoryApplicableOffer: params.selectCategoryApplicableOffer,
+                // categoryID: params.categoryID,
+                // categoryName: params.categoryName,
+                // selectSubCategory: params.selectSubCategory,
+                // subCategoryID: params.subCategoryID,
                 offerType: params.offerType,
                 timeStamp: Date.now()
 
