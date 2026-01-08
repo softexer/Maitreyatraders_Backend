@@ -1,6 +1,7 @@
 var Joi = require('@hapi/joi');
 var Category_Model = require('../../app/Models/Categories');
-var Products_Model = require('../../app/Models/Products_Schema')
+var Products_Model = require('../../app/Models/Products_Schema');
+var Orders_Model = require('../../app/Models/orders')
 module.exports.Fetch_Product_Api = async function Fetch_Product_Api(req, res) {
     try {
         var params = req.body;
@@ -31,9 +32,10 @@ module.exports.Fetch_Product_Api = async function Fetch_Product_Api(req, res) {
                         subCategoryID: params.subCategoryID,
                     }, { _id: 0, __v: 0 }).skip((params.page - 1) * params.size).limit(params.size)
                 } else {
-                                GettingProductsCount = await Products_Model.countDocuments({ categoryID: params.categoryID,
-                                     subCategoryID: params.subCategoryID,
-                                 });
+                    GettingProductsCount = await Products_Model.countDocuments({
+                        categoryID: params.categoryID,
+                        subCategoryID: params.subCategoryID,
+                    });
                     GettingProducts = await Products_Model.find({
                         categoryID: params.categoryID,
                         subCategoryID: params.subCategoryID,
@@ -49,6 +51,33 @@ module.exports.Fetch_Product_Api = async function Fetch_Product_Api(req, res) {
             }
         }
         if (GettingProducts.length > 0) {
+            var ProductIDSGet = GettingProducts.map(item => item.productID);
+            console.log("ProductIDSGet:", ProductIDSGet);
+            var OrderDataProductCount = await Orders_Model.aggregate([
+                {
+                    $unwind: "$Products"
+                },
+                {
+                    $match: {
+                        "Products.productID": { $in: ProductIDSGet }
+                    }
+                },
+                {
+                    $group: {
+                        _id: "$Products.productID",
+                        ProductOrderCount: { $sum: 1 }
+                    }
+                }
+            ])
+            console.log("OrderDataProductCount:", OrderDataProductCount);
+            for (let j = 0; j < GettingProducts.length; j++) {
+                for (let k = 0; k < OrderDataProductCount.length; k++) {
+                    if (GettingProducts[j].productID == OrderDataProductCount[k]._id) {
+                        GettingProducts[j].salesCount = OrderDataProductCount[k].ProductOrderCount;
+                    }
+                }
+            }
+
             var pages = Math.ceil(GettingProductsCount / params.size)
             return res.json({
                 response: 3,
