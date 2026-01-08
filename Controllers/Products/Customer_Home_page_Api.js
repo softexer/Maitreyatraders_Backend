@@ -6,7 +6,7 @@ var Orders_Model = require('../../app/Models/orders');
 var Promotions_Model = require('../../app/Models/Promotions')
 module.exports.Customer_Home_page_Api = async function Customer_Home_page_Api(req, res) {
     try {
-        var Products_Latest_OR_New_Products = await Products_Model.find({},{_id:0,__v:0}).sort({ timestamp: -1 }).limit(10);
+        var Products_Latest_OR_New_Products = await Products_Model.find({}, { _id: 0, __v: 0 }).sort({ timestamp: -1 }).limit(10);
         var BestSalersProductsData = [];
         var bestsales = await Orders_Model.aggregate([{ $unwind: "$Products" },
         {
@@ -35,13 +35,15 @@ module.exports.Customer_Home_page_Api = async function Customer_Home_page_Api(re
             BestSalersProductsData = await Products_Model.find({}).limit(10);
 
         }
-        var Promotions_Data = await Promotions_Model.find({ isActive: true,offerType:"buygetoffer" }, { _id: 0, __v: 0 }).sort({ timeStamp: -1 })
+        var BuyGetPromotions_Data = await Promotions_Model.find({ isActive: true, offerType: "buygetoffer" }, { _id: 0, __v: 0 }).sort({ timeStamp: -1 })
+       var DiscountPromotions_Data = await Promotions_Model.find({ isActive: true, offerType: "discountoffer" }, { _id: 0, __v: 0 }).sort({ timeStamp: -1 })
         return res.json({
             response: 3,
             message: "Home page data fetch successfully",
             NewProducts: Products_Latest_OR_New_Products,
             BestSalesProductsData: BestSalersProductsData,
-            Promotions_Data: Promotions_Data
+            BuyGetPromotions_Data: BuyGetPromotions_Data,
+            DiscountPromotions_Data: DiscountPromotions_Data
 
 
         })

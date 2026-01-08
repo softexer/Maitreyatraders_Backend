@@ -53,8 +53,6 @@ module.exports.Customer_Fetch_Promotions_Api = async function Customer_Fetch_Pro
             })
 
         } else if (CheckingPromotionID.applicableOn == "SUBCATEGORY") {
-
-
             //Fetch products based on subcategory
             var ProductListCount = await Products_Model.countDocuments({ subCategoryID: { $in: CheckingPromotionID.applicableIds } });
             console.log("ProductListCount:", ProductListCount);
