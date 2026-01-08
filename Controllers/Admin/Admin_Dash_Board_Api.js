@@ -269,20 +269,41 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             ])
             //  console.log("Get_best_sellers_Products", Get_best_sellers_Products);
             var productIDS = [];
+            var ProductIDSAndSalesCounts = []
             //Store ProductIDs All 
             if (Get_best_sellers_Products.length > 0) {
                 for (var count = 0; count < Get_best_sellers_Products.length; count++) {
                     if (Get_best_sellers_Products[count]) {
-                        productIDS.push(Get_best_sellers_Products[count]._id)
+                        productIDS.push(Get_best_sellers_Products[count]._id);
+                        var object = {
+                            productID: Get_best_sellers_Products[count]._id,
+                            salesCount: Get_best_sellers_Products[count].count
+                        }
+                        ProductIDSAndSalesCounts.push(object);
                     }
                 }
             }
             //Prodcuts seller top
             var ProductsTopSelles = [];
-            var Product_Best_Sellers = await Products_Model.find({ productID: { $in: productIDS } }, { _id: 0, __v: 0 }).exec();
+            var Product_Best_Sellers = await Products_Model.find({ productID: { $in: productIDS } },
+                { _id: 0, __v: 0 }).exec();
             if (Product_Best_Sellers.length > 0) {
-                ProductsTopSelles = Product_Best_Sellers
+                for (var count = 0; count < Product_Best_Sellers.length; count++) {
+                    if (Product_Best_Sellers[count]) {
+                        //Match and add sales count
+                        for (var j = 0; j < ProductIDSAndSalesCounts.length; j++) {
+                            if (Product_Best_Sellers[count].productID == ProductIDSAndSalesCounts[j].productID) {
+                                
+                                Product_Best_Sellers[count]["salesCount"] = ProductIDSAndSalesCounts[j].salesCount;
+                               // console.log("Matched ProductID",Product_Best_Sellers[count]);
+                            }
+                            //ProductsTopSelles.push(Product_Best_Sellers[count]);
+                        }
+
+                    }
+                }
             }
+            ProductsTopSelles = Product_Best_Sellers;
             //Graph Implement
             var GraphData = [];
             if (params.selectTypeGraph == "Today") {

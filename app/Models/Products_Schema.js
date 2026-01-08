@@ -106,6 +106,12 @@ var products = schema({
         required: false,
         default: ""
     },
+    //backend only used
+    salesCount:{
+        type: Number,
+        required: false,
+        default: 0
+    },
     timestamp: {
         type: String,
         required: false,
