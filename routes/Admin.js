@@ -51,5 +51,9 @@ router.get('/productsearch', (req, res) => {
     var Admin_Product_Search_Api = require('../Controllers/Admin/Admin_Add_tracking_details');
     Admin_Product_Search_Api.Admin_Product_Search_Api(req, res)
 })
+router.post('/dropdownproducts',(req,res)=>{
+    var Admin_Dropdown_Products_Api = require('../Controllers/Admin/Admin_Dropdown_Products_Api');
+    Admin_Dropdown_Products_Api.Admin_Dropdown_Products_Api(req,res)
+})
 
 module.exports = router

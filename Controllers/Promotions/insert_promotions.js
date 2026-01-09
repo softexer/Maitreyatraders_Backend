@@ -6,7 +6,6 @@ var Admin_Model = require('../../app/Models/Admin');
 
 module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, res) {
     try {
-
         var params = JSON.parse(req.body.PromotionData);
         console.log("Params:", params);
         var ValidateParams = Joi.object({
@@ -25,7 +24,6 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
             // selectSubCategory: Joi.string().strict().optional().allow(""),
             applicableOn: Joi.string().strict().valid("CATEGORY", "SUBCATEGORY", "PRODUCT").required(), // CATEGORY | SUBCATEGORY | PRODUCT
             applicableIds: Joi.array().items(Joi.string()).required(),
-
         })
         var result = await ValidateParams.validate(params);
         if (result.error) {
