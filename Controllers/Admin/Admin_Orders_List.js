@@ -40,12 +40,12 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                     },
                     Active_Orders_Count: {
                         $sum: {
-                            $cond: [{ $eq: ["$orderStatus", "InProgress"] }, 1, 0]
+                            $cond: [{ $eq: ["$orderStatus", "Shipped"] }, 1, 0]
                         }
                     },
                     Completed_Orders_Count: {
                         $sum: {
-                            $cond: [{ $eq: ["$orderStatus", "Completed"] }, 1, 0]
+                            $cond: [{ $eq: ["$orderStatus", "Delivered"] }, 1, 0]
                         }
                     },
                     Cancelled_Orders_Count: {
@@ -85,7 +85,7 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                 ])
                 if (totalordersData.length > 0) {
 
-                    
+
                     var totalpages = Math.ceil(totalordersCount / params.size)
                     return res.json({
                         response: 3,
