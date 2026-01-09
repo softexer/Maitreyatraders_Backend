@@ -9,7 +9,7 @@ module.exports.Add_Project = async function Add_Project(req, res) {
             // productID: Joi.string().strict().required(),
             productName: Joi.string().strict().required(),
             productDescription: Joi.string().strict().required().default(""),
-            productHighlight: Joi.string().strict().required().default(""),
+            productHighlight: Joi.string().strict().optional().default(""),
             categoryID: Joi.string().strict().required().default(""),
             categoryName: Joi.string().strict().required().default(""),
             subCategoryID: Joi.string().strict().required().default(""),
