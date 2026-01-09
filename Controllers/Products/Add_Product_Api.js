@@ -8,8 +8,8 @@ module.exports.Add_Project = async function Add_Project(req, res) {
         var Product_Validation = Joi.object({
             // productID: Joi.string().strict().required(),
             productName: Joi.string().strict().required(),
-            productDescription: Joi.string().strict().default(""),
-            productHighlight: Joi.string().strict().default(""),
+            productDescription: Joi.string().strict().required().default(""),
+            productHighlight: Joi.string().strict().required().default(""),
             categoryID: Joi.string().strict().required().default(""),
             categoryName: Joi.string().strict().required().default(""),
             subCategoryID: Joi.string().strict().required().default(""),
