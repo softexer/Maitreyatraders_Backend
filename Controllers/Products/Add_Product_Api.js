@@ -8,25 +8,25 @@ module.exports.Add_Project = async function Add_Project(req, res) {
         var Product_Validation = Joi.object({
             // productID: Joi.string().strict().required(),
             productName: Joi.string().strict().required(),
-            productDescription: Joi.string().strict().required().default(""),
-            productHighlight: Joi.string().strict().optional().default(""),
-            categoryID: Joi.string().strict().required().default(""),
-            categoryName: Joi.string().strict().required().default(""),
-            subCategoryID: Joi.string().strict().required().default(""),
-            subCategoryName: Joi.string().strict().required().default(""),
-            taxIncludedPrice: Joi.boolean().strict().required().default(false),
+            productDescription: Joi.string().strict().required().allow(""),
+            productHighlight: Joi.string().strict().required().allow(""),
+            categoryID: Joi.string().strict().required().allow(""),
+            categoryName: Joi.string().strict().required().allow(""),
+            subCategoryID: Joi.string().strict().required().allow(""),
+            subCategoryName: Joi.string().strict().required().allow(""),
+            taxIncludedPrice: Joi.boolean().strict().required().allow(false),
             expirationStartDate: Joi.string().strict().required(),
             expirationEndDate: Joi.string().strict().required(),
             // productImagesList: Joi.array(),
-            stockQuantity: Joi.number().integer().strict().required().default(0),
-            isStockUnlimited: Joi.boolean().strict().required().default(false),
+            stockQuantity: Joi.number().integer().strict().required().allow(0),
+            isStockUnlimited: Joi.boolean().strict().required().allow(false),
             stockStatus: Joi.string().strict().required(),
             isHighlightedProduct: Joi.boolean().strict().required(),
             weightList: Joi.array().items(Joi.object().keys({
-                productPrice: Joi.number().integer().strict().required().default(0),
-                disCountProductprice: Joi.number().integer().strict().default(0),
-                weightNumber: Joi.number().integer().strict().required().default(0),
-                weightUnit: Joi.string().strict().required().default("")
+                productPrice: Joi.number().integer().strict().required().allow(0),
+                disCountProductprice: Joi.number().integer().strict().allow(0),
+                weightNumber: Joi.number().integer().strict().required().allow(0),
+                weightUnit: Joi.string().strict().required().allow("")
             })).strict().required(),
             //discountPrice: Joi.string().strict().required()
 
