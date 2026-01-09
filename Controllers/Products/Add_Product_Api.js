@@ -23,9 +23,9 @@ module.exports.Add_Project = async function Add_Project(req, res) {
             stockStatus: Joi.string().strict().required(),
             isHighlightedProduct: Joi.boolean().strict().required(),
             weightList: Joi.array().items(Joi.object().keys({
-                productPrice: Joi.number().integer().strict().required().allow(0),
-                disCountProductprice: Joi.number().integer().strict().allow(0),
-                weightNumber: Joi.number().integer().strict().required().allow(0),
+                productPrice: Joi.number().strict().required().allow(0),
+                disCountProductprice: Joi.number().strict().allow(0),
+                weightNumber: Joi.number().strict().required().allow(0),
                 weightUnit: Joi.string().strict().required().allow("")
             })).strict().required(),
             //discountPrice: Joi.string().strict().required()
