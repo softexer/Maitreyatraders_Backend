@@ -5,7 +5,7 @@ module.exports.Admin_Dropdown_Products_Api = async function Admin_Dropdown_Produ
         var params = req.body;
         var ValidateParams = Joi.object({
             adminuniqueID: Joi.string().strict().required(),
-            type: Joi.string().strict().valid("category", "subcategory", "product").required(),
+            type: Joi.string().strict().valid("all","category", "subcategory", "product").required(),
             selectTypeID: Joi.string().strict().required().allow("")
         })
         var result = await ValidateParams.validate(params);
@@ -23,6 +23,9 @@ module.exports.Admin_Dropdown_Products_Api = async function Admin_Dropdown_Produ
                 { _id: 0, productID: 1, productName: 1 })
         } else if (params.type == "product") {
             DropdownData = await Products_Model.find({ productID: params.selectTypeID },
+                { _id: 0, productID: 1, productName: 1 });
+        }else if(params.type=="all"){
+            DropdownData = await Products_Model.find({},
                 { _id: 0, productID: 1, productName: 1 });
         }
         if (DropdownData.length > 0) {
