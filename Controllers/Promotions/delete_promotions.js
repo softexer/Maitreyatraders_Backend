@@ -32,6 +32,11 @@ module.exports.promotion_Delete_Api = async function promotion_Delete_Api(req, r
                     result: 3,
                     message: "Promotion deleted successfully"
                 })
+            } else {
+                return res.json({
+                    result: 3,
+                    message: "Promotion deleted successfully"
+                })
             }
         } else {
             return res.json({
