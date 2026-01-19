@@ -22,26 +22,6 @@ var Promotion_Schema = new schema({
         required: false,
         default: 0
     },
-    // categoryID: {
-    //     type: String,
-    //     required: false,
-    //     default: ""
-    // },
-    // categoryName: {
-    //     type: String,
-    //     required: false,
-    //     default: ""
-    // },
-    // productID: {
-    //     type: String,
-    //     required: false,
-    //     default: ""
-    // },
-    // productName: {
-    //     type: String,
-    //     required: false,
-    //     default: ""
-    // },
     advertisementImage: {
         type: String,
         required: false,
@@ -57,21 +37,6 @@ var Promotion_Schema = new schema({
         required: false,
         default: ""
     },
-    // selectCategoryApplicableOffer: {
-    //     type: String,
-    //     required: false,
-    //     default: ""
-    // },
-    // subCategoryID: {
-    //     type: String,
-    //     required: false,
-    //     default: ""
-    // },
-    // selectSubCategory: {
-    //     type: String,
-    //     required: false,
-    //     default: ""
-    // },
     isActive: {
         type: Boolean,
         required: false,
@@ -92,6 +57,17 @@ var Promotion_Schema = new schema({
         required: false,
         default: []
     },
+    selectFreeProductName: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    selectFreeProductID: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    
     timeStamp: {
         type: String,
         required: false,

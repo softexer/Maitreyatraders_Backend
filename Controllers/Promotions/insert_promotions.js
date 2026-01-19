@@ -13,15 +13,12 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
             offerType: Joi.string().strict().valid("buygetoffer", "discountoffer").required(),
             buyQunatity: Joi.number().integer().strict().optional().allow(0),
             getQuantity: Joi.number().integer().strict().optional().allow(0),
-            // categoryID: Joi.string().strict().optional().allow(""),
-            // categoryName: Joi.string().strict().optional().allow(""),
-            // productID: Joi.string().strict().optional().allow(""),
-            // productName: Joi.string().strict().optional().allow(""),
+            selectFreeProductName: Joi.string().strict().optional().allow(""),
+            selectFreeProductID: Joi.string().strict().optional().allow(""),
+
             discountAmountPercentage: Joi.string().strict().optional().allow(""),
             enterCoupanCode: Joi.string().strict().optional().allow(""),
-            // selectCategoryApplicableOffer: Joi.string().strict().optional().allow(""),
-            // subCategoryID: Joi.string().strict().optional().allow(""),
-            // selectSubCategory: Joi.string().strict().optional().allow(""),
+
             applicableOn: Joi.string().strict().valid("CATEGORY", "SUBCATEGORY", "PRODUCT").required(), // CATEGORY | SUBCATEGORY | PRODUCT
             applicableIds: Joi.array().items(Joi.string()).required(),
         })
@@ -55,6 +52,8 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
                             // productName: params.productName,
                             offerType: params.offerType,
                             advertisementImage: dbpath,
+                            selectFreeProductName: params.selectFreeProductName,
+                            selectFreeProductID: params.selectFreeProductID,
                             applicableOn: params.applicableOn, // CATEGORY | SUBCATEGORY | PRODUCT
                             applicableIds: params.applicableIds,
                             timeStamp: Date.now()
@@ -85,6 +84,7 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
                 offerType: params.offerType,
                 applicableOn: params.applicableOn, // CATEGORY | SUBCATEGORY | PRODUCT
                 applicableIds: params.applicableIds,
+
                 timeStamp: Date.now()
 
             }])

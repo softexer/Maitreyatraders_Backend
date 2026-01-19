@@ -15,15 +15,14 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
             offerType: Joi.string().strict().valid("buygetoffer", "discountoffer").required(),
             buyQunatity: Joi.number().integer().strict().optional().allow(0),
             getQuantity: Joi.number().integer().strict().optional().allow(0),
-            // categoryID: Joi.string().strict().optional().allow(""),
-            // categoryName: Joi.string().strict().optional().allow(""),
-            // productID: Joi.string().strict().optional().allow(""),
-            // productName: Joi.string().strict().optional().allow(""),
+            selectFreeProductName: Joi.string().strict().optional().allow(""),
+            selectFreeProductID: Joi.string().strict().optional().allow(""),
+           
             discountAmountPercentage: Joi.string().strict().optional().allow(""),
             enterCoupanCode: Joi.string().strict().optional().allow(""),
-            // selectCategoryApplicableOffer: Joi.string().strict().optional().allow(""),
-            // subCategoryID: Joi.string().strict().optional().allow(""),
-            // selectSubCategory: Joi.string().strict().optional().allow(""),
+            applicableOn: Joi.string().strict().valid("CATEGORY", "SUBCATEGORY", "PRODUCT").required(), // CATEGORY | SUBCATEGORY | PRODUCT
+            applicableIds: Joi.array().items(Joi.string()).required(),
+          
 
         })
         var result = await ValidateParams.validate(params);
@@ -54,11 +53,15 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
                             $set: {
                                 buyQunatity: params.buyQunatity,
                                 getQuantity: params.getQuantity,
+                                selectFreeProductName: params.selectFreeProductName,
+                                selectFreeProductID: params.selectFreeProductID,
                                 // categoryID: params.categoryID,
                                 // categoryName: params.categoryName,
                                 // productID: params.productID,
                                 // productName: params.productName,
                                 offerType: params.offerType,
+                                applicableOn: params.applicableOn, // CATEGORY | SUBCATEGORY | PRODUCT
+                                applicableIds: params.applicableIds,
                                 advertisementImage: dbpath,
                                 timeStamp: Date.now()
                             }
@@ -85,6 +88,8 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
                     $set: {
                         buyQunatity: params.buyQunatity,
                         getQuantity: params.getQuantity,
+                        applicableOn: params.applicableOn, // CATEGORY | SUBCATEGORY | PRODUCT
+                        applicableIds: params.applicableIds,
                         // categoryID: params.categoryID,
                         // categoryName: params.categoryName,
                         // productID: params.productID,
@@ -103,17 +108,18 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
         } else if (params.offerType == "discountoffer") {
             var addPromtionData = await Promotion_Model.updateOne({ promotionID: params.promotionID }, {
                 $set: {
-                discountAmountPercentage: params.discountAmountPercentage,
-                enterCoupanCode: params.enterCoupanCode,
-                // selectCategoryApplicableOffer: params.selectCategoryApplicableOffer,
-                // categoryID: params.categoryID,
-                // categoryName: params.categoryName,
-                // selectSubCategory: params.selectSubCategory,
-                // subCategoryID: params.subCategoryID,
-                offerType: params.offerType,
-                timeStamp: Date.now()
+                    discountAmountPercentage: params.discountAmountPercentage,
+                    enterCoupanCode: params.enterCoupanCode,
+                    // selectCategoryApplicableOffer: params.selectCategoryApplicableOffer,
+                    // categoryID: params.categoryID,
+                    // categoryName: params.categoryName,
+                    // selectSubCategory: params.selectSubCategory,
+                    // subCategoryID: params.subCategoryID,
+                    offerType: params.offerType,
+                    timeStamp: Date.now()
 
-            }})
+                }
+            })
             if (addPromtionData.modifiedCount > 0) {
                 return res.json({ response: 3, message: "Promotion updated successfully" })
             } else {

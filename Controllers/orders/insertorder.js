@@ -13,7 +13,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
                 categoryID: Joi.string().strict().required(),
                 subCategoryID: Joi.string().strict().required(),
                 quantity: Joi.number().integer().strict().required(),
-                price: Joi.number().integer().strict().required(),
+                price: Joi.number().strict().required(),
                 weight: Joi.string().strict().required(),
                 productImagePath: Joi.string().strict().required(),
             }).required()).required(),
@@ -39,15 +39,16 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
                 pincode: Joi.string().strict().required(),
             }).required(),
             coupanCode: Joi.string().strict().required().allow(""),
-            coupanAmount: Joi.number().integer().strict().required().allow(0).default(0),
-            subTotal: Joi.number().integer().strict().required(),
-            deliveryFee: Joi.number().integer().strict().required(),
-            totalToPay: Joi.number().integer().strict().required(),
+            coupanAmount: Joi.number().strict().required().allow(0).default(0),
+            subTotal: Joi.number().strict().required(),
+            deliveryFee: Joi.number().strict().required(),
+            totalToPay: Joi.number().strict().required(),
             paymentType: Joi.string().strict().required(),
             paymentData: Joi.object().strict().required(),
         })
         var result = await OrderInsert_Validation.validate(params);
         if (result.error) {
+            console.log("Order Insert Validation Error:", result.error.details[0].message);
             return res.status(400).json({ response: 0, message: result.error.details[0].message })
         }
         const OIDNumber = Math.floor(100000 + Math.random() * 900000);

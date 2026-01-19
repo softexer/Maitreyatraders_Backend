@@ -18,9 +18,9 @@ module.exports.Update_Product_Api = async function Update_Product_Api(req, res) 
             // productPrice: Joi.number().integer().strict().required().default(0),
             // disCountProductprice: Joi.number().integer().strict().default(0),
             weightList: Joi.array().items(Joi.object().keys({
-                           productPrice: Joi.number().integer().strict().required().default(0),
-                           disCountProductprice: Joi.number().integer().strict().default(0),
-                           weightNumber: Joi.number().integer().strict().required().default(0),
+                           productPrice: Joi.number().strict().required().default(0),
+                           disCountProductprice: Joi.number().strict().default(0),
+                           weightNumber: Joi.number().strict().required().default(0),
                            weightUnit: Joi.string().strict().required().default("")
                        })).strict().required(),
             taxIncludedPrice: Joi.boolean().strict().required().default(false),
