@@ -81,6 +81,8 @@ module.exports.promotion_Insert_Api = async function promotion_Insert_Api(req, r
                 // categoryName: params.categoryName,
                 // selectSubCategory: params.selectSubCategory,
                 // subCategoryID: params.subCategoryID,
+                selectFreeProductName: params.selectFreeProductName,
+                selectFreeProductID: params.selectFreeProductID,
                 offerType: params.offerType,
                 applicableOn: params.applicableOn, // CATEGORY | SUBCATEGORY | PRODUCT
                 applicableIds: params.applicableIds,

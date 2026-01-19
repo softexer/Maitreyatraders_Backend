@@ -17,12 +17,12 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
             getQuantity: Joi.number().integer().strict().optional().allow(0),
             selectFreeProductName: Joi.string().strict().optional().allow(""),
             selectFreeProductID: Joi.string().strict().optional().allow(""),
-           
+
             discountAmountPercentage: Joi.string().strict().optional().allow(""),
             enterCoupanCode: Joi.string().strict().optional().allow(""),
             applicableOn: Joi.string().strict().valid("CATEGORY", "SUBCATEGORY", "PRODUCT").required(), // CATEGORY | SUBCATEGORY | PRODUCT
             applicableIds: Joi.array().items(Joi.string()).required(),
-          
+
 
         })
         var result = await ValidateParams.validate(params);
@@ -90,6 +90,8 @@ module.exports.promotion_Update_Api = async function promotion_Update_Api(req, r
                         getQuantity: params.getQuantity,
                         applicableOn: params.applicableOn, // CATEGORY | SUBCATEGORY | PRODUCT
                         applicableIds: params.applicableIds,
+                        selectFreeProductName: params.selectFreeProductName,
+                        selectFreeProductID: params.selectFreeProductID,
                         // categoryID: params.categoryID,
                         // categoryName: params.categoryName,
                         // productID: params.productID,
