@@ -5,19 +5,21 @@ var stripe = require('stripe')(process.env.stripeSecret_key)
 
 module.exports.Stripe_Payment_Api = async function Stripe_Payment_Api(req, res) {
     try {
-      
+      console.log("process.env.stripeSecret_key",process.env.stripeSecret_key)
         var params = req.body;
         var createPaymentInitSchema = Joi.object({
             customerID: Joi.string().required(),
+             
             shipping: Joi.object({
                 address: Joi.object({
-                    name: Joi.string().required(),
+                   
                     line1: Joi.string().required(),
                     postal_code: Joi.string().required(),
                     city: Joi.string().required(),
                     state: Joi.string().required(),
                     country: Joi.string().required()
-                })
+                }),
+                name: Joi.string().required(),
             }),
             description: Joi.string().required(),
             amount: Joi.string().required(),
@@ -43,7 +45,7 @@ module.exports.Stripe_Payment_Api = async function Stripe_Payment_Api(req, res) 
                 paymentInitObject: charge
             });
         }).catch((error) => {
-            console.error(error)
+           // console.error(error)
             return res.json({
                 response: 0,
                 message: error
