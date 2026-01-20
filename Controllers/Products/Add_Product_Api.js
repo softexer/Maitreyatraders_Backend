@@ -17,6 +17,7 @@ module.exports.Add_Project = async function Add_Project(req, res) {
             taxIncludedPrice: Joi.boolean().strict().required().allow(false),
             expirationStartDate: Joi.string().strict().required(),
             expirationEndDate: Joi.string().strict().required(),
+            isfrozenProduct: Joi.boolean().strict().required().allow(false),
             // productImagesList: Joi.array(),
             stockQuantity: Joi.number().integer().strict().required().allow(0),
             isStockUnlimited: Joi.boolean().strict().required().allow(false),
@@ -110,8 +111,9 @@ module.exports.Add_Project = async function Add_Project(req, res) {
                     stockStatus: params.stockStatus,
                     isHighlightedProduct: params.isHighlightedProduct,
                     weightList: params.weightList,
+                    isfrozenProduct: params.isfrozenProduct,
                     //discountPrice: params.discountPrice,
-                    timestamp: new Date().getTime().toString()
+                    timestamp: Date.now()
                 }])
                 if (insertProductData.length > 0) {
                     return res.json({ respose: 3, message: "Product inserted success" })

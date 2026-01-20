@@ -21,6 +21,11 @@ var products = schema({
         required: false,
         default: ""
     },
+    isfrozenProduct: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
     categoryID: {
         type: String,
         required: false,
@@ -96,8 +101,8 @@ var products = schema({
         required: false,
         default: []
     },
-    discountPrice:{
-          type: String,
+    discountPrice: {
+        type: String,
         required: false,
         default: ""
     },
@@ -107,7 +112,7 @@ var products = schema({
         default: ""
     },
     //backend only used
-    salesCount:{
+    salesCount: {
         type: Number,
         required: false,
         default: 0
