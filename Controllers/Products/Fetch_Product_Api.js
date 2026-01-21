@@ -22,7 +22,7 @@ module.exports.Fetch_Product_Api = async function Fetch_Product_Api(req, res) {
         if (params.subCategoryID == "All") {
             GettingProductsCount = await Products_Model.countDocuments({ categoryID: params.categoryID });
             GettingProducts = await Products_Model.find({ categoryID: params.categoryID }, { _id: 0, __v: 0 })
-                .skip((params.page - 1) * params.size).limit(params.size)
+                .skip((params.pageNo - 1) * params.size).limit(params.size)
         } else {
             if (params.productID == "All") {
                 if (params.searchText.length > 0) {
@@ -30,7 +30,7 @@ module.exports.Fetch_Product_Api = async function Fetch_Product_Api(req, res) {
                         productName: { $regex: params.searchText, $options: "i" },
                         categoryID: params.categoryID,
                         subCategoryID: params.subCategoryID,
-                    }, { _id: 0, __v: 0 }).skip((params.page - 1) * params.size).limit(params.size)
+                    }, { _id: 0, __v: 0 }).skip((params.pageNo - 1) * params.size).limit(params.size)
                 } else {
                     GettingProductsCount = await Products_Model.countDocuments({
                         categoryID: params.categoryID,
@@ -39,7 +39,7 @@ module.exports.Fetch_Product_Api = async function Fetch_Product_Api(req, res) {
                     GettingProducts = await Products_Model.find({
                         categoryID: params.categoryID,
                         subCategoryID: params.subCategoryID,
-                    }, { _id: 0, __v: 0 }).skip((params.page - 1) * params.size).limit(params.size)
+                    }, { _id: 0, __v: 0 }).skip((params.pageNo - 1) * params.size).limit(params.size)
                 }
 
             } else {
