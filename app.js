@@ -37,10 +37,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(compression())
 // app.use(pinohttp())
+app.use(cors({ origin: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({ origin: true }));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
