@@ -19,6 +19,7 @@ router.post('/fetchproduct', async (req, res) => {
     var Fetch_Product_Api = require('../Controllers/Products/Fetch_Product_Api');
     Fetch_Product_Api.Fetch_Product_Api(req, res)
 })
+
 router.delete('/deleteproduct', async (req, res) => {
     var Delete_Product_Api = require('../Controllers/Products/Delete_Product');
     Delete_Product_Api.Delete_Product_Api(req, res)
@@ -27,6 +28,10 @@ router.delete('/deleteproduct', async (req, res) => {
 router.post('/productlist', async (req, res) => {
     var Customer_Products_List = require('../Controllers/Products/Customer_Products_List');
     Customer_Products_List.Customer_Products_List(req, res)
+})
+router.post('/singleproduct', async (req, res) => {
+    var Customer_Products_List = require('../Controllers/Products/Customer_Products_List');
+    Customer_Products_List.singleproduct(req, res)
 })
 
 router.get('/fetchcategories', async (req, res) => {

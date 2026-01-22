@@ -42,3 +42,40 @@ module.exports.Customer_Products_List = async function Customer_Products_List(re
         })
     }
 }
+
+module.exports.singleproduct = async function singleproduct(req, res) {
+    try {
+        var params = req.body;
+        var singleproductFetchValidation = Joi.object({
+            categoryID: Joi.string().strict().required(),
+            productID: Joi.string().strict().required(),
+        })
+        var result = await singleproductFetchValidation.validate(params);
+        if (result.error) {
+            res.statusCode = 400;
+            return res.json({ response: 0, message: result.error.details[0].message })
+        }
+        var checkingProductID_GetData = await Products_Model.findOne({
+            productID: params.productID,
+            categoryID: params.categoryID
+        })
+        if (checkingProductID_GetData) {
+            return res.json({
+                response: 3,
+                message: "Product data fetch successfully",
+                ProductData: checkingProductID_GetData
+            })
+        } else {
+            return res.json({
+                response: 0,
+                message: "CategoryID/ProductID data not found"
+            })
+        }
+
+    } catch {
+        return res.json({
+            response: 0,
+            message: "Internal Server Error"
+        })
+    }
+}
