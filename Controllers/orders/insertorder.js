@@ -1,6 +1,7 @@
 var Joi = require('@hapi/joi');
 var order_Model = require('../../app/Models/orders');
 var Products_Model = require('../../app/Models/Products_Schema')
+var fs = require('fs')
 module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
     try {
         var params = req.body;
@@ -26,6 +27,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
                 city: Joi.string().strict().required(),
                 state: Joi.string().strict().required(),
                 pincode: Joi.string().strict().required(),
+                phoneNumber: Joi.string().strict().optional().allow(""),
             }).required(),
             shippingMethod: Joi.string().strict().required(),
             billingAddressDetails: Joi.object({
@@ -37,6 +39,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
                 city: Joi.string().strict().required(),
                 state: Joi.string().strict().required(),
                 pincode: Joi.string().strict().required(),
+                phoneNumber: Joi.string().strict().optional().allow(""),
             }).required(),
             coupanCode: Joi.string().strict().required().allow(""),
             coupanAmount: Joi.number().strict().required().allow(0).default(0),
@@ -56,8 +59,9 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
 
         // var orderID = await order_Model.countDocuments({});
         // var OIDGenerate = 1000 + orderID
+        var OID = "#" + OIDNumber + new Date().getFullYear()
         var orderinsert = await order_Model.insertMany([{
-            orderId: "#" + OIDNumber + new Date().getFullYear(),
+            orderId: OID,
             contactData: params.contactData,
             emailID: params.contactData,
             phoneNumber: params.contactData,
@@ -77,6 +81,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
             orderTimeStamp: new Date().getTime().toString()
         }])
         if (orderinsert.length > 0) {
+            OrderCompletdeMail(params, OID)
             return res.json({ response: 3, message: "Order booking successfully completed" })
         } else {
             return res.json({ response: 0, message: "Order booking failure" })
@@ -88,4 +93,74 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
             error: error.message
         })
     }
+}
+
+async function OrderCompletdeMail(params, OID) {
+    var nodemailer = require('nodemailer')
+    fs.readFile("./app/ConfigFiles/OrderInsert.html", function (err, data) {
+        if (!err) {
+            var html = data.toString();
+            html = html.replace("123456", OID)
+            html = html.replace("Mohan Reddy", params.billingAddressDetails.firstName + " " + params.billingAddressDetails.lastName);
+            html = html.replace(
+                "{{BILLING_ADDRESS}}",
+                `Flat No ${params.billingAddressDetails.apartment}, ${params.billingAddressDetails.address}<br>
+   ${params.billingAddressDetails.city}, ${params.billingAddressDetails.state} - ${params.billingAddressDetails.pincode}<br>
+   ${params.billingAddressDetails.country}}`
+            );
+            //<br>${params.billingAddressDetails.phoneNumber
+
+            // html = html.replace("Flat No 301, Ameerpet", "Flat No" + params.billingAddressDetails.apartment + " " + params.billingAddressDetails.address+","+"\n"+params.billingAddressDetails.city+" "+params.billingAddressDetails.state+"-"+params.billingAddressDetails.pincode+" "+params.billingAddressDetails.country);
+            //html = html.replace("+91 8106022423", params.billingAddressDetails.phoneNumber);
+            html = html.replace("₹1,430", "£" + params.subTotal);
+            html = html.replace("₹50", "£" + params.deliveryFee);
+            html = html.replace("₹1,551.50", "£" + params.totalToPay);
+
+            var TR = "";
+            var products = params.Products
+            for (var count = 0; count < products.length; count++) {
+                if (products[count]) {
+                    TR += "<tr>";
+                    TR += `<td>${count + 1}</td>`;
+                    TR += `<td>${products[count].productName} (${products[count].weight})</td>`;
+                    TR += `<td>${products[count].quantity}</td>`;
+                    TR += `<td>${products[count].price}</td>`;
+                    TR += `<td>${products[count].price * products[count].quantity} </td>`;;
+                    TR += "</tr>";
+                }
+            }
+            html = html.replace("#TrRow", TR)
+            // html = html.replaceAll("User", params.firstName);
+            // html = html.replaceAll("“XXXXXX”", otp);
+            //var html = str.replace("#RESET_LINK#", resetLink);
+            // var html1 = html.replace("#RESET_LINK#", resetLink);
+            // sendMail(toEmail, subject, html);
+            let transport = nodemailer.createTransport({
+                name: "SMTP",
+                host: "mail.maitreyatraderslimited.co.uk",
+                port: 465,
+                secure: true,
+                auth: {
+                    user: "enquiry@maitreyatraderslimited.co.uk",
+                    pass: "Kiran@2026",
+                }
+            })
+            let mailOptions = {
+                from: "enquiry@maitreyatraderslimited.co.uk",
+                to: params.contactData,
+                subject: `Your Order ConformationThank you for your order! 🎉 Order ID: ${OID}`,
+                html: html,
+            }
+            transport.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log(error);
+
+                } else {
+                    console.log('send mail' + info.response)
+                }
+            })
+        } else {
+            console.log(err);
+        }
+    });
 }
