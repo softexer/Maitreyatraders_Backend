@@ -38,10 +38,15 @@ router.get('/fetchcategories', async (req, res) => {
     var Customer_Fetch_Categories_Api = require('../Controllers/Products/Customer_Fetch_Categories_Api');
     Customer_Fetch_Categories_Api.Customer_Fetch_Categories_Api(req, res)
 })
-router.get('/customerhomepage',async(req,res)=>{
+router.get('/customerhomepage', async (req, res) => {
     var Customer_Home_page_Api = require('../Controllers/Products/Customer_Home_page_Api')
-    Customer_Home_page_Api.Customer_Home_page_Api(req,res)
+    Customer_Home_page_Api.Customer_Home_page_Api(req, res)
 })
+router.post('/ordersfetch', async (req, res) => {
+    var Customer_Orders_Fetch = require('../Controllers/Products/Customer_Orders_Fetch');
+    Customer_Orders_Fetch.Customer_Orders_Fetch(req, res)
+})
+
 
 
 module.exports = router;

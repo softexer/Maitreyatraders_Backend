@@ -7,52 +7,58 @@ var CustomerSchema = new schema({
     {
         type: String,
         required: false,
+         default:""
     },
     lastName:
     {
         type: String,
-        required: false
+        required: false,
+         default:""
     },
     userID: {
         type: String,
         required: false,
-        default:""
+        default: ""
     },
     PhoneNumber: {
         type: String,
-        required: true,
-        index: true,
-        unique: true
+        required: false,
+        default: ""
     },
     Password:
     {
         type: String,
-        required: false
+        required: false,
+        default: ""
     },
     Otp:
     {
         type: String,
         required: false,
+        default: ""
     },
-    merchantId:{
+    merchantId: {
         type: String,
-        required: false
+        required: false,
+        default: ""
     },
-    CartID:{
+    CartID: {
         type: String,
-        required: false
+        required: false,
+        default: ""
     },
-    RegisterDate:{
+    RegisterDate: {
         type: String,
-        required: false
+        required: false,
+        default: ""
     },
-    loginStatus:{
+    loginStatus: {
         type: Boolean,
         required: false,
-        default:false
+        default: false
     }
-    
-    
+
+
 });
 db.connectToDB();
 
