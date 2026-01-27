@@ -128,10 +128,25 @@ async function OrderCompletdeMail(params, OID, GenerateID) {
             html = html.replace("+91 8106022423", params.billingAddressDetails.phoneNumber);
             html = html.replace("₹1,430", "£" + params.subTotal);
             html = html.replace("₹50", "£" + params.deliveryFee);
-            html = html.replace("₹10", "£" +params.fronzenCharges)
-            html = html.replace("₹1,551.50", "£" + params.totalToPay);
-            //html = html.replace("MohanReddy",)
+            var frozen = false;
+            let grtot = "";
+            if (params.fronzenCharges > 0) {
+                grtot += `<tr>
+                    <td class="label">Frozen Charges:</td>
+                    <td class="text-right">£ ${params.fronzenCharges}</td>
+                </tr>`
+                frozen = true
+                // html = html.replace("₹10", "£" + params.fronzenCharges)
+            }
+            grtot += `<tr>
+                    <td class="label grand-total">Grand Total:</td>
+                    <td class="text-right grand-total">£ ${params.totalToPay} </td>
+                </tr>`
 
+            // html = html.replace("₹1,551.50", "£" + params.totalToPay);
+            //  grtot += "</tr>"
+            //html = html.replace("MohanReddy",)
+            html = html.replace("#GRtotal", grtot)
             var TR = "";
             var products = params.Products
             for (var count = 0; count < products.length; count++) {
