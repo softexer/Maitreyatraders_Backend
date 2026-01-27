@@ -59,9 +59,16 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
 
         // var orderID = await order_Model.countDocuments({});
         // var OIDGenerate = 1000 + orderID
+        var OrderDataFetch = await order_Model.findOne({}).sort({ orderTimeStamp: -1 }).limit(1)
+        if (OrderDataFetch) {
+            var GenerateID = OrderDataFetch.orderId + 1
+        } else {
+            var GenerateID = 1
+        }
         var OID = "#" + OIDNumber + new Date().getFullYear()
         var orderinsert = await order_Model.insertMany([{
-            orderId: OID,
+            orderUniqueID: OID,
+            orderId: GenerateID,
             contactData: params.contactData,
             emailID: params.contactData,
             phoneNumber: params.contactData,
@@ -81,8 +88,13 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
             orderTimeStamp: new Date().getTime().toString()
         }])
         if (orderinsert.length > 0) {
-            OrderCompletdeMail(params, OID)
-            return res.json({ response: 3, message: "Order booking successfully completed" })
+            OrderCompletdeMail(params, OID, GenerateID)
+            return res.json({
+                response: 3,
+                message: "Order booking successfully completed",
+                orderData: orderinsert
+
+            })
         } else {
             return res.json({ response: 0, message: "Order booking failure" })
         }
@@ -95,26 +107,27 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
     }
 }
 
-async function OrderCompletdeMail(params, OID) {
+async function OrderCompletdeMail(params, OID, GenerateID) {
     var nodemailer = require('nodemailer')
     fs.readFile("./app/ConfigFiles/OrderInsert.html", function (err, data) {
         if (!err) {
             var html = data.toString();
-            html = html.replace("123456", OID)
+            html = html.replace("123456", GenerateID)
             html = html.replace("Mohan Reddy", params.billingAddressDetails.firstName + " " + params.billingAddressDetails.lastName);
             html = html.replace(
                 "{{BILLING_ADDRESS}}",
                 `Flat No ${params.billingAddressDetails.apartment}, ${params.billingAddressDetails.address}<br>
    ${params.billingAddressDetails.city}, ${params.billingAddressDetails.state} - ${params.billingAddressDetails.pincode}<br>
-   ${params.billingAddressDetails.country}}`
+   ${params.billingAddressDetails.country}`
             );
             //<br>${params.billingAddressDetails.phoneNumber
 
             // html = html.replace("Flat No 301, Ameerpet", "Flat No" + params.billingAddressDetails.apartment + " " + params.billingAddressDetails.address+","+"\n"+params.billingAddressDetails.city+" "+params.billingAddressDetails.state+"-"+params.billingAddressDetails.pincode+" "+params.billingAddressDetails.country);
-            //html = html.replace("+91 8106022423", params.billingAddressDetails.phoneNumber);
+            html = html.replace("+91 8106022423", params.billingAddressDetails.phoneNumber);
             html = html.replace("₹1,430", "£" + params.subTotal);
             html = html.replace("₹50", "£" + params.deliveryFee);
             html = html.replace("₹1,551.50", "£" + params.totalToPay);
+            //html = html.replace("MohanReddy",)
 
             var TR = "";
             var products = params.Products

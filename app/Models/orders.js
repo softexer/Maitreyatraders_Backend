@@ -2,11 +2,16 @@ const { type } = require('@hapi/joi/lib/extend');
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var orderdata = new schema({
-    orderId: {
+    orderUniqueID: {
         type: String,
         required: true,
         unique: true,
         index: true
+    },
+    orderId: {
+        type: Number,
+        required: false,
+        default: 1
     },
     contactData: {
         type: String,
