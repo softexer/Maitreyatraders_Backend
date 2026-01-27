@@ -74,7 +74,11 @@ var orderdata = new schema({
             required: false,
             default: ""
         },
-
+        phoneNumber: {
+            type: String,
+            required: false,
+            default: ""
+        }
 
     },
     shippingMethod: {
@@ -123,6 +127,11 @@ var orderdata = new schema({
             required: false,
             default: ""
         },
+        phoneNumber: {
+            type: String,
+            required: false,
+            default: ""
+        }
 
 
     },
