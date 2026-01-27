@@ -44,7 +44,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
             coupanCode: Joi.string().strict().required().allow(""),
             coupanAmount: Joi.number().strict().required().allow(0).default(0),
             subTotal: Joi.number().strict().required(),
-            fronzenCharges:Joi.number().strict().required(),
+            fronzenCharges: Joi.number().strict().required(),
             deliveryFee: Joi.number().strict().required(),
             totalToPay: Joi.number().strict().required(),
             paymentType: Joi.string().strict().required(),
@@ -82,7 +82,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
             subTotal: params.subTotal,
             deliveryFee: params.deliveryFee,
             totalToPay: params.totalToPay,
-            fronzenCharges:params.fronzenCharges,
+            fronzenCharges: params.fronzenCharges,
             paymentType: params.paymentType,
             paymentData: params.paymentData,
             orderStatus: "New",
@@ -128,6 +128,7 @@ async function OrderCompletdeMail(params, OID, GenerateID) {
             html = html.replace("+91 8106022423", params.billingAddressDetails.phoneNumber);
             html = html.replace("₹1,430", "£" + params.subTotal);
             html = html.replace("₹50", "£" + params.deliveryFee);
+            html = html.replace("₹10", "£" +params.fronzenCharges)
             html = html.replace("₹1,551.50", "£" + params.totalToPay);
             //html = html.replace("MohanReddy",)
 
