@@ -151,6 +151,11 @@ var orderdata = new schema({
         required: false,
         default: 0
     },
+    fronzenCharges: {
+        type: Number,
+        required: false,
+        default: 0
+    },
     paymentType: {
         type: String,
         required: false,
