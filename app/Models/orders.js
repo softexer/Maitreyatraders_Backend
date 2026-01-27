@@ -9,9 +9,9 @@ var orderdata = new schema({
         index: true
     },
     orderId: {
-        type: Number,
+        type: String,
         required: false,
-        default: 1
+        default: "OID-100001"
     },
     contactData: {
         type: String,

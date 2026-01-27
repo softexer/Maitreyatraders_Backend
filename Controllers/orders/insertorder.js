@@ -62,9 +62,12 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
         // var OIDGenerate = 1000 + orderID
         var OrderDataFetch = await order_Model.findOne({}).sort({ orderTimeStamp: -1 }).limit(1)
         if (OrderDataFetch) {
-            var GenerateID = OrderDataFetch.orderId + 1
+            var splitdata = OrderDataFetch.orderId.split("-");
+            var splitpostionGet = splitdata[1]
+            var GenerateID = "OID" + (Number(splitpostionGet) + 1)
+
         } else {
-            var GenerateID = 1
+            var GenerateID = "OID-100001"
         }
         var OID = "#" + OIDNumber + new Date().getFullYear()
         var orderinsert = await order_Model.insertMany([{
