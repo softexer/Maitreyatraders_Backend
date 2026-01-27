@@ -11,7 +11,7 @@ var orderdata = new schema({
     orderId: {
         type: String,
         required: false,
-        default: "OID-100001"
+        default: "ORD-100001"
     },
     contactData: {
         type: String,

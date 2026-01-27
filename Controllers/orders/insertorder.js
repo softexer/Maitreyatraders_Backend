@@ -64,10 +64,10 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
         if (OrderDataFetch) {
             var splitdata = OrderDataFetch.orderId.split("-");
             var splitpostionGet = splitdata[1]
-            var GenerateID = "OID" + (Number(splitpostionGet) + 1)
+            var GenerateID = "ORD" + (Number(splitpostionGet) + 1)
 
         } else {
-            var GenerateID = "OID-100001"
+            var GenerateID = "ORD-100001"
         }
         var OID = "#" + OIDNumber + new Date().getFullYear()
         var orderinsert = await order_Model.insertMany([{
@@ -182,7 +182,7 @@ async function OrderCompletdeMail(params, OID, GenerateID) {
             let mailOptions = {
                 from: "enquiry@maitreyatraderslimited.co.uk",
                 to: params.contactData,
-                subject: `Your Order ConformationThank you for your order! 🎉 Order ID: ${OID}`,
+                subject: `Your Order ConformationThank you for your order! 🎉 Order ID: ${GenerateID}`,
                 html: html,
             }
             transport.sendMail(mailOptions, (error, info) => {
