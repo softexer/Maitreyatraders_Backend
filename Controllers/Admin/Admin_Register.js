@@ -15,7 +15,7 @@ module.exports.Admin_Signup_Api = async function Admin_Signup_Api(req, res) {
             res.statusCode = 400;
             return res.json({ response: 0, message: result.error.details[0].message })
         }
-        var Checking_Admin_userID = await Admin_Model.findOne({}).exec();
+        var Checking_Admin_userID = await Admin_Model.findOne({emailID: params.emailID}).exec();
         if (Checking_Admin_userID) {
             return res.json({ response: 0, message: "Already Admin singup" })
         } else {
