@@ -94,6 +94,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
         }])
         if (orderinsert.length > 0) {
             // OrderCompletdeMail(params, OID, GenerateID);
+            
             OrderCompletdeMail_NewFormate(params, OID, GenerateID)
             return res.json({
                 response: 3,
