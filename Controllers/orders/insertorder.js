@@ -93,7 +93,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
             orderTimeStamp: new Date().getTime().toString()
         }])
         if (orderinsert.length > 0) {
-            OrderCompletdeMail(params, OID, GenerateID);
+            // OrderCompletdeMail(params, OID, GenerateID);
             OrderCompletdeMail_NewFormate(params, OID, GenerateID)
             return res.json({
                 response: 3,
@@ -113,92 +113,94 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
     }
 }
 
-async function OrderCompletdeMail(params, OID, GenerateID) {
-    var nodemailer = require('nodemailer')
-    fs.readFile("./app/ConfigFiles/OrderInsert.html", function (err, data) {
-        if (!err) {
-            var html = data.toString();
-            html = html.replace("123456", GenerateID)
-            html = html.replace("Mohan Reddy", params.billingAddressDetails.firstName + " " + params.billingAddressDetails.lastName);
-            html = html.replace(
-                "{{BILLING_ADDRESS}}",
-                `Flat No ${params.billingAddressDetails.apartment}, ${params.billingAddressDetails.address}<br>
-   ${params.billingAddressDetails.city}, ${params.billingAddressDetails.state} - ${params.billingAddressDetails.pincode}<br>
-   ${params.billingAddressDetails.country}`
-            );
-            //<br>${params.billingAddressDetails.phoneNumber
+// async function OrderCompletdeMail(params, OID, GenerateID) {
+//     var nodemailer = require('nodemailer')
+//     fs.readFile("./app/ConfigFiles/OrderInsert.html", function (err, data) {
+//         if (!err) {
+//             var html = data.toString();
+//             html = html.replace("123456", GenerateID)
+//             html = html.replace("Mohan Reddy", params.billingAddressDetails.firstName + " " + params.billingAddressDetails.lastName);
+//             html = html.replace(
+//                 "{{BILLING_ADDRESS}}",
+//                 `Flat No ${params.billingAddressDetails.apartment}, ${params.billingAddressDetails.address}<br>
+//    ${params.billingAddressDetails.city}, ${params.billingAddressDetails.state} - ${params.billingAddressDetails.pincode}<br>
+//    ${params.billingAddressDetails.country}`
+//             );
+//             //<br>${params.billingAddressDetails.phoneNumber
 
-            // html = html.replace("Flat No 301, Ameerpet", "Flat No" + params.billingAddressDetails.apartment + " " + params.billingAddressDetails.address+","+"\n"+params.billingAddressDetails.city+" "+params.billingAddressDetails.state+"-"+params.billingAddressDetails.pincode+" "+params.billingAddressDetails.country);
-            html = html.replace("+91 8106022423", params.billingAddressDetails.phoneNumber);
-            html = html.replace("₹1,430", "£" + params.subTotal);
-            html = html.replace("₹50", "£" + params.deliveryFee);
-            var frozen = false;
-            let grtot = "";
-            if (params.fronzenCharges > 0) {
-                grtot += `<tr>
-                    <td class="label">Frozen Charges:</td>
-                    <td class="text-right">£ ${params.fronzenCharges}</td>
-                </tr>`
-                frozen = true
-                // html = html.replace("₹10", "£" + params.fronzenCharges)
-            }
-            grtot += `<tr>
-                    <td class="label grand-total">Grand Total:</td>
-                    <td class="text-right grand-total">£ ${params.totalToPay} </td>
-                </tr>`
+//             // html = html.replace("Flat No 301, Ameerpet", "Flat No" + params.billingAddressDetails.apartment + " " + params.billingAddressDetails.address+","+"\n"+params.billingAddressDetails.city+" "+params.billingAddressDetails.state+"-"+params.billingAddressDetails.pincode+" "+params.billingAddressDetails.country);
+//             html = html.replace("+91 8106022423", params.billingAddressDetails.phoneNumber);
+//             html = html.replace("₹1,430", "£" + params.subTotal);
+//             html = html.replace("₹50", "£" + params.deliveryFee);
+//             var frozen = false;
+//             let grtot = "";
+//             if (params.fronzenCharges > 0) {
+//                 grtot += `<tr>
+//                     <td class="label">Frozen Charges:</td>
+//                     <td class="text-right">£ ${params.fronzenCharges}</td>
+//                 </tr>`
+//                 frozen = true
+//                 // html = html.replace("₹10", "£" + params.fronzenCharges)
+//             }
+//             grtot += `<tr>
+//                     <td class="label grand-total">Grand Total:</td>
+//                     <td class="text-right grand-total">£ ${params.totalToPay} </td>
+//                 </tr>`
 
-            // html = html.replace("₹1,551.50", "£" + params.totalToPay);
-            //  grtot += "</tr>"
-            //html = html.replace("MohanReddy",)
-            html = html.replace("#GRtotal", grtot)
-            var TR = "";
-            var products = params.Products
-            for (var count = 0; count < products.length; count++) {
-                if (products[count]) {
-                    TR += "<tr>";
-                    TR += `<td>${count + 1}</td>`;
-                    TR += `<td>${products[count].productName} (${products[count].weight})</td>`;
-                    TR += `<td>${products[count].quantity}</td>`;
-                    TR += `<td>${products[count].price}</td>`;
-                    TR += `<td>${products[count].price * products[count].quantity} </td>`;;
-                    TR += "</tr>";
-                }
-            }
-            html = html.replace("#TrRow", TR)
-            // html = html.replaceAll("User", params.firstName);
-            // html = html.replaceAll("“XXXXXX”", otp);
-            //var html = str.replace("#RESET_LINK#", resetLink);
-            // var html1 = html.replace("#RESET_LINK#", resetLink);
-            // sendMail(toEmail, subject, html);
-            let transport = nodemailer.createTransport({
-                name: "SMTP",
-                host: "mail.maitreyatraderslimited.co.uk",
-                port: 465,
-                secure: true,
-                auth: {
-                    user: "enquiry@maitreyatraderslimited.co.uk",
-                    pass: "Kiran@2026",
-                }
-            })
-            let mailOptions = {
-                from: "enquiry@maitreyatraderslimited.co.uk",
-                to: params.contactData,
-                subject: `Your Order ConformationThank you for your order! 🎉 Order ID: ${GenerateID}`,
-                html: html,
-            }
-            transport.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.log(error);
+//             // html = html.replace("₹1,551.50", "£" + params.totalToPay);
+//             //  grtot += "</tr>"
+//             //html = html.replace("MohanReddy",)
+//             html = html.replace("#GRtotal", grtot)
+//             var TR = "";
+//             var products = params.Products
+//             for (var count = 0; count < products.length; count++) {
+//                 if (products[count]) {
+//                     TR += "<tr>";
+//                     TR += `<td>${count + 1}</td>`;
+//                     TR += `<td>${products[count].productName} (${products[count].weight})</td>`;
+//                     TR += `<td>${products[count].quantity}</td>`;
+//                     TR += `<td>${products[count].price}</td>`;
+//                     TR += `<td>${products[count].price * products[count].quantity} </td>`;;
+//                     TR += "</tr>";
+//                 }
+//             }
+//             html = html.replace("#TrRow", TR)
+//             // html = html.replaceAll("User", params.firstName);
+//             // html = html.replaceAll("“XXXXXX”", otp);
+//             //var html = str.replace("#RESET_LINK#", resetLink);
+//             // var html1 = html.replace("#RESET_LINK#", resetLink);
+//             // sendMail(toEmail, subject, html);
+//             let transport = nodemailer.createTransport({
+//                 name: "SMTP",
+//                 host: "mail.maitreyatraderslimited.co.uk",
+//                 port: 465,
+//                 secure: true,
+//                 auth: {
+//                     user: "enquiry@maitreyatraderslimited.co.uk",
+//                     pass: "Kiran@2026",
+//                 }
+//             })
+//             let mailOptions = {
+//                 from: "enquiry@maitreyatraderslimited.co.uk",
+//                 to: params.contactData,
+//                 subject: `Your Order ConformationThank you for your order! 🎉 Order ID: ${GenerateID}`,
+//                 html: html,
+//             }
+//             transport.sendMail(mailOptions, (error, info) => {
+//                 if (error) {
+//                     console.log(error);
 
-                } else {
-                    console.log('send mail' + info.response)
-                }
-            })
-        } else {
-            console.log(err);
-        }
-    });
-}
+//                 } else {
+//                     console.log('send mail' + info.response)
+//                 }
+//             })
+//         } else {
+//             console.log(err);
+//         }
+//     });
+// }
+
+//Final templates
 
 async function OrderCompletdeMail_NewFormate(params, OID, GenerateID) {
     var nodemailer = require('nodemailer')
@@ -219,7 +221,7 @@ async function OrderCompletdeMail_NewFormate(params, OID, GenerateID) {
             html = html.replace("NT-ORD-784512", GenerateID)
             html = html.replace("Credit Card (Visa)", params.paymentType)
             html = html.replace("January 27, 2026", formattedDate)
-            html = html.replace("Ananya Sharma", params.billingAddressDetails.firstName + " " + params.billingAddressDetails.lastName);
+            html = html.replaceAll("Ananya Sharma", params.billingAddressDetails.firstName + " " + params.billingAddressDetails.lastName);
             html = html.replace(
                 "{{BILLING_ADDRESS}}",
                 `Flat No ${params.billingAddressDetails.apartment},<br> ${params.billingAddressDetails.address}<br>
@@ -282,8 +284,8 @@ async function OrderCompletdeMail_NewFormate(params, OID, GenerateID) {
             })
             let mailOptions = {
                 from: "enquiry@maitreyatraderslimited.co.uk",
-                //to: params.contactData,
-                to: "venkat9351@gmail.com",
+                to: params.contactData,
+                //to: "venkat9351@gmail.com",
                 subject: `Your Order ConformationThank you for your order! 🎉 Order ID: ${GenerateID}`,
                 html: html,
             }
