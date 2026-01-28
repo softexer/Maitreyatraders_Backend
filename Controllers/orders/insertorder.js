@@ -236,14 +236,14 @@ async function OrderCompletdeMail_NewFormate(params, OID, GenerateID) {
             let grtot = "";
             if (params.fronzenCharges > 0) {
                 grtot += `<tr>
-                    <td class="label" colspan="3">Frozen Charges:</td>
+                    <td class="label" colspan="3" style="text-align: right;">Frozen Charges:</td>
                     <td class="text-right">£ ${params.fronzenCharges}</td>
                 </tr>`
                 frozen = true
                 // html = html.replace("₹10", "£" + params.fronzenCharges)
             }
             grtot += `<tr>
-                    <td class="label grand-total" colspan="3">Grand Total:</td>
+                    <td class="label grand-total" colspan="3" style="text-align: right;">Grand Total:</td>
                     <td class="text-right grand-total">£ ${params.totalToPay} </td>
                 </tr>`
 
