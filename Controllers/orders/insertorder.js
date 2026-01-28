@@ -64,7 +64,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
         if (OrderDataFetch) {
             var splitdata = OrderDataFetch.orderId.split("-");
             var splitpostionGet = splitdata[1]
-            var GenerateID = "ORD" + (Number(splitpostionGet) + 1)
+            var GenerateID = "ORD" + "-" + (Number(splitpostionGet) + 1)
 
         } else {
             var GenerateID = "ORD-100001"
