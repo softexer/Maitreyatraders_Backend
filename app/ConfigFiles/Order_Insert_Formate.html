@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order Confirmation</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f6f6f6;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 6px;
+    }
+    h2 {
+      color: #333;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    table th {
+      background-color: #f2f2f2;
+    }
+    .total {
+      font-weight: bold;
+    }
+    .footer {
+      font-size: 14px;
+      color: #555;
+      margin-top: 20px;
+    }
+    .highlight {
+      color: #2e7d32;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <p>Dear <strong>Ananya Sharma</strong>,</p>
+
+    <p>
+      Thank you for shopping with <strong>Maitreya Traders Limited</strong> 🎉<br />
+      We’re happy to confirm that your order has been successfully placed.
+    </p>
+
+    <hr />
+
+    <h2>🧾 Order Details</h2>
+    <p>
+      <strong>Order Number:</strong> NT-ORD-784512<br />
+      <strong>Order Date:</strong> January 27, 2026<br />
+      <strong>Payment Method:</strong> Credit Card (Visa)<br />
+      <strong>Payment Status:</strong> <span class="highlight">Paid</span>
+    </p>
+
+    <hr />
+
+    <h2>📦 Items Ordered</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>1</td>
+          <td>Wireless Bluetooth Headphones</td>
+          <td>1</td>
+          <td>₹1,499</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>USB-C Fast Charging Cable (1m)</td>
+          <td>2</td>
+          <td>₹498</td>
+        </tr> -->
+        #TrRow
+        <tr>
+          <td colspan="3">Subtotal</td>
+          <td>₹1,997</td>
+        </tr>
+        <tr>
+          <td colspan="3">Shipping Charges</td>
+          <td>₹99</td>
+        </tr>
+        #GRtotal
+        <tr class="total">
+          <td colspan="3">Total Paid</td>
+          <td>₹2,456</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <h2>🚚 Shipping Information</h2>
+    <p>
+      <strong>Ananya Sharma</strong><br />
+      {{BILLING_ADDRESS}}<br>
+      PhoneNumber : +91 8106022423
+
+      <!-- Flat 12B, Green Heights Apartments<br />
+      MG Road, Bengaluru, Karnataka – 560001<br />
+      India -->
+    </p>
+
+    <p>
+      You’ll receive another email once your order has been shipped, along with tracking details.
+    </p>
+
+    <div class="footer">
+      <p>
+        If you have any questions, feel free to contact our support team at
+        <a href="mailto:support@novatrend.com">enquiry@maitreyatraderslimited.co.uk</a>
+        or call <strong>+44 7982376506</strong>.
+      </p>
+
+      <p>Thank you for choosing <strong>Maitreya Traders Limited</strong> ❤️</p>
+    </div>
+  </div>
+
+</body>
+</html>
