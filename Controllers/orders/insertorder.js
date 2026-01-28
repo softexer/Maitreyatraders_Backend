@@ -258,7 +258,7 @@ async function OrderCompletdeMail_NewFormate(params, OID, GenerateID) {
                     TR += "<tr>";
                     TR += `<td>${count + 1}</td>`;
                     TR += `<td>${products[count].productName} (${products[count].weight})</td>`;
-                    TR += `<td>${products[count].quantity}</td>`;
+                    TR += `<td style="text-align:center">${products[count].quantity}</td>`;
                     //TR += `<td>${products[count].price}</td>`;
                     TR += `<td>${products[count].price * products[count].quantity} </td>`;;
                     TR += "</tr>";
