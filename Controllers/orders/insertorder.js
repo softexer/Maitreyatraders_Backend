@@ -94,7 +94,7 @@ module.exports.Order_Insert_Api = async function Order_Insert_Api(req, res) {
         }])
         if (orderinsert.length > 0) {
             // OrderCompletdeMail(params, OID, GenerateID);
-            
+
             OrderCompletdeMail_NewFormate(params, OID, GenerateID)
             return res.json({
                 response: 3,
@@ -287,7 +287,8 @@ async function OrderCompletdeMail_NewFormate(params, OID, GenerateID) {
                 from: "enquiry@maitreyatraderslimited.co.uk",
                 to: params.contactData,
                 //to: "venkat9351@gmail.com",
-                subject: `Your Order ConformationThank you for your order! 🎉 Order ID: ${GenerateID}`,
+                //subject: `Thank you for your order!🎉 Order ID: ${GenerateID}`,
+                subject: `Thank you for your order!🎉`,
                 html: html,
             }
             transport.sendMail(mailOptions, (error, info) => {
