@@ -2,7 +2,8 @@ var Admin_Model = require('../../app/Models/Admin');
 var AdvertisementModel = require('../../app/Models/Advertisement_Model');
 var { updateadvertisementValidations } = require('./validationAdvertisement');
 var RandomGenerate_password = require('generate-password');
-var path = require('path')
+var path = require('path');
+var fs = require('fs');
 module.exports = {
     updateadvertisement: async (req, res) => {
         try {
@@ -41,6 +42,11 @@ module.exports = {
                                     }, {
                                         $set: {
                                             image: dbpath,
+                                            categoryID: params.categoryID,
+                                            subCategoryID: params.subCategoryID,
+                                            productID: params.productID,
+                                            title: params.title,
+                                            description: params.description,
                                             timestamp: new Date().getTime().toString(),
                                         }
                                     }

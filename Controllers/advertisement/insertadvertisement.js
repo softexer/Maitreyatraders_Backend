@@ -42,6 +42,11 @@ module.exports = {
                                     advertisementID: "ADID@" + uniqueid + randomid,
                                     adminuniqueID: params.adminuniqueID,
                                     image: dbpath,
+                                    categoryID: params.categoryID,
+                                    subCategoryID: params.subCategoryID,
+                                    productID: params.productID,
+                                    title: params.title,
+                                    description: params.description,
                                     timestamp: new Date().getTime().toString(),
 
 
