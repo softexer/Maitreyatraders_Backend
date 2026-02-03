@@ -1,5 +1,6 @@
 var Joi = require('@hapi/joi');
 var Admin_Model = require('../../app/Models/Admin');
+var fs = require('fs');
 module.exports.Admin_Update_Policies_Files_Api = async function Admin_Update_Policies_Files_Api(req, res) {
     try {
         var params = JSON.parse(req.body.PoliciesData);
