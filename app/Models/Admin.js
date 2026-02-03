@@ -57,6 +57,12 @@ var AdminData = new schema({
         type: String,
         required: false,
         default: ""
+    },
+    cookiesPolicyFile:{
+        type: String,
+        required: false,
+        default: ""
     }
+    
 })
 module.exports = mongoose.model("admin", AdminData)

@@ -67,4 +67,9 @@ router.post('/updatepoliciesfiles', (req, res) => {
     var Admin_Update_Policies_Files_Api = require('../Controllers/Admin/Admin_Update_Policies_Files_Api');
     Admin_Update_Policies_Files_Api.Admin_Update_Policies_Files_Api(req, res)
 })
+
+router.post('/adminfetch', (req, res) => {
+    var Admin_Fetch_Api = require('../Controllers/Admin/Admin_Fetch_Api');
+    Admin_Fetch_Api.Admin_Fetch_Api(req, res)
+})
 module.exports = router

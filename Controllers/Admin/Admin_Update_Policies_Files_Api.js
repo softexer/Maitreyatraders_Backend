@@ -5,7 +5,7 @@ module.exports.Admin_Update_Policies_Files_Api = async function Admin_Update_Pol
         var params = JSON.parse(req.body.PoliciesData);
         var UpdatePoliciesFilesValidate = Joi.object({
             adminuniqueID: Joi.string().strict().required(),
-            policyType: Joi.string().strict().valid("PrivacyAndPolicy", "TermsAndCondition", "ShippingAndDeliveryPolicy", "DisclaimerPolicy", "RefundAndReturnPolicy").required(),
+            policyType: Joi.string().strict().valid("PrivacyAndPolicy", "TermsAndCondition", "ShippingAndDeliveryPolicy", "DisclaimerPolicy", "RefundAndReturnPolicy", "CookiesPolices").required(),
         })
         var result = await UpdatePoliciesFilesValidate.validate(params);
         if (result.error) {
@@ -55,6 +55,13 @@ module.exports.Admin_Update_Policies_Files_Api = async function Admin_Update_Pol
                                     refundAndReturnPolicyFile: dbpath
                                 }
                             })
+                        } else if (params.policyType == "CookiesPolices") {
+                            UpdateAdminData = await Admin_Model.updateOne({ adminuniqueID: params.adminuniqueID }, {
+                                $set: {
+                                    cookiesPolicyFile: dbpath
+                                }
+                            })
+
                         }
                         if (UpdateAdminData.modifiedCount > 0) {
                             //previous file unlink
@@ -81,6 +88,11 @@ module.exports.Admin_Update_Policies_Files_Api = async function Admin_Update_Pol
                             } else if (params.policyType == "RefundAndReturnPolicy") {
                                 if (Checking_Admin.refundAndReturnPolicyFile != "") {
                                     var previousfile = "./public" + Checking_Admin.refundAndReturnPolicyFile;
+                                    fileunlinkmethod(previousfile)
+                                }
+                            }else if (params.policyType == "CookiesPolices") {
+                                if (Checking_Admin.cookiesPolicyFile != "") {
+                                    var previousfile = "./public" + Checking_Admin.cookiesPolicyFile;
                                     fileunlinkmethod(previousfile)
                                 }
                             }
