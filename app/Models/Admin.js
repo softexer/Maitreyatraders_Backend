@@ -18,22 +18,45 @@ var AdminData = new schema({
         required: false,
         default: ""
     },
-    emailID:{
-         type: String,
+    emailID: {
+        type: String,
         required: false,
         default: ""
     },
-    password:{
-         type: String,
+    password: {
+        type: String,
         required: false,
         default: ""
     },
-    timestamp:{
-         type: String,
+    timestamp: {
+        type: String,
         required: false,
         default: new Date().getTime().toString()
+    },
+    privacyAndPolicyFile: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    termsAndConditionFile: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    shippingAndDeliveryPolicyFile: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    disclaimerPolicyFile: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    refundAndReturnPolicyFile: {
+        type: String,
+        required: false,
+        default: ""
     }
-
-
 })
 module.exports = mongoose.model("admin", AdminData)

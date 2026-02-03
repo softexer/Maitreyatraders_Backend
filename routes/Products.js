@@ -48,6 +48,21 @@ router.post('/ordersfetch', async (req, res) => {
 })
 
 
+router.get('/', async (req, res) => {
+    var Orders_Model = require('../app/Models/Mohan');
+    var daystart = new Date();
+    daystart.setHours(0, 0, 0, 0);
+    var endDay = new Date()
+    endDay.setHours(23, 59, 59, 999);
+    console.log(daystart, endDay)
+
+    var result = await Orders_Model.find({ timestamp: { $gte: daystart, $lte: endDay } })
+    return res.json({
+        response: 3, message: "order fetch data",
+        OrderData: result
+    })
+})
+
 
 module.exports = router;
 

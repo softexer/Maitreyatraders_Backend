@@ -11,8 +11,9 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
         // console.log(params)
         var Validate_Admin_Dashboard = Joi.object({
             adminuniqueID: Joi.string().strict().required(),
-            orderlistType: Joi.string().strict().valid("All", "New", "Shipped", "Delivered").required(),
+            orderlistType: Joi.string().strict().valid("All", "New", "InProgress", "Shipped", "Delivered", "Cancelled", "Rejected").required(),
             sortingType: Joi.string().strict().valid("Ascending", "Descending").required(),
+            sortingkey: Joi.string().strict().valid("OrderDate", "OrderID").required(),
             pageNo: Joi.number().integer().strict().required(),
             size: Joi.number().integer().strict().required(),
         })
@@ -25,8 +26,11 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
         if (Checking_Admin) {
             var Total_Orders = 0;
             var New_Orders = 0;
+            var InProgress_Orders = 0;
+            var Shipped_Orders = 0;
             var Completed_Orders = 0;
             var Cancel_Orders = 0;
+            var Rejected_Orders = 0;
             var OrdersCountAggregateQuery = await Orders_Model.aggregate([{
                 $group: {
                     _id: null,
@@ -38,7 +42,12 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                             $cond: [{ $eq: ["$orderStatus", "New"] }, 1, 0]
                         }
                     },
-                    Active_Orders_Count: {
+                    InProgress_Orders_Count: {
+                        $sum: {
+                            $cond: [{ $eq: ["$orderStatus", "InProgress"] }, 1, 0]
+                        }
+                    },
+                    Shipped_Orders_Count: {
                         $sum: {
                             $cond: [{ $eq: ["$orderStatus", "Shipped"] }, 1, 0]
                         }
@@ -52,6 +61,11 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                         $sum: {
                             $cond: [{ $eq: ["$orderStatus", "Cancelled"] }, 1, 0]
                         }
+                    },
+                    Rejected_Orders_Count: {
+                        $sum: {
+                            $cond: [{ $eq: ["$orderStatus", "Rejected"] }, 1, 0]
+                        }
                     }
 
                 }
@@ -61,25 +75,45 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                     _id: 0,
                     Total_Orders_Count: 1,
                     New_Orders_Count: 1,
-                    Active_Orders_Count: 1,
+                    InProgress_Orders_Count: 1,
+                    Shipped_Orders_Count: 1,
                     Completed_Orders_Count: 1,
-                    Cancelled_Orders_Count: 1
+                    Cancelled_Orders_Count: 1,
+                    Rejected_Orders_Count: 1,
                 }
             }
             ])
             var isAscending = false;
             var AscendingorDecendingNumber = -1;
-            if (params.sortingType == "Ascending") {
-                isAscending = true
-                AscendingorDecendingNumber = 1
-            } else if (params.sortingType == "Descending") {
-                isAscending = false
-                AscendingorDecendingNumber = -1
+            var sortquery = {}
+            if (params.sortingkey == "OrderDate") {
+                if (params.sortingType == "Ascending") {
+                    isAscending = true
+                    AscendingorDecendingNumber = 1
+                } else if (params.sortingType == "Descending") {
+                    isAscending = false
+                    AscendingorDecendingNumber = -1
+                }
+                sortquery = { orderTimeStamp: AscendingorDecendingNumber }
+
+            } else {
+                params.sortingkey = "orderId"
+                if (params.sortingType == "Ascending") {
+                    isAscending = true
+                    AscendingorDecendingNumber = 1
+                } else if (params.sortingType == "Descending") {
+                    isAscending = false
+                    AscendingorDecendingNumber = -1
+                }
+                sortquery = {
+                    orderId: AscendingorDecendingNumber
+                }
             }
             if (params.orderlistType == "All") {
                 var totalordersCount = await Orders_Model.countDocuments({}).exec();
                 var totalordersData = await Orders_Model.aggregate([
-                    { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    // { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    { $sort: sortquery },
                     { $skip: (params.pageNo - 1) * params.size },
                     { $limit: params.size }
                 ])
@@ -102,7 +136,8 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                 var totalordersCount = await Orders_Model.countDocuments({}).exec();
                 var totalordersData = await Orders_Model.aggregate([
                     { $match: { orderStatus: { $in: ["New"] } } },
-                    { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    //{ $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    { $sort: sortquery },
                     { $skip: (params.pageNo - 1) * params.size },
                     { $limit: params.size }
                 ])
@@ -120,14 +155,39 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                 } else {
                     return res.json({ response: 0, message: "Data not found" })
                 }
+            } else if (params.orderlistType == "InProgress") {
+                var totalordersCount = await Orders_Model.countDocuments({}).exec();
+                var totalordersData = await Orders_Model.aggregate([
+                    { $match: { orderStatus: { $in: ["InProgress"] } } },
+                    //{ $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    { $sort: sortquery },
+                    { $skip: (params.pageNo - 1) * params.size },
+                    { $limit: params.size }
+                ])
+
+                if (totalordersData.length > 0) {
+                    var totalpages = Math.ceil(totalordersCount / params.size)
+                    return res.json({
+                        response: 3,
+                        message: "Orders list fetch data successfully",
+                        currentPage: params.pageNo,
+                        totalpages: totalpages,
+                        OrdersCount: OrdersCountAggregateQuery,
+                        ordersData: totalordersData
+                    })
+                } else {
+                    return res.json({ response: 0, message: "Data not found" })
+                }
             } else if (params.orderlistType == "Delivered") {
                 var totalordersCount = await Orders_Model.countDocuments({}).exec();
                 var totalordersData = await Orders_Model.aggregate([
                     { $match: { orderStatus: { $in: ["Delivered"] } } },
-                    { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    // { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    { $sort: sortquery },
                     { $skip: (params.pageNo - 1) * params.size },
                     { $limit: params.size }
                 ])
+
                 if (totalordersData.length > 0) {
                     var totalpages = Math.ceil(totalordersCount / params.size)
                     return res.json({
@@ -145,8 +205,54 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
                 var totalordersCount = await Orders_Model.countDocuments({}).exec();
                 var totalordersData = await Orders_Model.aggregate([
                     { $match: { orderStatus: { $in: ["Shipped"] } } },
-                    { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    //{ $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    { $sort: sortquery },
                     { $skip: (params.pageNo - 1) * params.size },
+                    { $limit: params.size }
+                ])
+                if (totalordersData.length > 0) {
+                    var totalpages = Math.ceil(totalordersCount / params.size)
+                    return res.json({
+                        response: 3,
+                        message: "Orders list fetch data successfully",
+                        currentPage: params.pageNo,
+                        totalpages: totalpages,
+                        OrdersCount: OrdersCountAggregateQuery,
+                        ordersData: totalordersData
+                    })
+                } else {
+                    return res.json({ response: 0, message: "Data not found" })
+                }
+            } else if (params.orderlistType == "Cancelled") {
+                var totalordersCount = await Orders_Model.countDocuments({}).exec();
+                var totalordersData = await Orders_Model.aggregate([
+                    { $match: { orderStatus: { $in: ["Cancelled"] } } },
+                    // { $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    { $sort: sortquery },
+                    { $skip: (params.pageNo - 1) * params.size },
+                    { $limit: params.size }
+                ])
+                if (totalordersData.length > 0) {
+                    var totalpages = Math.ceil(totalordersCount / params.size)
+                    return res.json({
+                        response: 3,
+                        message: "Orders list fetch data successfully",
+                        currentPage: params.pageNo,
+                        totalpages: totalpages,
+                        OrdersCount: OrdersCountAggregateQuery,
+                        ordersData: totalordersData
+                    })
+                } else {
+                    return res.json({ response: 0, message: "Data not found" })
+                }
+            } else if (params.orderlistType == "Rejected") {
+                var totalordersCount = await Orders_Model.countDocuments({}).exec();
+                var totalordersData = await Orders_Model.aggregate([
+                    { $match: { orderStatus: { $in: ["Rejected"] } } },
+                    //{ $sort: { orderTimeStamp: AscendingorDecendingNumber } },
+                    { $sort: sortquery },
+                    { $skip: (params.pageNo - 1) * params.size },
+
                     { $limit: params.size }
                 ])
                 if (totalordersData.length > 0) {
@@ -168,6 +274,7 @@ module.exports.Admin_Orders_List_Api = async function Admin_Orders_List_Api(req,
             //     message: "Admin Orders list fetch successfully",
             //     OrdersList: OrdersCountAggregateQuery
             // })
+
 
         } else {
             return res.json({ response: 0, message: "Admin userID data not found" })

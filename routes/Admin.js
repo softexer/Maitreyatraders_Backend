@@ -27,6 +27,12 @@ router.post('/dashboard', (req, res) => {
 
 })
 
+//Admin Accept or Reject New Orders
+router.post('/acceptorrejectorder', (req, res) => {
+    var Admin_Accept_Or_Reject_New_Order_Api = require('../Controllers/Admin/Admin_Accept_Or_Reject_New_Order_Api');
+    Admin_Accept_Or_Reject_New_Order_Api.Admin_Accept_Or_Reject_New_Order_Api(req, res)
+})
+
 //Orders List
 router.post('/orderslist', (req, res) => {
     var Admin_Orders_List_Api = require('../Controllers/Admin/Admin_Orders_List');
@@ -51,9 +57,14 @@ router.get('/productsearch', (req, res) => {
     var Admin_Product_Search_Api = require('../Controllers/Admin/Admin_Add_tracking_details');
     Admin_Product_Search_Api.Admin_Product_Search_Api(req, res)
 })
-router.post('/dropdownproducts',(req,res)=>{
+
+router.post('/dropdownproducts', (req, res) => {
     var Admin_Dropdown_Products_Api = require('../Controllers/Admin/Admin_Dropdown_Products_Api');
-    Admin_Dropdown_Products_Api.Admin_Dropdown_Products_Api(req,res)
+    Admin_Dropdown_Products_Api.Admin_Dropdown_Products_Api(req, res)
 })
 
+router.post('/updatepoliciesfiles', (req, res) => {
+    var Admin_Update_Policies_Files_Api = require('../Controllers/Admin/Admin_Update_Policies_Files_Api');
+    Admin_Update_Policies_Files_Api.Admin_Update_Policies_Files_Api(req, res)
+})
 module.exports = router

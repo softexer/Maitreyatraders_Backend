@@ -944,3 +944,481 @@
 [2026-01-02T09:10:25.500Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
 [2026-01-07T03:59:03.117Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
 [2026-01-07T03:59:03.120Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T04:45:42.992Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T04:45:43.004Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T05:43:40.776Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T05:43:40.777Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T05:49:58.235Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T05:49:58.237Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T06:28:27.828Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T06:28:27.829Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T06:29:47.462Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T06:29:47.464Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T06:31:24.117Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T06:31:24.119Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T06:31:34.940Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T06:31:34.942Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T07:26:44.546Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T07:26:44.548Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T08:37:35.941Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T08:37:35.942Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:35:52.297Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:35:52.298Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:36:55.345Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:36:55.347Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:37:43.794Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:37:43.796Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:38:18.497Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:38:18.499Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:38:21.701Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:38:21.702Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:41:44.905Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:41:44.907Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:44:38.170Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:44:38.171Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:45:34.557Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:45:34.559Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:45:54.969Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:45:54.971Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:46:21.850Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:46:21.851Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:48:45.598Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:48:45.599Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:49:59.447Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:49:59.449Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:58:34.346Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:58:34.348Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:58:41.018Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:58:41.019Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:59:01.320Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:59:01.322Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T09:59:14.630Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T09:59:14.632Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T10:00:14.696Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T10:00:14.698Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T10:01:16.414Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T10:01:16.415Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T10:02:04.391Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T10:02:04.393Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T10:15:02.180Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T10:15:02.181Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T10:17:51.253Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T10:17:51.255Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T10:17:53.701Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T10:17:53.703Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T10:21:23.842Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T10:21:23.843Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T10:21:28.772Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T10:21:28.774Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T12:03:32.363Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T12:03:32.365Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T12:04:30.161Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T12:04:30.162Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-07T12:04:43.578Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-07T12:04:43.580Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T04:48:01.504Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T04:48:01.508Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T04:49:47.378Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T04:49:47.382Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T04:50:14.707Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T04:50:14.711Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T04:51:02.290Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T04:51:02.293Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T04:52:59.670Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T04:52:59.672Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T04:53:12.239Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T04:53:12.241Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T04:55:30.599Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T04:55:30.603Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T04:56:56.545Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T04:56:56.549Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T05:01:26.484Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T05:01:26.486Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T05:01:31.229Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T05:01:31.234Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T06:47:45.274Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T06:47:45.275Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T06:55:59.604Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T06:55:59.605Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T06:59:40.550Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T06:59:40.551Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T07:04:07.563Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T07:04:07.564Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T07:09:46.426Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T07:09:46.429Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T07:10:27.544Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T07:10:27.546Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T07:10:54.689Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T07:10:54.691Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T07:12:03.755Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T07:12:03.756Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T07:12:18.093Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T07:12:18.094Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T07:12:22.768Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T07:12:22.770Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T08:40:48.472Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T08:40:48.473Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T08:40:51.587Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T08:40:51.588Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T08:41:15.683Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T08:41:15.685Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T12:35:00.114Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T12:35:00.116Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T12:43:02.324Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T12:43:02.325Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T12:44:41.370Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T12:44:41.372Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T12:48:05.722Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T12:48:05.724Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T12:48:17.966Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T12:48:17.968Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T12:51:39.874Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T12:51:39.876Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T12:57:17.341Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T12:57:17.343Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-08T12:58:19.226Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-08T12:58:19.228Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-09T04:50:15.983Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-09T04:50:15.985Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-09T06:14:25.608Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-09T06:14:25.609Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-09T06:16:05.413Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-09T06:16:05.414Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-09T06:18:35.942Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-09T06:18:35.944Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-09T09:26:13.615Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-09T09:26:13.617Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-09T09:29:09.701Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-09T09:29:09.702Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-09T09:29:28.315Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-09T09:29:28.317Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-09T09:29:49.171Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-09T09:29:49.172Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-12T12:09:21.949Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-12T12:09:21.950Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:27:50.128Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:27:50.166Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:32:10.740Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:32:10.742Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:34:51.426Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:34:51.428Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:35:02.861Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:35:02.864Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:35:39.632Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:35:39.634Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:38:34.902Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:38:34.904Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:51:52.512Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:51:52.514Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:54:15.702Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:54:15.705Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:55:38.487Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:55:38.490Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:56:25.722Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:56:25.723Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T09:56:37.363Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T09:56:37.364Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T10:24:38.645Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T10:24:38.647Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T10:26:33.741Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T10:26:33.743Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T10:27:05.924Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T10:27:05.925Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:25:36.282Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:25:36.285Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:27:38.759Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:27:38.763Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:28:13.225Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:28:13.229Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:28:43.339Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:28:43.344Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:29:34.759Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:29:34.761Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:31:19.057Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:31:19.062Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:32:03.603Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:32:03.605Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:41:23.237Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:41:23.239Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:41:49.414Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:41:49.416Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-19T11:41:54.834Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-19T11:41:54.835Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-20T09:08:00.871Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-20T09:08:00.872Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-20T09:48:07.269Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-20T09:48:07.275Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:04:43.137Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:04:43.139Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:05:24.949Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:05:24.950Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:06:07.443Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:06:07.446Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:12:49.901Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:12:49.903Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:14:15.551Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:14:15.553Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:17:40.805Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:17:40.806Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:19:47.165Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:19:47.166Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:35:48.016Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:35:48.018Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:35:52.574Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:35:52.575Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:38:58.225Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:38:58.227Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:41:41.265Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:41:41.268Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:41:57.480Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:41:57.481Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:50:13.405Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:50:13.407Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:50:57.679Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:50:57.680Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:52:38.228Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:52:38.230Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T09:57:06.802Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T09:57:06.804Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T10:12:36.756Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T10:12:36.759Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T10:16:45.810Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T10:16:45.812Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T10:16:50.418Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T10:16:50.419Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T10:17:05.030Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T10:17:05.033Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T10:38:39.928Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T10:38:39.930Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-23T10:45:12.950Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-23T10:45:12.953Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T04:37:21.522Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T04:37:21.529Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T04:41:09.866Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T04:41:09.868Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T07:02:24.743Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T07:02:24.747Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T07:03:07.646Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T07:03:07.648Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T07:04:59.111Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T07:04:59.113Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T07:05:27.677Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T07:05:27.678Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T07:17:33.504Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T07:17:33.506Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T09:13:02.745Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T09:13:02.747Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T09:19:11.920Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T09:19:11.922Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T09:59:41.962Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T09:59:41.988Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:00:11.119Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:00:11.121Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:00:51.683Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:00:51.686Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:01:47.316Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:01:47.317Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:02:03.489Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:02:03.490Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:02:25.713Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:02:25.715Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:02:49.582Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:02:49.583Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:09:19.218Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:09:19.220Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:09:36.639Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:09:36.641Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:10:52.123Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:10:52.124Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:20:24.286Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:20:24.288Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:21:01.708Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:21:01.711Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:21:18.577Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:21:18.579Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:24:03.133Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:24:03.135Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:24:08.885Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:24:08.887Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:24:46.847Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:24:46.849Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:27:08.471Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:27:08.473Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:27:20.658Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:27:20.660Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:28:33.758Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:28:33.761Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:29:17.946Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:29:17.947Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:29:32.989Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:29:32.991Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:29:48.772Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:29:48.774Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:30:07.004Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:30:07.006Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:30:14.625Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:30:14.627Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:30:22.776Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:30:22.778Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:30:30.985Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:30:30.987Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:31:04.779Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:31:04.782Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:31:15.124Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:31:15.127Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:31:18.037Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:31:18.039Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:31:46.824Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:31:46.825Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:32:20.843Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:32:20.844Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:32:43.382Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:32:43.384Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:32:56.430Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:32:56.434Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:33:13.337Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:33:13.339Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:33:40.902Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:33:40.905Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:33:50.447Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:33:50.448Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:34:00.253Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:34:00.260Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:34:10.975Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:34:10.977Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:35:51.077Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:35:51.078Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:38:15.810Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:38:15.812Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:38:38.033Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:38:38.034Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:40:47.850Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:40:47.853Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:46:40.404Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:46:40.406Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:46:50.499Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:46:50.501Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:47:26.818Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:47:26.821Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:48:01.681Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:48:01.684Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:48:47.109Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:48:47.111Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-26T10:50:07.737Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-26T10:50:07.740Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T03:58:51.436Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T03:58:51.495Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:28:50.529Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:28:50.531Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:29:26.308Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:29:26.309Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:35:04.419Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:35:04.423Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:37:25.027Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:37:25.029Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:38:42.601Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:38:42.603Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:40:43.190Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:40:43.192Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:41:04.870Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:41:04.872Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:41:25.192Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:41:25.194Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-27T04:42:04.975Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-27T04:42:04.976Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-28T07:14:00.259Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-28T07:14:00.260Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-28T07:17:37.855Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-28T07:17:37.857Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-28T07:18:03.916Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-28T07:18:03.917Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-28T07:24:19.246Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-28T07:24:19.248Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:25:10.740Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:25:10.748Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:29:43.310Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:29:43.312Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:34:09.221Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:34:09.223Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:37:12.721Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:37:12.723Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:37:16.357Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:37:16.359Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:37:47.995Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:37:47.998Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:38:23.884Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:38:23.886Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:39:26.474Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:39:26.477Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:39:37.285Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:39:37.287Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:40:01.750Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:40:01.751Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:40:04.425Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:40:04.427Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:40:30.200Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:40:30.202Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:42:33.554Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:42:33.555Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:44:41.129Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:44:41.130Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:45:40.363Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:45:40.364Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:49:55.333Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:49:55.335Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T12:58:40.035Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T12:58:40.037Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:02:15.920Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:02:15.922Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:06:11.568Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:06:11.569Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:06:41.455Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:06:41.457Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:06:48.165Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:06:48.167Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:06:58.305Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:06:58.308Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:07:01.561Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:07:01.563Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:07:28.950Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:07:28.952Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:07:37.862Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:07:37.864Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:07:54.542Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:07:54.544Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:08:20.641Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:08:20.643Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:09:55.851Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:09:55.852Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:10:58.857Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:10:58.858Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:11:29.500Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:11:29.501Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:12:39.342Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:12:39.344Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:13:23.893Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:13:23.895Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:13:52.821Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:13:52.823Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:14:41.458Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:14:41.459Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:15:35.964Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:15:35.967Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:15:43.687Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:15:43.689Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:15:48.467Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:15:48.469Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:16:25.286Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:16:25.289Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:16:53.747Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:16:53.750Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:17:14.539Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:17:14.541Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-01-30T13:17:22.455Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-01-30T13:17:22.457Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-02-03T03:56:15.763Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-02-03T03:56:15.766Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-02-03T04:01:04.235Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-02-03T04:01:04.239Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD
+[2026-02-03T04:01:42.444Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: initialize called
+[2026-02-03T04:01:42.449Z] [PAYTM] INFO [NODE-SDK1.0.0] <MerchantProperties>: Setting Environment for PROD

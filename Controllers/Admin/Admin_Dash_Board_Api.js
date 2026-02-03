@@ -27,17 +27,63 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
         }
         var Checking_Admin = await Admin_Model.findOne({ adminuniqueID: params.adminuniqueID });
         if (Checking_Admin) {
+            // order status : New , InProgress, Rejected, Cancelled, Shipped, Delivered
+            // these status we use based on conditions
+
+            //All orders Getting
             var total_order_count = 0;
-            var active_order_count = 0;
-            var completed_order_count = 0;
+            //New orders getting
+            var new_count = 0;
+            //Inprogress orders getting
+            var Inprogress_count = 0;
+
+            //shipped orders getting
+
+            var shipped_count = 0;
+
+            //Cancelled orders getting
+            var cancelled_count = 0;
+
+            //Rejected orders getting
+            var reject_count = 0;
+
+            //Delivered orders getting
+
+            var delivered_count = 0;
+
+            // var active_order_count = 0;
+            // var completed_order_count = 0;
+            // var cancelled_order_count = 0;
+
+
+
 
             //Total Orders 
             var total_orders = await Orders_Model.countDocuments({}).exec();
             total_order_count = total_orders;
+
+            //New orders
             var active_orders = await Orders_Model.countDocuments({ orderStatus: "New" }).exec();
-            active_order_count = active_orders;
-            var compvare_orders = await Orders_Model.countDocuments({ orderStatus: "Delivered" })
-            completed_order_count = compvare_orders;
+            new_count = active_orders;
+
+            //Inprogress orders
+            var inprogress_orders = await Orders_Model.countDocuments({ orderStatus: "InProgress" }).exec();
+            Inprogress_count = inprogress_orders;
+            //Shipped orders
+            var shipped_orders = await Orders_Model.countDocuments({ orderStatus: "Shipped" }).exec();
+            shipped_count = shipped_orders;
+            //Cancelled orders
+            var cancelled_orders = await Orders_Model.countDocuments({ orderStatus: "Cancelled" }).exec();
+            cancelled_count = cancelled_orders;
+
+            //Rejected orders
+            var rejected_orders = await Orders_Model.countDocuments({ orderStatus: "Rejected" }).exec();
+            reject_count = rejected_orders;
+
+            //Delivered orders
+            var completed_orders = await Orders_Model.countDocuments({ orderStatus: "Delivered" }).exec();
+            delivered_count = completed_orders;
+
             //Compare Previous month and Current Month
             var TotalOrdersComparePreviousMonth = {
                 currentMonthOrders: 0,
@@ -47,22 +93,66 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
 
             }
 
-            //Active Orders
-            var ActiveTotalOrdersComparePreviousMonth = {
+            //new Orders
+            var NewOrdersComparePreviousMonth = {
                 currentMonthOrders: 0,
                 previousMonthOrders: 0,
                 percentageChange: 0,
                 trend: ""
 
             }
-            //Compared Orders
-            var ComparedTotalOrdersComparePreviousMonth = {
+            //Inprogress Orders
+            var InprogressTotalOrdersComparePreviousMonth = {
                 currentMonthOrders: 0,
                 previousMonthOrders: 0,
                 percentageChange: 0,
                 trend: ""
-
             }
+
+            //Shipped Orders
+            var ShippedTotalOrdersComparePreviousMonth = {
+                currentMonthOrders: 0,
+                previousMonthOrders: 0,
+                percentageChange: 0,
+                trend: ""
+            }
+
+            //Cancelled orders
+            var CancelledTotalOrdersComparePreviousMonth = {
+                currentMonthOrders: 0,
+                previousMonthOrders: 0,
+                percentageChange: 0,
+                trend: ""
+            }
+
+            //Rejected Orders
+            var RejectedTotalOrdersComparePreviousMonth = {
+                currentMonthOrders: 0,
+                previousMonthOrders: 0,
+                percentageChange: 0,
+                trend: ""
+            }
+
+            //Delivered Orders
+            var DeliveredTotalOrdersComparePreviousMonth = {
+                currentMonthOrders: 0,
+                previousMonthOrders: 0,
+                percentageChange: 0,
+                trend: ""
+            }
+
+
+
+            // //Compared Orders
+            // var ComparedTotalOrdersComparePreviousMonth = {
+            //     currentMonthOrders: 0,
+            //     previousMonthOrders: 0,
+            //     percentageChange: 0,
+            //     trend: ""
+
+            // }
+
+
             var currentMonthStart = moment().startOf("month").valueOf();
             var currentMonthEnd = moment().endOf("month").valueOf();
 
@@ -72,11 +162,12 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             const currentMonth = moment().format("YYYY-MM");
             const previousMonth = moment().subtract(1, "month").format("YYYY-MM");
 
+
             //Total Orders Previous Month Compare
             var monthCompareDataTotalOrders = await Orders_Model.aggregate([
                 {
                     $match: {
-                        orderStatus: { $in: ["New", "Shipped", "Delivered"] },
+                       // orderStatus: { $in: ["New", "Shipped", "Delivered"] },
                         orderTimeStamp: {
                             $gte: previousMonthStart.toString(),
                             $lte: currentMonthEnd.toString()
@@ -131,11 +222,11 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             TotalOrdersComparePreviousMonth.percentageChange = TotalOrderspercentageChange;
             TotalOrdersComparePreviousMonth.trend = trend
 
-            //Active Orders Compare Percentage
+            //New Orders Compare Percentage
             var Active_monthCompareDataTotalOrders = await Orders_Model.aggregate([
                 {
                     $match: {
-                        orderStatus: { $in: ["New", "Shipped", "Delivered"] },
+                        orderStatus: "New",
                         orderTimeStamp: {
                             $gte: previousMonthStart.toString(),
                             $lte: currentMonthEnd.toString()
@@ -160,11 +251,10 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     }
                 }
             ]);
-
             var Active_TotalOrderscurrentCount = 0;
             var Active_TotalOrderspreviousCount = 0;
-
             Active_monthCompareDataTotalOrders.forEach(item => {
+
                 if (item._id.month === currentMonth) {
                     Active_TotalOrderscurrentCount = item.count;
                 }
@@ -174,7 +264,6 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
             });
             var Active_TotalOrderspercentageChange = 0;
             var Active_trend = "no_change";
-
             if (Active_TotalOrderspreviousCount === 0 && Active_TotalOrderscurrentCount > 0) {
                 Active_TotalOrderspercentageChange = 100;
                 Active_trend = "increase";
@@ -183,20 +272,23 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 Active_trend = Active_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
             }
 
-            Active_TotalOrderspercentageChange = Number(TotalOrderspercentageChange.toFixed(2));
+            Active_TotalOrderspercentageChange = Number(Active_TotalOrderspercentageChange.toFixed(2));
             console.log("Active_TotalOrderspercentageChange", Active_TotalOrderspercentageChange)
-            ActiveTotalOrdersComparePreviousMonth.currentMonthOrders = Active_TotalOrderscurrentCount;
-            ActiveTotalOrdersComparePreviousMonth.previousMonthOrders = Active_TotalOrderspreviousCount;
-            ActiveTotalOrdersComparePreviousMonth.percentageChange = Active_TotalOrderspercentageChange;
-            ActiveTotalOrdersComparePreviousMonth.trend = Active_trend
+            NewOrdersComparePreviousMonth.currentMonthOrders = Active_TotalOrderscurrentCount;
+            NewOrdersComparePreviousMonth.previousMonthOrders = Active_TotalOrderspreviousCount;
+            NewOrdersComparePreviousMonth.percentageChange = Active_TotalOrderspercentageChange;
+            NewOrdersComparePreviousMonth.trend = Active_trend
 
 
-            //Completed Orders Compare Percentage
-            var Completed_monthCompareDataTotalOrders = await Orders_Model.aggregate([
+
+
+
+            //Inprogress Orders Compare Percentage
+            var Compared_monthCompareData_Inprogress_TotalOrders = await Orders_Model.aggregate([
                 {
                     $match: {
-                        orderStatus: { $in: ["New", "Shipped", "Delivered"] },
-                        orderTimeStamp: {
+                        // orderStatus: "InProgress",
+                        inprogressTimestamp: {
                             $gte: previousMonthStart.toString(),
                             $lte: currentMonthEnd.toString()
                         }
@@ -205,7 +297,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 {
                     $addFields: {
                         orderDate: {
-                            $toDate: { $toLong: "$orderTimeStamp" }
+                            $toDate: { $toLong: "$inprogressTimestamp" }
                         }
                     }
                 },
@@ -220,42 +312,263 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     }
                 }
             ]);
-
-            var Completed_TotalOrderscurrentCount = 0;
-            var Completed_TotalOrderspreviousCount = 0;
-
-            Completed_monthCompareDataTotalOrders.forEach(item => {
+            var Compared_TotalOrderscurrentCount = 0;
+            var Compared_TotalOrderspreviousCount = 0;
+            Compared_monthCompareData_Inprogress_TotalOrders.forEach(item => {
                 if (item._id.month === currentMonth) {
-                    Completed_TotalOrderscurrentCount = item.count;
+                    Compared_TotalOrderscurrentCount = item.count;
                 }
                 if (item._id.month === previousMonth) {
-                    Completed_TotalOrderspreviousCount = item.count;
+                    Compared_TotalOrderspreviousCount = item.count;
                 }
             });
-            var Completed_TotalOrderspercentageChange = 0;
-            var Completed_trend = "no_change";
-
-            if (Completed_TotalOrderspreviousCount === 0 && Completed_TotalOrderscurrentCount > 0) {
-                Completed_TotalOrderspercentageChange = 100;
-                Completed_trend = "increase";
-            } else if (Completed_TotalOrderspreviousCount > 0) {
-                Completed_TotalOrderspercentageChange = ((Completed_TotalOrderscurrentCount - Completed_TotalOrderspreviousCount) / Completed_TotalOrderspreviousCount) * 100;
-                Completed_trend = Completed_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
+            var Compared_TotalOrderspercentageChange = 0;
+            var Compared_trend = "no_change";
+            if (Compared_TotalOrderspreviousCount === 0 && Compared_TotalOrderscurrentCount > 0) {
+                Compared_TotalOrderspercentageChange = 100;
+                Compared_trend = "increase";
+            } else if (Compared_TotalOrderspreviousCount > 0) {
+                Compared_TotalOrderspercentageChange = ((Compared_TotalOrderscurrentCount - Compared_TotalOrderspreviousCount) / Compared_TotalOrderspreviousCount) * 100;
+                Compared_trend = Compared_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
             }
 
-            Completed_TotalOrderspercentageChange = Number(Completed_TotalOrderspercentageChange.toFixed(2));
-            console.log("Completed_TotalOrderspercentageChange", Completed_TotalOrderspercentageChange)
-            ComparedTotalOrdersComparePreviousMonth.currentMonthOrders = Completed_TotalOrderscurrentCount;
-            ComparedTotalOrdersComparePreviousMonth.previousMonthOrders = Completed_TotalOrderspreviousCount;
-            ComparedTotalOrdersComparePreviousMonth.percentageChange = Completed_TotalOrderspercentageChange;
-            ComparedTotalOrdersComparePreviousMonth.trend = Completed_trend
+            Compared_TotalOrderspercentageChange = Number(Compared_TotalOrderspercentageChange.toFixed(2));
+            console.log("Compared_TotalOrderspercentageChange", Compared_TotalOrderspercentageChange)
+            InprogressTotalOrdersComparePreviousMonth.currentMonthOrders = Compared_TotalOrderscurrentCount;
+            InprogressTotalOrdersComparePreviousMonth.previousMonthOrders = Compared_TotalOrderspreviousCount;
+            InprogressTotalOrdersComparePreviousMonth.percentageChange = Compared_TotalOrderspercentageChange;
+            InprogressTotalOrdersComparePreviousMonth.trend = Compared_trend
+
+            //Shipped Orders Compare Percentage
+            var Shipped_monthCompareData_Shipped_TotalOrders = await Orders_Model.aggregate([
+                {
+                    $match: {
+                        // orderStatus: "Shipped",
+                        shippedTimestamp: {
+                            $gte: previousMonthStart.toString(),
+                            $lte: currentMonthEnd.toString()
+                        }
+                    }
+                },
+                {
+                    $addFields: {
+                        orderDate: {
+                            $toDate: { $toLong: "$shippedTimestamp" }
+                        }
+                    }
+                },
+                {
+                    $group: {
+                        _id: {
+                            month: {
+                                $dateToString: { format: "%Y-%m", date: "$orderDate" }
+                            }
+                        },
+                        count: { $sum: 1 }
+                    }
+                }
+            ]);
+            var Shipped_TotalOrderscurrentCount = 0;
+            var Shipped_TotalOrderspreviousCount = 0;
+            Shipped_monthCompareData_Shipped_TotalOrders.forEach(item => {
+                if (item._id.month === currentMonth) {
+                    Shipped_TotalOrderscurrentCount = item.count;
+                }
+                if (item._id.month === previousMonth) {
+                    Shipped_TotalOrderspreviousCount = item.count;
+                }
+            });
+            var Shipped_TotalOrderspercentageChange = 0;
+            var Shipped_trend = "no_change";
+            if (Shipped_TotalOrderspreviousCount === 0 && Shipped_TotalOrderscurrentCount > 0) {
+                Shipped_TotalOrderspercentageChange = 100;
+                Shipped_trend = "increase";
+            } else if (Shipped_TotalOrderspreviousCount > 0) {
+                Shipped_TotalOrderspercentageChange = ((Shipped_TotalOrderscurrentCount - Shipped_TotalOrderspreviousCount) / Shipped_TotalOrderspreviousCount) * 100;
+                Shipped_trend = Shipped_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
+            }
+
+            Shipped_TotalOrderspercentageChange = Number(Shipped_TotalOrderspercentageChange.toFixed(2));
+            console.log("Shipped_TotalOrderspercentageChange", Shipped_TotalOrderspercentageChange)
+            ShippedTotalOrdersComparePreviousMonth.currentMonthOrders = Shipped_TotalOrderscurrentCount;
+            ShippedTotalOrdersComparePreviousMonth.previousMonthOrders = Shipped_TotalOrderspreviousCount;
+            ShippedTotalOrdersComparePreviousMonth.percentageChange = Shipped_TotalOrderspercentageChange;
+            ShippedTotalOrdersComparePreviousMonth.trend = Shipped_trend
+
+            //Cancelled Orders Compare Percentage
+            var Cancelled_monthCompareData_Cancelled_TotalOrders = await Orders_Model.aggregate([
+                {
+                    $match: {
+                        // orderStatus: "Cancelled",
+                        cancelledTimestamp: {
+                            $gte: previousMonthStart.toString(),
+                            $lte: currentMonthEnd.toString()
+                        }
+                    }
+                },
+                {
+                    $addFields: {
+                        orderDate: {
+                            $toDate: { $toLong: "$cancelledTimestamp" }
+                        }
+                    }
+                },
+                {
+                    $group: {
+                        _id: {
+                            month: {
+                                $dateToString: { format: "%Y-%m", date: "$orderDate" }
+                            }
+                        },
+                        count: { $sum: 1 }
+                    }
+                }
+            ]);
+            var Cancelled_TotalOrderscurrentCount = 0;
+            var Cancelled_TotalOrderspreviousCount = 0;
+            Cancelled_monthCompareData_Cancelled_TotalOrders.forEach(item => {
+                if (item._id.month === currentMonth) {
+                    Cancelled_TotalOrderscurrentCount = item.count;
+                }
+                if (item._id.month === previousMonth) {
+                    Cancelled_TotalOrderspreviousCount = item.count;
+                }
+            });
+            var Cancelled_TotalOrderspercentageChange = 0;
+            var Cancelled_trend = "no_change";
+            if (Cancelled_TotalOrderspreviousCount === 0 && Cancelled_TotalOrderscurrentCount > 0) {
+                Cancelled_TotalOrderspercentageChange = 100;
+                Cancelled_trend = "increase";
+            } else if (Cancelled_TotalOrderspreviousCount > 0) {
+                Cancelled_TotalOrderspercentageChange = ((Cancelled_TotalOrderscurrentCount - Cancelled_TotalOrderspreviousCount) / Cancelled_TotalOrderspreviousCount) * 100;
+                Cancelled_trend = Cancelled_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
+            }
+
+            Cancelled_TotalOrderspercentageChange = Number(Cancelled_TotalOrderspercentageChange.toFixed(2));
+            console.log("Cancelled_TotalOrderspercentageChange", Cancelled_TotalOrderspercentageChange)
+            CancelledTotalOrdersComparePreviousMonth.currentMonthOrders = Cancelled_TotalOrderscurrentCount;
+            CancelledTotalOrdersComparePreviousMonth.previousMonthOrders = Cancelled_TotalOrderspreviousCount;
+            CancelledTotalOrdersComparePreviousMonth.percentageChange = Cancelled_TotalOrderspercentageChange;
+            CancelledTotalOrdersComparePreviousMonth.trend = Cancelled_trend
+
+            //Rejected Orders Compare Percentage
+            var Rejected_monthCompareData_Rejected_TotalOrders = await Orders_Model.aggregate([
+                {
+                    $match: {
+                        // orderStatus: "Rejected",
+                        rejectedTimestamp: {
+                            $gte: previousMonthStart.toString(),
+                            $lte: currentMonthEnd.toString()
+                        }
+                    }
+                },
+                {
+                    $addFields: {
+                        orderDate: {
+                            $toDate: { $toLong: "$rejectedTimestamp" }
+                        }
+                    }
+                },
+                {
+                    $group: {
+                        _id: {
+                            month: {
+                                $dateToString: { format: "%Y-%m", date: "$orderDate" }
+                            }
+                        },
+                        count: { $sum: 1 }
+                    }
+                }
+            ]);
+            var Rejected_TotalOrderscurrentCount = 0;
+            var Rejected_TotalOrderspreviousCount = 0;
+            Rejected_monthCompareData_Rejected_TotalOrders.forEach(item => {
+                if (item._id.month === currentMonth) {
+                    Rejected_TotalOrderscurrentCount = item.count;
+                }
+                if (item._id.month === previousMonth) {
+                    Rejected_TotalOrderspreviousCount = item.count;
+                }
+            });
+            var Rejected_TotalOrderspercentageChange = 0;
+            var Rejected_trend = "no_change";
+            if (Rejected_TotalOrderspreviousCount === 0 && Rejected_TotalOrderscurrentCount > 0) {
+                Rejected_TotalOrderspercentageChange = 100;
+                Rejected_trend = "increase";
+            } else if (Rejected_TotalOrderspreviousCount > 0) {
+                Rejected_TotalOrderspercentageChange = ((Rejected_TotalOrderscurrentCount - Rejected_TotalOrderspreviousCount) / Rejected_TotalOrderspreviousCount) * 100;
+                Rejected_trend = Rejected_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
+            }
+
+            Rejected_TotalOrderspercentageChange = Number(Rejected_TotalOrderspercentageChange.toFixed(2));
+            console.log("Rejected_TotalOrderspercentageChange", Rejected_TotalOrderspercentageChange)
+            RejectedTotalOrdersComparePreviousMonth.currentMonthOrders = Rejected_TotalOrderscurrentCount;
+            RejectedTotalOrdersComparePreviousMonth.previousMonthOrders = Rejected_TotalOrderspreviousCount;
+            RejectedTotalOrdersComparePreviousMonth.percentageChange = Rejected_TotalOrderspercentageChange;
+            RejectedTotalOrdersComparePreviousMonth.trend = Rejected_trend
+
+            //Delivered Orders Compare Percentage
+            var Delivered_monthCompareData_Delivered_TotalOrders = await Orders_Model.aggregate([
+                {
+                    $match: {
+                        // orderStatus: "Delivered",
+                        deliveredTimestamp: {
+                            $gte: previousMonthStart.toString(),
+                            $lte: currentMonthEnd.toString()
+                        }
+                    }
+                },
+                {
+                    $addFields: {
+                        orderDate: {
+                            $toDate: { $toLong: "$deliveredTimestamp" }
+                        }
+                    }
+                },
+                {
+                    $group: {
+                        _id: {
+                            month: {
+                                $dateToString: { format: "%Y-%m", date: "$orderDate" }
+                            }
+                        },
+                        count: { $sum: 1 }
+                    }
+                }
+            ]);
+            var Delivered_TotalOrderscurrentCount = 0;
+            var Delivered_TotalOrderspreviousCount = 0;
+            Delivered_monthCompareData_Delivered_TotalOrders.forEach(item => {
+                if (item._id.month === currentMonth) {
+                    Delivered_TotalOrderscurrentCount = item.count;
+                }
+                if (item._id.month === previousMonth) {
+                    Delivered_TotalOrderspreviousCount = item.count;
+                }
+            });
+            var Delivered_TotalOrderspercentageChange = 0;
+            var Delivered_trend = "no_change";
+            if (Delivered_TotalOrderspreviousCount === 0 && Delivered_TotalOrderscurrentCount > 0) {
+                Delivered_TotalOrderspercentageChange = 100;
+                Delivered_trend = "increase";
+            } else if (Delivered_TotalOrderspreviousCount > 0) {
+                Delivered_TotalOrderspercentageChange = ((Delivered_TotalOrderscurrentCount - Delivered_TotalOrderspreviousCount) / Delivered_TotalOrderspreviousCount) * 100;
+                Delivered_trend = Delivered_TotalOrderspercentageChange > 0 ? "increase" : "decrease";
+            }
+
+            Delivered_TotalOrderspercentageChange = Number(Delivered_TotalOrderspercentageChange.toFixed(2));
+            console.log("Delivered_TotalOrderspercentageChange", Delivered_TotalOrderspercentageChange)
+            DeliveredTotalOrdersComparePreviousMonth.currentMonthOrders = Delivered_TotalOrderscurrentCount;
+            DeliveredTotalOrdersComparePreviousMonth.previousMonthOrders = Delivered_TotalOrderspreviousCount;
+            DeliveredTotalOrdersComparePreviousMonth.percentageChange = Delivered_TotalOrderspercentageChange;
+            DeliveredTotalOrdersComparePreviousMonth.trend = Delivered_trend
 
             //New Orders Fetch
             var Recent_Orders_Fetch = await Orders_Model.find({ orderStatus: "New" });
             //Best Seller Product
             var Get_best_sellers_Products = await Orders_Model.aggregate([{
                 $match: {
-                    orderStatus: { $in: ["New", "Shipped", "Delivered"] }
+                    orderStatus: { $in: ["Delivered"] }
                 }
             },
             { $unwind: "$Products" },
@@ -293,9 +606,9 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                         //Match and add sales count
                         for (var j = 0; j < ProductIDSAndSalesCounts.length; j++) {
                             if (Product_Best_Sellers[count].productID == ProductIDSAndSalesCounts[j].productID) {
-                                
+
                                 Product_Best_Sellers[count]["salesCount"] = ProductIDSAndSalesCounts[j].salesCount;
-                               // console.log("Matched ProductID",Product_Best_Sellers[count]);
+                                // console.log("Matched ProductID",Product_Best_Sellers[count]);
                             }
                             //ProductsTopSelles.push(Product_Best_Sellers[count]);
                         }
@@ -319,8 +632,8 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                         $match: {
                             orderStatus: {
                                 $in: [
-                                    "New",
-                                    "Shipped",
+                                    // "New",
+                                    // "Shipped",
                                     "Delivered"
                                 ]
                             },
@@ -364,6 +677,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                         date: dateStr,
                         count: 0
                     })
+
                 }
 
 
@@ -371,11 +685,19 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     response: 3,
                     message: "Admin home page fetch data successfully",
                     TotalOrders: total_order_count,
-                    ActiveOrders: active_order_count,
-                    CompvaredOrders: completed_order_count,
-                    TotalOrdersPercentage: TotalOrdersComparePreviousMonth,
-                    TotalOrdersActivePercentage: ActiveTotalOrdersComparePreviousMonth,
-                    TotalOrdersCompletedPercentage: ComparedTotalOrdersComparePreviousMonth,
+                    NewOrders: new_count,
+                    Inprogress_count: Inprogress_count,
+                    Shipped_count: shipped_count,
+                    Cancelled_count: cancelled_count,
+                    Reject_count: reject_count,
+                    Delivered_count: delivered_count,
+                    TotalOrdersComparePreviousMonth: TotalOrdersComparePreviousMonth,
+                    NewOrdersComparePreviousMonth: NewOrdersComparePreviousMonth,
+                    InprogressTotalOrdersComparePreviousMonth: InprogressTotalOrdersComparePreviousMonth,
+                    ShippedTotalOrdersComparePreviousMonth: ShippedTotalOrdersComparePreviousMonth,
+                    CancelledTotalOrdersComparePreviousMonth: CancelledTotalOrdersComparePreviousMonth,
+                    RejectedTotalOrdersComparePreviousMonth: RejectedTotalOrdersComparePreviousMonth,
+                    DeliveredTotalOrdersComparePreviousMonth: DeliveredTotalOrdersComparePreviousMonth,
                     ProductsTopSales: ProductsTopSelles,
                     GraphData: GettingOrderGraphData,
                     NewOrders: Recent_Orders_Fetch
@@ -385,7 +707,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 var GettingOrderGraphData = await Orders_Model.aggregate([
                     {
                         $match: {
-                            orderStatus: { $in: ["New", "Shipped", "Delivered"] },
+                            orderStatus: { $in: ["Delivered"] },
                             orderTimeStamp: {
                                 $gte: params.startDate,
                                 $lte: params.endDate
@@ -446,11 +768,19 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     response: 3,
                     message: "Admin home page fetch data successfully",
                     TotalOrders: total_order_count,
-                    ActiveOrders: active_order_count,
-                    CompvaredOrders: completed_order_count,
-                    TotalOrdersPercentage: TotalOrdersComparePreviousMonth,
-                    TotalOrdersActivePercentage: ActiveTotalOrdersComparePreviousMonth,
-                    TotalOrdersCompletedPercentage: ComparedTotalOrdersComparePreviousMonth,
+                    NewOrders: new_count,
+                    Inprogress_count: Inprogress_count,
+                    Shipped_count: shipped_count,
+                    Cancelled_count: cancelled_count,
+                    Reject_count: reject_count,
+                    Delivered_count: delivered_count,
+                    TotalOrdersComparePreviousMonth: TotalOrdersComparePreviousMonth,
+                    NewOrdersComparePreviousMonth: NewOrdersComparePreviousMonth,
+                    InprogressTotalOrdersComparePreviousMonth: InprogressTotalOrdersComparePreviousMonth,
+                    ShippedTotalOrdersComparePreviousMonth: ShippedTotalOrdersComparePreviousMonth,
+                    CancelledTotalOrdersComparePreviousMonth: CancelledTotalOrdersComparePreviousMonth,
+                    RejectedTotalOrdersComparePreviousMonth: RejectedTotalOrdersComparePreviousMonth,
+                    DeliveredTotalOrdersComparePreviousMonth: DeliveredTotalOrdersComparePreviousMonth,
                     ProductsTopSales: ProductsTopSelles,
                     GraphData: finalGraphData,
                     NewOrders: Recent_Orders_Fetch
@@ -460,7 +790,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 var GettingOrderGraphData = await Orders_Model.aggregate([
                     {
                         $match: {
-                            orderStatus: { $in: ["New", "Shipped", "Delivered"] },
+                            orderStatus: { $in: ["Delivered"] },
                             orderTimeStamp: {
                                 $gte: params.startDate,
                                 $lte: params.endDate
@@ -521,11 +851,19 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     response: 3,
                     message: "Admin home page fetch data successfully",
                     TotalOrders: total_order_count,
-                    ActiveOrders: active_order_count,
-                    CompvaredOrders: completed_order_count,
-                    TotalOrdersPercentage: TotalOrdersComparePreviousMonth,
-                    TotalOrdersActivePercentage: ActiveTotalOrdersComparePreviousMonth,
-                    TotalOrdersCompletedPercentage: ComparedTotalOrdersComparePreviousMonth,
+                    NewOrders: new_count,
+                    Inprogress_count: Inprogress_count,
+                    Shipped_count: shipped_count,
+                    Cancelled_count: cancelled_count,
+                    Reject_count: reject_count,
+                    Delivered_count: delivered_count,
+                    TotalOrdersComparePreviousMonth: TotalOrdersComparePreviousMonth,
+                    NewOrdersComparePreviousMonth: NewOrdersComparePreviousMonth,
+                    InprogressTotalOrdersComparePreviousMonth: InprogressTotalOrdersComparePreviousMonth,
+                    ShippedTotalOrdersComparePreviousMonth: ShippedTotalOrdersComparePreviousMonth,
+                    CancelledTotalOrdersComparePreviousMonth: CancelledTotalOrdersComparePreviousMonth,
+                    RejectedTotalOrdersComparePreviousMonth: RejectedTotalOrdersComparePreviousMonth,
+                    DeliveredTotalOrdersComparePreviousMonth: DeliveredTotalOrdersComparePreviousMonth,
                     ProductsTopSales: ProductsTopSelles,
                     GraphData: finalGraphData,
                     NewOrders: Recent_Orders_Fetch
@@ -534,7 +872,7 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                 var GettingOrderGraphData = await Orders_Model.aggregate([
                     {
                         $match: {
-                            orderStatus: { $in: ["New", "Shipped", "Delivered"] },
+                            orderStatus: { $in: ["Delivered"] },
                             orderTimeStamp: {
                                 $gte: params.startDate,
                                 $lte: params.endDate
@@ -592,11 +930,19 @@ module.exports.Admin_Dash_Board_Api = async function Admin_Dash_Board_Api(req, r
                     response: 3,
                     message: "Admin home page fetch data successfully",
                     TotalOrders: total_order_count,
-                    ActiveOrders: active_order_count,
-                    CompvaredOrders: completed_order_count,
-                    TotalOrdersPercentage: TotalOrdersComparePreviousMonth,
-                    TotalOrdersActivePercentage: ActiveTotalOrdersComparePreviousMonth,
-                    TotalOrdersCompletedPercentage: ComparedTotalOrdersComparePreviousMonth,
+                    NewOrders: new_count,
+                    Inprogress_count: Inprogress_count,
+                    Shipped_count: shipped_count,
+                    Cancelled_count: cancelled_count,
+                    Reject_count: reject_count,
+                    Delivered_count: delivered_count,
+                    TotalOrdersComparePreviousMonth: TotalOrdersComparePreviousMonth,
+                    NewOrdersComparePreviousMonth: NewOrdersComparePreviousMonth,
+                    InprogressTotalOrdersComparePreviousMonth: InprogressTotalOrdersComparePreviousMonth,
+                    ShippedTotalOrdersComparePreviousMonth: ShippedTotalOrdersComparePreviousMonth,
+                    CancelledTotalOrdersComparePreviousMonth: CancelledTotalOrdersComparePreviousMonth,
+                    RejectedTotalOrdersComparePreviousMonth: RejectedTotalOrdersComparePreviousMonth,
+                    DeliveredTotalOrdersComparePreviousMonth: DeliveredTotalOrdersComparePreviousMonth,
                     ProductsTopSales: ProductsTopSelles,
                     GraphData: finalGraphData,
                     NewOrders: Recent_Orders_Fetch

@@ -29,7 +29,8 @@ module.exports.Admin_Add_Tracking_Details_Api = async function Admin_Add_Trackin
                 var UpdateOrderData = await Orders_Model.updateOne({ orderId: params.orderId }, {
                     $set: {
                         orderTrackingDetails: params.orderTrackingDetails,
-                        orderStatus: "Shipped"
+                        orderStatus: "Shipped",
+                        shippedTimestamp: new Date().getTime().toString()
                     }
                 })
                 if (UpdateOrderData.modifiedCount > 0) {
@@ -70,7 +71,8 @@ module.exports.Admin_Mark_As_Delivered_Api = async function Admin_Mark_As_Delive
             if (checking_orderID) {
                 var UpdateOrderData = await Orders_Model.updateOne({ orderId: params.orderId }, {
                     $set: {
-                        orderStatus: "Delivered"
+                        orderStatus: "Delivered",
+                        deliveredTimestamp: new Date().getTime().toString()
                     }
                 })
                 if (UpdateOrderData.modifiedCount > 0) {

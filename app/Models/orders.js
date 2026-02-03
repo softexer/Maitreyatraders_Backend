@@ -175,10 +175,42 @@ var orderdata = new schema({
         required: false,
         default: { Object }
     },
+    //New >> InProgress >> Shipped >> Delivered >> Cancelled
     orderStatus: {
         type: String,
         required: false,
         default: "New"
+    },
+
+    //Accepted or rejected by admin timestamp then status change to Inprogress
+    inprogressTimestamp: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    //Shipped timestamp
+    shippedTimestamp: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    //Delivered timestamp
+    deliveredTimestamp: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    //Cancelled timestamp
+    cancelledTimestamp: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    //rejected timestamp
+    rejectedTimestamp: {
+        type: String,
+        required: false,
+        default: ""
     },
     paymentStatus: {
         type: String,
