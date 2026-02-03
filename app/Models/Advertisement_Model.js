@@ -12,6 +12,31 @@ var Advertisement = new schema({
         required: false,
         default: ""
     },
+    categoryID: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    subCategoryID: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    productID: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    title: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    description: {
+        type: String,
+        required: false,
+        default: ""
+    },
     image: {
         type: String,
         required: false,
@@ -23,4 +48,4 @@ var Advertisement = new schema({
         default: ""
     }
 })
-module.exports = mongoose.model("advertisement",Advertisement)
+module.exports = mongoose.model("advertisement", Advertisement)
