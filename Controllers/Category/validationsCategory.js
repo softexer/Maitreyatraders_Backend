@@ -48,7 +48,8 @@ var categorysvalidations = {
     },
     deletecategoryparamsValidations: (params) => {
         var deletecategories = Joi.object({
-            type: Joi.string().required()
+            adminuniqueID: Joi.string().required(),
+            categoryID: Joi.string().required()
         })
         return deletecategories.validate(params)
     }

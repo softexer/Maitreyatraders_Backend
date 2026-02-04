@@ -34,7 +34,7 @@ module.exports.Stripe_Payment_Api = async function Stripe_Payment_Api(req, res) 
         stripe.paymentIntents.create({
             shipping: params.shipping,
             description: params.description,
-            amount: params.amount,
+            amount: parseInt(params.amount),
             currency: params.currencyCode,
             payment_method_types: params.paymentMethod //'2020-08-27'
         }).then((charge) => {
@@ -45,7 +45,7 @@ module.exports.Stripe_Payment_Api = async function Stripe_Payment_Api(req, res) 
                 paymentInitObject: charge
             });
         }).catch((error) => {
-           // console.error(error)
+            console.error(error)
             return res.json({
                 response: 0,
                 message: error

@@ -317,83 +317,91 @@ var subcategory = {
         })
 
     },
-    categoriesDelete: (params, callback) => {
-        var { error } = validations.deletecategoryparamsValidations(params);
-        if (error) {
-            return callback({
-                status: 400,
-                data: {
-                    response: 0,
-                    message: error.details[0].message
-                }
-            })
-        }
-        var datafoundcategory = dbQuaries.fetchallcategoriesdataparams2(params);
-        datafoundcategory.then((found) => {
-            if (found.length > 0) {
-                var deletealldata = dbQuaries.deleteallcategoriesdataparams(params)
-                deletealldata.then((deleted) => {
-                    if (deleted) {
-                        var Categoryimages = [];
-                        var subCategoryimages = [];
-                        for (var a = 0; a < found.length; a++) {
-                            if (found[a].CategoryImage) {
-                                var locationpath = './public' + found[a].CategoryImage
-                                Categoryimages.push(locationpath);
-                                for (var b = 0; b < found[a].subCategorys.length; b++) {
-                                    if (found[a].subCategorys[b].SubCategoryProfilePic) {
-                                        var sublocationpath = './public' + found[a].subCategorys[b].SubCategoryProfilePic;
-                                        subCategoryimages.push(sublocationpath)
-                                    }
-                                }
-                            }
-
+    categoriesDelete: async (params, callback) => {
+        try {
+            var Joi = require('@hapi/joi');
+            var { error } = validations.deletecategoryparamsValidations(params);
+            if (error) {
+                return callback({
+                    status: 400,
+                    data: {
+                        response: 0,
+                        message: error.details[0].message
+                    }
+                })
+            }
+            var Checking_Data = await Admin_Model.findOne({ adminuniqueID: params.adminuniqueID }).exec();
+            if (Checking_Data) {
+                var categorydata = await Category_Model.findOne({ categoryID: params.categoryID }).exec();
+                if (!categorydata) {
+                    return callback({
+                        status: 200,
+                        data: {
+                            response: 0,
+                            message: "CategoryID Data not found"
                         }
-                        Categoryimages.map(f => {
-                            fs.unlink(f, (err) => {
+                    })
+                } else {
+                    var deletecategory = await Category_Model.deleteOne({ categoryID: params.categoryID }).exec();
+                    var Productsfetch = await Products.find({ categoryID: params.categoryID }).exec();
+                    if (deletecategory.deletedCount > 0) {
+                        var productsdelete = await Products.deleteMany({ categoryID: params.categoryID }).exec();
+                        for (var a = 0; a < categorydata.subCategorys.length; a++) {
+                            var dbpathimage = categorydata.subCategorys[a].SubCategoryProfilePic;
+                            var removeimageinpath = "./public" + dbpathimage;
+                            fs.unlink(removeimageinpath, (err) => {
                                 if (err) {
-                                    console.log(err)
+                                    console.log("err", err)
+                                } else {
+                                    console.log("File deleted successfully")
                                 }
                             })
-                        })
-                        subCategoryimages.map(f => {
-                            fs.unlink(f, (err) => {
-                                if (err) {
-                                    console.log(err)
+                        }
+                        //products delete
+                        if (Productsfetch.length > 0) {
+                            for (var b = 0; b < Productsfetch.length; b++) {
+                                for (var c = 0; c < Productsfetch[b].productImagesList.length; c++) {
+                                    var productimagepath = "./public" + Productsfetch[b].productImagesList[c];
+                                    fs.unlink(productimagepath, (err) => {
+                                        if (err) {
+                                            console.log("err", err)
+                                        } else {
+                                            console.log("File deleted successfully")
+                                        }
+                                    })
                                 }
-                            })
-                        })
-                        return callback({
-                            status: 200,
-                            data: {
-                                response: 3,
-                                message: "Categorydata Delete Successfully"
-
                             }
-                        })
-                    } else {
-                        return callback({
-                            status: 200,
-                            data: {
-                                response: 0,
-                                message: "Data deleted failure"
-
+                        }
+                        // delete category image
+                        var categoryimagepath = "./public" + categorydata.CategoryImage;
+                        fs.unlink(categoryimagepath, (err) => {
+                            if (err) {
+                                console.log("err", err)
+                            } else {
+                                console.log("File deleted successfully")
                             }
                         })
                     }
-                })
+                }
             } else {
                 return callback({
                     status: 200,
                     data: {
                         response: 0,
-                        message: "No data found"
-
+                        message: "adminuniqueID Data not found"
                     }
                 })
             }
-        })
 
+        } catch (error) {
+            return callback({
+                status: 500,
+                data: {
+                    response: 0,
+                    message: "Internal Server Error"
+                }
+            })
+        }
 
     }
 
